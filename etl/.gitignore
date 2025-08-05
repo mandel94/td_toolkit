@@ -1,0 +1,15 @@
+__pycache__
+*.py[cod]
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.csv
+*.json
+*.parquet
+*.xlsx
+*.xlsm
+*.xlsb
+*.xls
+*.ods
