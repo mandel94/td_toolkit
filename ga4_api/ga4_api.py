@@ -41,29 +41,30 @@ class Ga4Client:
                 pickle.dump(creds, token)
         return creds
 
-    def run_query(self, property_id, dimensions, metrics, start_date, end_date):
+    def run_query(self, property_id, dimensions=None, metrics=None, start_date=None, end_date=None):
         """
         Run a GA4 query and return the results as a pandas DataFrame.
         Args:
             property_id (str): GA4 property ID.
-            dimensions (list): List of dimension names.
+            dimensions (list, optional): List of dimension names. If None, no dimensions are used.
             metrics (list): List of metric names.
             start_date (str): Start date in 'YYYY-MM-DD' format.
             end_date (str): End date in 'YYYY-MM-DD' format.
         Returns:
             pd.DataFrame: DataFrame with the query results.
-        Retries on timeout until successful.
         """
-        import time
         from google.api_core.exceptions import DeadlineExceeded
+        import time
+        if metrics is None:
+            raise ValueError("metrics must be provided")
+        request = RunReportRequest(
+            property=f"properties/{property_id}",
+            dimensions=[Dimension(name=d) for d in dimensions] if dimensions else [],
+            metrics=[Metric(name=m) for m in metrics],
+            date_ranges=[DateRange(start_date=start_date, end_date=end_date)]
+        )
         while True:
             try:
-                request = RunReportRequest(
-                    property=f"properties/{property_id}",
-                    dimensions=[Dimension(name=d) for d in dimensions],
-                    metrics=[Metric(name=m) for m in metrics],
-                    date_ranges=[DateRange(start_date=start_date, end_date=end_date)]
-                )
                 response = self.client.run_report(request)
                 rows = []
                 for row in response.rows:
