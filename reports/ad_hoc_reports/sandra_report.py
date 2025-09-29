@@ -8,9 +8,8 @@ from datetime import datetime, timedelta
 from ga4_api.ga4_api import Ga4Client
 from etl.page_and_screen_etl import PageAndScreenETLFactory
 from map_ga4_categories import map_ga4_categories
-import requests
-from bs4 import BeautifulSoup
 from td_data_toolkit.article_analytics.metadata import get_article_metadata
+from config import OUTPUT_DIR, WEEKLY_OUTPUT_DIR
 
 # Configurazione
 PROPERTY_ID = '394327334'
@@ -19,14 +18,36 @@ METRICS = ['screenPageViews', 'engagementRate', 'bounceRate', 'averageSessionDur
 DAYS = 7
 N_TOP = 100
 DOMAIN = "https://taxidrivers.it"
-EXCEL_OUTPUT = f"top_articles_last_week_v2.xlsx"
+# Make EXCEL_OUTPUT dynamic based on DAYS and current date
+end_date = datetime.now().date()
+start_date = end_date - timedelta(days=DAYS)
+OUTPUT_DIR = os.path.join(WEEKLY_OUTPUT_DIR, 'Weekly Midreports')
+MIDREPORT_FILENAME = os.path.join(OUTPUT_DIR, f"top_articles_{start_date.strftime('%y%m%d')}_{end_date.strftime('%y%m%d')}.xlsx")
 
+CATEGORIES = {
+    "News": {"latest-news", "focus-italia"},
+    # "Anticipazioni": {"anticipazioni"},
+    "Recensioni": {"review", "netflix-film", "sky-film", "disney-film", "mubi", "mubi-film",
+                    "approfondimenti", "streaming"},
+    "In Sala": {"in-sala"},
+    "Cult Movies": {"cult-movie"},
+    "Animazione": {"animazione", "animazione/anime"},
+    "Approfondimento": {"approfondimento"},
+    "Festival di Cinema": {"festival-di-cinema"},
+    "Trailers": {"trailers"},
+    "Serie TV": {"serie-tv", "netflix-serie-tv", "prime-video-serietv", "sky-serie-tv",
+                 "disney-serietv", "paramount-serie-tv", "appletv-serietv", "tim-vision-serie-tv"},
+    "Guide e Film da Vedere": {"film-da-vedere"},
+    "Speciali e Magazine": {"magazine-2", "taxidrivers-magazine"},
+    "Live Streaming On Demand": {"live-streaming-on-demand"},
+    "Rubriche": {"rubriche"},
+    "Interviste": {"interviews"}
+}
 
 def main():
     print(f"\n=== TOP {N_TOP} ARTICOLI DELLA SETTIMANA ===\n")
     # Calcola le date
-    end_date = datetime.now().date()
-    start_date = end_date - timedelta(days=DAYS)
+    # Already calculated above for MIDREPORT_FILENAME  
     print(f"Periodo analizzato: {start_date} → {end_date}")
 
     # Inizializza il client GA4
@@ -71,13 +92,28 @@ def main():
     top_df["author"] = authors
     top_df["category"] = top_df["pagePath"].apply(map_ga4_categories)
     top_df["publication_date"] = pub_dates
-    # Reorder columns so that title is at the beginning
-    top_df = top_df[['title', 'pagePath', 'publication_date', 'author', 'category'] + [col for col in top_df.columns if col not in ['title', 'pagePath', 'publication_date', 'author', 'category']]]
+    # Reorder columns as requested
+    ordered_cols = [
+        'title',
+        'pagePath',
+        'publication_date',
+        'author',
+        'category',
+        'screenPageViews',
+        'engagementRate',
+        'bounceRate',
+        'averageSessionDuration (s)'
+    ]
+    # Add any extra columns at the end
+    extra_cols = [col for col in top_df.columns if col not in ordered_cols]
+    top_df = top_df[[col for col in ordered_cols if col in top_df.columns] + extra_cols]
 
-    # Salva su Excel
-    print(f"Salvataggio risultati in '{EXCEL_OUTPUT}'...")
-    top_df.to_excel(EXCEL_OUTPUT, index=False)
-    print(f"Top {N_TOP} articoli salvati in {EXCEL_OUTPUT}\n")
+    # Salva su Excel in output directory
+    if not os.path.exists(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR)
+    print(f"Salvataggio risultati in '{MIDREPORT_FILENAME}'...")
+    top_df.to_excel(MIDREPORT_FILENAME, index=False)
+    print(f"Top {N_TOP} articoli salvati in {MIDREPORT_FILENAME}\n")
 
     # Stampa a schermo in modo leggibile
     print(f"\n📊 TOP {N_TOP} ARTICOLI DELLA SETTIMANA\n")

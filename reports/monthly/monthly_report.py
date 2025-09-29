@@ -1,5 +1,4 @@
 # Change system path to include two levels from parent directory
-import json
 import os
 import sys
 import pandas as pd
@@ -9,28 +8,44 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from config import (
-    WEEKLY_OUTPUT_DIR,
-    WEEKLY_REPORT_OUTPUT_FILENAME,
-    WEEKLY_REPORT_METRICS,
-    WEEKLY_REPORT_DATA_RANGE,
+    MONTHLY_OUTPUT_DIR,
+    MONTHLY_PARAMETERS_MONTH,
+    MONTHLY_REPORT_METRICS
 )
+
 from etl.page_and_screen_etl import PageAndScreenETLFactory
+from ga4_api.ga4_api import Ga4Client
 from map_ga4_categories import map_ga4_categories
 from bs4 import BeautifulSoup
 from datetime import datetime
 import concurrent.futures
+from scrape_content.scrape_archive import scrape_archive
+from scrape_content.scrape_articles import scrape_article
 
-# from gemini import WeeklyTopOfTheTops
-from reports.weekly.weekly_top_template import (
-    weekly_top_template_from_df,
-)
 
+
+
+months_data_range = {
+    "January": ("2025-01-01", "2025-01-31"),
+    "February": ("2025-02-01", "2025-02-28"),
+    "March": ("2025-03-01", "2025-03-31"),
+    "April": ("2025-04-01", "2025-04-30"),
+    "May": ("2025-05-01", "2025-05-31"),
+    "June": ("2025-06-01", "2025-06-30"),
+    "July": ("2025-07-01", "2025-07-31"),
+    "August": ("2025-08-01", "2025-08-31"),
+    "September": ("2025-09-01", "2025-09-30"),
+    "October": ("2025-10-01", "2025-10-31"),
+    "November": ("2025-11-01", "2025-11-30"),
+    "December": ("2025-12-01", "2025-12-31"),
+}
 
 # Define a function that returns True if the pagepath countains "si-fara" substring
 
 
 def contains_si_fara(path: str) -> bool:
     return "si-fara" in path
+
 
 
 def get_ga4_data_api(
@@ -148,7 +163,6 @@ def scrape_article_metadata(
         pub_dates, authors, titles = [], [], []
     return list(pub_dates), list(authors), list(titles)
 
-
 def remove_invalid_chars(sheet_name):
     """
     Remove invalid characters for Excel sheet names: : \ / ? * [ ]
@@ -160,29 +174,20 @@ def remove_invalid_chars(sheet_name):
     return sheet_name[:31]
 
 
-def run_weekly_report(
+def run_monthly_report(
     data_args=None,
     domain="https://taxidrivers.it",
-    n=10,
     max_workers=8,
-    csv_output_path=None,
     excel_output_path=None,
     map_categories_func=map_ga4_categories,
     si_fara_func=contains_si_fara,
-    output_dir=None,
-    gemini_api_key=None,
-    use_gemini=False,
-    use_template=False,
-    sort_by_metric="Utenti attivi",
 ):
     """
-    Run the full weekly report pipeline.
+    Run the full monthly report pipeline.
     Args:
         data_args: dict of arguments for get_ga4_data
         domain: site domain for scraping
-        n: top N articles per category
         max_workers: parallel scraping workers
-        filter_by_date: whether to filter by date
         csv_output_path: where to save the CSV (optional)
         excel_output_path: where to save the Excel (optional)
         map_categories_func: function to map categories
@@ -199,52 +204,68 @@ def run_weekly_report(
     if data_args is None:
         data_args = {}
     df = get_ga4_data(**data_args)
+    print("Number of articles that have generated views:", df.shape[0])
+    print("Number of recent articles:", df.shape[0])
     df["Categoria"] = df["pagePath"].apply(map_categories_func)
-    # Map si farà articles directly in Categoria
     df.loc[df["pagePath"].apply(si_fara_func), "Categoria"] = "Si farà"
-    # Merge "Recensioni / In Sala" and "Recensioni"
     df.loc[
         (df["Categoria"] == "Recensioni / In Sala") | (df["Categoria"] == "Recensioni"),
         "Categoria",
     ] = "Recensioni"
     # Convert metrics to numeric
-    for metric_col in WEEKLY_REPORT_METRICS:
+    for metric_col in MONTHLY_REPORT_METRICS:
         if metric_col in df.columns:
             df[metric_col] = pd.to_numeric(df[metric_col], errors="coerce").fillna(0)
-    # Keep only articles with more than 30 page views
-    df = df[df["screenPageViews"] > 30] if "screenPageViews" in df.columns else df
-    # Print len(df), dtypes
-    print(f"Results dataFrame length: {len(df)}")
     # Scrape metadata for each article
     print("Scraping article metadata...")
-    paths = df["pagePath"].tolist()
-    pub_dates, authors, titles = scrape_article_metadata(
-        paths, domain, max_workers=max_workers
+    # Scrape recent archive
+    recent_archive = scrape_archive("reports/monthly/archive_page.html")
+    print(f"Recent archive articles found: {recent_archive.shape[0]}")
+    # Merge on title
+    df = df.merge(
+        recent_archive,
+        on="pagePath",
+        how="left",
     )
+    # Keep only df with "published" not null (i.e. articles found in the archive)
+    df = df[df["published"].notnull()].copy()
+    df = df[~df["published"].str.contains("2 mesi ago", na=False)]
+    print(f"Articles after merging with recent archive: {df.shape[0]}")
+    paths = df["pagePath"].tolist()
+    # Divide the df in 10 chunks. Scrape each chunk sequentially, waiting 10 minutes between each chunk
+    chunk_size = max(1, len(paths) // 1) # 1 is for testing
+    all_pub_dates = []
+    all_authors = []
+    all_titles = []
+    for i in range(0, len(paths), chunk_size):
+        chunk_paths = paths[i : i + chunk_size]
+        print(f"Scraping chunk {i // chunk_size + 1} with {len(chunk_paths)} articles...")
+        pub_dates, authors, titles = scrape_article_metadata(
+            chunk_paths, domain, max_workers=max_workers
+        )
+        all_pub_dates.extend(pub_dates)
+        all_authors.extend(authors)
+        all_titles.extend(titles)
+        if i + chunk_size < len(paths):
+            print(f"Chunk {i // chunk_size + 1} done.")
+            print("Waiting 10 minutes before next chunk...")
+            import time
+
+            time.sleep(2)
     # Convert publication dates to JSON serializable format
     df["Publication Date"] = [
-        d.isoformat() if isinstance(d, datetime) else None for d in pub_dates
+        d.isoformat() if isinstance(d, datetime) else None for d in all_pub_dates
     ]
-    #
-    df["Author"] = authors
-    df["Title"] = titles
-    df.to_csv(csv_output_path, index=False) if csv_output_path else None
-    if excel_output_path:
-        df.to_excel(excel_output_path, index=False)
-        print(f"Top articles saved to {excel_output_path}")
-    gemini_summary = None
-    template_summary = None
-    if use_gemini and gemini_api_key:
-        from gemini import WeeklyTopOfTheTops
-
-        weekly_gemini = WeeklyTopOfTheTops(api_key=gemini_api_key)
-        gemini_summary = weekly_gemini.generate(df, model="gemini-2.5-pro")
-        print(gemini_summary)
-    if use_template and excel_output_path:
-        template_summary = weekly_top_template_from_df(
-            excel_output_path, n=3, metric=sort_by_metric
-        )
-        print(template_summary)
+    df["Author"] = all_authors
+    df["Title"] = all_titles
+    # Save all results as a json
+    try:
+        if excel_output_path:
+            df.to_excel(excel_output_path, index=False, engine="openpyxl")
+            print(f"Top articles saved to {excel_output_path}")
+    except Exception as e:
+        print(f"Fallback to current directory: {e}")
+        df.to_excel(".", index=False, engine="openpyxl")
     return df
 
 
@@ -253,35 +274,21 @@ def run_weekly_report(
 # print(df.head())
 
 if __name__ == "__main__":
-    # Append one to three folder above
-    sys.path.append(
-        os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
-    )
-
-    from ga4_api.ga4_api import Ga4Client
-
+    month = "August"
     ga4_client = Ga4Client()
-    weekly_output = run_weekly_report(
+    monthly_output = run_monthly_report(
         data_args={
             "source": "api",
             "ga4_client": ga4_client,
             "property_id": "394327334",
             "dimensions": ["pagePath"],
-            "metrics": WEEKLY_REPORT_METRICS,
-            "start_date": WEEKLY_REPORT_DATA_RANGE[0],
-            "end_date": WEEKLY_REPORT_DATA_RANGE[1],
+            "metrics": ["activeUsers", "screenPageViews", 'engagementRate', 'bounceRate', 'averageSessionDuration'],
+            "start_date": months_data_range[MONTHLY_PARAMETERS_MONTH][0],
+            "end_date": months_data_range[MONTHLY_PARAMETERS_MONTH][1],
         },
         domain="https://taxidrivers.it",
-        n=10,
         max_workers=8,
-        csv_output_path=os.path.join(WEEKLY_OUTPUT_DIR, WEEKLY_REPORT_OUTPUT_FILENAME),
         excel_output_path=os.path.join(
-            WEEKLY_OUTPUT_DIR,
-            f"top_articles_by_category_{WEEKLY_REPORT_DATA_RANGE[0].replace('-', '')}_{WEEKLY_REPORT_DATA_RANGE[1].replace('-', '')}.xlsx",
+            MONTHLY_OUTPUT_DIR, f"top_articles_{MONTHLY_PARAMETERS_MONTH}.xlsx"
         ),
-        output_dir=WEEKLY_OUTPUT_DIR,
-        gemini_api_key=os.getenv("GEMINI_API_KEY"),
-        use_gemini=False,
-        use_template=False,
-        sort_by_metric="screenPageViews",
     )

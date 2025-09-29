@@ -2,15 +2,19 @@ Ciao a tutti,
 
 spero tutto bene :)
 
-Il report di questa settimana sarà diverso dal solito. 
+Il report di questa settimana sarà diverso dal solito.
 
-Luglio è stato infatti un mese molto positivo per il sito. Per riassumere in due percentuali, abbiamo ricevuto un +42% di utenti attivi rispetto a giugno, con un + 34% di visualizzazioni.
+Luglio è stato infatti un mese molto positivo per il sito. Riassumendo in numeri: +42% di utenti attivi rispetto a giugno, con un +34% di visualizzazioni.
 
-I numeri sono ancora più promettenti se presi anno su anno (+76.6% utenti attivi, +58% visualizzazioni rispetto a luglio 2024). I numeri, per quanto freddi, sono testimoni che il buon lavoro ripaga sempre. 
+I numeri sono ancora più promettenti se presi anno su anno: +76.6% di utenti attivi rispetto a luglio 2024, con un +58% di visualizzazioni.
 
-La classifica di oggi includerà tutti gli articoli pubblicati nel mese di luglio.
+Direi che non c'è da aggiungere altro, congratulazioni a tutti!
 
-Il quadro che emerge ha un respiro più ampio e ci consente di capire con più lucidità quali sono stati i trend di luglio.
+Con Vincenzo abbiamo pensato di celebrare con un report mensile, che includa tutti gli articoli di luglio.
+
+Visto che molti degli *hot topics* sono già stati affrontati nei report precedenti, il focus dell'analisi sarà stavolta sulle categorie editoriali.
+
+Ma prima, la classifica degli articoli:
 
 
 
@@ -74,27 +78,27 @@ Il quadro che emerge ha un respiro più ampio e ci consente di capire con più l
 
 
 
-I titoli seriali con un forte seguito di pubblico si prendono lo scettro della categoria "Si farà". Successi globali come Squid Game, L'estate nei tuoi occhi, Kpop Demon Hunters hanno portato il maggior numero di visualizzazioni al sito. Le anticipazioni sugli ultimi film di successo sono un catalizzatore di visualizzazioni sul sito, come dimostrano le anticipazioni su Squid Game, L'estate nei tuoi occhi o Kpop Demon Hunters.
+
+
+A luglio è la categoria "Festival di Cinema" a dominare la classifica delle visualizzazioni (19% del totale), grazie al contributo dei numerosi articoli figliati dal programma di Venezia 82. Questo conferma l'interesse per la categoria editoriale, che Taxi Drivers copre con autorità posizionandosi come riferimento essenziale per i lettori più appassionati.
 
 
 
-L'articolo che ha ricevuto più visualizzazioni a luglio è "‘Squid Game 4’ si farà? Ecco quello che sappiamo" di Gaia Trentin, seguito da ‘L’estate nei tuoi occhi 3’: il gran finale è arrivato su Prime Video di Antonello Di Pilato, seguito da ‘NINO. 18 GIORNI’: a Venezia il documentario su Nino D’Angelo diretto dal figlio Toni di Sara Furlan.
+Al secondo posto troviamo le "Serie TV" (17%), grazie anche ai calendari molto vivaci di Netflix e Prime Video che hanno visto il rilascio di episodi (molti dei quali conclusivi) per serie di grande risonanza quali il più volte citato L'Estate nei tuoi occhi 3, The Sandman 2 e Soleil Noir.
 
 
 
-Ma la categoria "Festival di cinema" domina la classifica per visualizzazioni generate (19% del totale), grazie al contributo dei numerosi articoli figliati dal programma di Venezia 82. Questo conferma che l'interesse dei lettori per la categoria, e l'importante ruolo di Taxi Drivers come punto di riferimento per il cinema autoriale e documentaristico.
-
-Al secondo posto troviamo la categoria "Serie TV" (17%), con calendari Netflix e Prime Video molto vivaci che hanno visto l'uscita di episodi -- molti dei quali conclusivi -- per serie di grande risonanza quali L'Estate nei tuoi occhi 3, The Sandman 2 e Soleil Noir.
-
-Al terzo posto ci sono le "News", che come sempre si alimentano della quantità di articoli pubblicati.
+Al terzo posto troviamo le "News", un bacino sempreverde di visualizzazioni che si alimenta con la gran quantità di articoli pubblicati.
 
 
 
-Di seguito trovate alcune classifiche.
+Focalizzandoci sull'importante categoria dei "Si farà", a prendersi la vetta qui sono i titolo seriali, soprattutto quelli con un forte seguito di pubblico. Successi globali come Squid Game, L'estate nei tuoi occhi, Kpop Demon Hunters hanno generato moltissime visualizzazioni, in particolar modo grazie a quelle anticipazioni che hanno stuzzicato maggiormente la curiosità dei lettori (come dimostrano quelle su Squid Game, L'estate nei tuoi occhi o Kpop Demon Hunters).
+
+
 
 Top categorie per articoli pubblicati:
 
-1. Recensioni (54)
+1. Recensioni (54 articoli pubblicati)
 2. Festival di Cinema (53)
 3. News (53)
 4. Speciali e Magazine (31)
@@ -102,9 +106,9 @@ Top categorie per articoli pubblicati:
 
 
 
-Top categorie per visualizzaioni:
+Top categorie per visualizzazioni:
 
-1. Festival di cinema (19%)
+1. Festival di cinema (19% del totale)
 2. Serie TV (17%)
 3. News (14%)
 4. Si farà (13%)
@@ -112,15 +116,11 @@ Top categorie per visualizzaioni:
 
 
 
-Considerando il rapporto tra numero di articoli pubblicati e visualizzazioni generati, la categoria Si farà è al primo posto, seguito da Serie TV. Una possibile spiegazione è che queste categorie puntano sui trend più caldi, quindi con volumi di ricerca più alti (in altri termini, il pubblico che può essere "intercettato" da un articolo in genere più alto rispetto alle altre categorie).
+Ultima considerazione importante: in tutte queste classifiche parliamo di visualizzazioni, quindi parliamo di *quantità*. Quante persone visitano un articolo non testimoniano necessariamente della qualità dello scritto, che invece è rilevabile riferendosi ad altre metriche, come il tempo speso dal lettore sulla pagina (il famoso e famigerato engagement), o la percentuale di scorrimento della pagina (page scrolling).
 
 
 
-C'è poi da precisare che in tutte queste classifiche parliamo di *visite*, quindi analizziamo articoli e categorie dal punto di vista della quantità. Non ci esprimiamo sulla qualità, che invece può misurata in altri modi, qui assenti, come il tempo mediamente speso dal lettore sulla pagina dell'articolo (il famoso engagement), o la percentuale di scrolling.
-
-
-
-Ci tengo a fare i complimenti a tutti gli autori in classifica!
+Prima di spegnermi, ci tengo come sempre a fare i complimenti a tutti gli autori in classifica!
 
  
 

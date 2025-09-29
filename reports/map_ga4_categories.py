@@ -1,12 +1,15 @@
 # Category mapping: Maps broader category names to a set of specific path keywords.
+from re import sub
+
+
 CATEGORIES = {
     "News": {"latest-news", "focus-italia"},
     # "Anticipazioni": {"anticipazioni"},
     "Recensioni": {"review", "netflix-film", "sky-film", "disney-film", "mubi", "mubi-film",
-                   "live-streaming-on-demand", "approfondimenti", "streaming"},
+                    "approfondimenti", "streaming"},
     "In Sala": {"in-sala"},
     "Cult Movies": {"cult-movie"},
-    "Animazione": {"animazione"},
+    "Animazione": {"animazione", "animazione/anime"},
     "Approfondimento": {"approfondimento"},
     "Festival di Cinema": {"festival-di-cinema"},
     "Trailers": {"trailers"},
@@ -14,28 +17,43 @@ CATEGORIES = {
                  "disney-serietv", "paramount-serie-tv", "appletv-serietv", "tim-vision-serie-tv"},
     "Guide e Film da Vedere": {"film-da-vedere"},
     "Speciali e Magazine": {"magazine-2", "taxidrivers-magazine"},
+    "Live Streaming On Demand": {"live-streaming-on-demand"},
     "Rubriche": {"rubriche"},
     "Interviste": {"interviews"}
 }
 
 def map_ga4_categories(path: str) -> str:
     """
-    Maps a given URL path to a corresponding content category based on predefined keywords.
+    Mappa un percorso URL a una categoria di contenuto secondo parole chiave predefinite.
 
-    :param path: The URL path string to categorize. Example: ``"recensioni/netflix-film/in-sala"``
-    :type path: str
+    Args:
+        path (str): Il percorso URL da categorizzare. Esempio: "recensioni/netflix-film/in-sala"
 
-    :returns: The mapped category name. Possible values include:
-              - "Recensioni"
-              - "News"
-              - "Serie TV"
-              - "Recensioni / In Sala"
-              - "Trailers / In Sala"
-              - "Altro" (default if no match is found)
-    :rtype: str
+    Returns:
+        str: Il nome della categoria mappata. Possibili valori includono:
+            - "News"
+            - "Recensioni"
+            - "Recensioni / In Sala"
+            - "In Sala"
+            - "Cult Movies"
+            - "Animazione"
+            - "Approfondimento"
+            - "Festival di Cinema"
+            - "Trailers"
+            - "Trailers / In Sala"
+            - "Serie TV"
+            - "Guide e Film da Vedere"
+            - "Speciali e Magazine"
+            - "Live Streaming On Demand"
+            - "Rubriche"
+            - "Interviste"
+            - "Anticipazioni" (prioritaria se presente nel path)
+            - "Altro" (default se nessuna corrispondenza)
 
-    The function analyzes the path by splitting it into subpaths and checking for intersections
-    with keyword sets defined in the global ``CATEGORIES`` dictionary.
+    Note:
+        - Se "anticipazioni" è presente nel path, viene restituita la categoria "Anticipazioni".
+        - Se la categoria è "Recensioni" o "Trailers" e "in-sala" è nel path, restituisce rispettivamente "Recensioni / In Sala" o "Trailers / In Sala".
+        - La funzione analizza il path suddividendolo in sottoparti e controllando l'intersezione con i set di keyword definiti in CATEGORIES.
     """
     subpaths = path.split("/")
     
@@ -43,19 +61,20 @@ def map_ga4_categories(path: str) -> str:
         return "Altro"
 
     for category, keywords in CATEGORIES.items():
-        if keywords.intersection(subpaths):
-            # Special case: category mixed with "in-sala"
-            # If anticipazioni is in the path, it should be prioritized
-            if "anticipazioni" in subpaths:
-                return "Anticipazioni"
-            if category == "Recensioni" and "in-sala" in path:
-                return "Recensioni / In Sala"
-            if category == "Trailers" and "in-sala" in path:
-                return "Trailers / In Sala"
-            return category
-
+        for keyword in keywords:
+            if keyword in subpaths:
+                # Special cases
+                if "si-fara" in subpaths:
+                    return "Si farà"
+                if "serie-tv" in subpaths:
+                    return "Serie TV"
+                if "anticipazioni" in subpaths:
+                    return "Anticipazioni"
+                if category == "Recensioni" and "in-sala" in subpaths:
+                    return "Recensioni / In Sala"
+                if category == "Trailers" and "in-sala" in subpaths:
+                    return "Trailers / In Sala"
+                return category
     return "Altro"
-
-
 
 
