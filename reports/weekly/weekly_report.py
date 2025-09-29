@@ -2,11 +2,20 @@
 import json
 import os
 import sys
+import time
+import requests
+from bs4 import BeautifulSoup
+from datetime import datetime
 import pandas as pd
+import concurrent.futures
+from requests.exceptions import Timeout
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 # And one level
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from map_ga4_categories import map_ga4_categories
+from scrape_content.ArticleScraper import ArticleScraper
 
 from config import (
     WEEKLY_OUTPUT_DIR,
@@ -15,11 +24,6 @@ from config import (
     WEEKLY_REPORT_DATA_RANGE,
 )
 from etl.page_and_screen_etl import PageAndScreenETLFactory
-from map_ga4_categories import map_ga4_categories
-from bs4 import BeautifulSoup
-from datetime import datetime
-import concurrent.futures
-
 # from gemini import WeeklyTopOfTheTops
 from reports.weekly.weekly_top_template import (
     weekly_top_template_from_df,
@@ -84,10 +88,6 @@ def get_article_metadata(url, delay=4):
     Retries on timeout until successful.
     delay: seconds to wait after unsuccessful requests (default 4)
     """
-    import time
-    import requests
-    from requests.exceptions import Timeout
-
     while True:
         try:
             time.sleep(4)
@@ -127,12 +127,26 @@ def get_article_metadata(url, delay=4):
 
 
 def scrape_article_metadata(
-    paths, domain, metadata_collector=get_article_metadata, max_workers=8
+    paths, domain, metadata_collector=None, max_workers=8
 ):
     """
     Given a list of page paths, scrape publication date, author, and title for each article in parallel.
     Returns three lists: publication dates, authors, titles.
+    Uses ArticleScraper if metadata_collector is None.
     """
+    if metadata_collector is None:
+        scraper = ArticleScraper(domain=domain, features=["publication_date", "author", "title"])
+        def metadata_collector(url):
+            # url is domain + path
+            path = url.replace(domain, "")
+            result = scraper.scrape_article(path)
+            pub_date = None
+            if result.get("publication_date"):
+                try:
+                    pub_date = datetime.strptime(result["publication_date"], "%Y-%m-%d")
+                except Exception:
+                    pub_date = None
+            return pub_date, result.get("author"), result.get("title")
 
     def scrape_one(path):
         url = domain + path if path.startswith("/") else domain + "/" + path
@@ -158,6 +172,9 @@ def remove_invalid_chars(sheet_name):
     for ch in invalid_chars:
         sheet_name = sheet_name.replace(ch, "_")
     return sheet_name[:31]
+
+
+
 
 
 def run_weekly_report(
