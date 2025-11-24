@@ -1,5 +1,6 @@
 import sys
 import os
+import argparse
 sys.path.append(os.path.join(os.path.abspath(__file__), "..", "..", ".."))
 sys.path.append(os.path.join(os.path.abspath(__file__), "..", ".."))  # Adjust path as needed
 sys.path.append(os.path.join(os.path.abspath(__file__), ".."))  # Adjust path as needed
@@ -15,14 +16,38 @@ from config import OUTPUT_DIR, WEEKLY_OUTPUT_DIR
 PROPERTY_ID = '394327334'
 DIMENSIONS = ['pagePath']
 METRICS = ['screenPageViews', 'engagementRate', 'bounceRate', 'averageSessionDuration']  # Aggiunto engagementTime per avere un secondo metrica utile
-DAYS = 7
+DEFAULT_DAYS = 7
 N_TOP = 100
 DOMAIN = "https://taxidrivers.it"
-# Make EXCEL_OUTPUT dynamic based on DAYS and current date
-end_date = datetime.now().date()
-start_date = end_date - timedelta(days=DAYS)
-OUTPUT_DIR = os.path.join(WEEKLY_OUTPUT_DIR, 'Weekly Midreports')
-MIDREPORT_FILENAME = os.path.join(OUTPUT_DIR, f"top_articles_{start_date.strftime('%y%m%d')}_{end_date.strftime('%y%m%d')}.xlsx")
+
+def parse_arguments():
+    """Parse command line arguments for the sandra report."""
+    parser = argparse.ArgumentParser(description='Generate Sandra report for top articles')
+    parser.add_argument('--days', type=int, default=DEFAULT_DAYS,
+                        help=f'Number of days to analyze starting from yesterday (default: {DEFAULT_DAYS})')
+    parser.add_argument('--start-date', type=str,
+                        help='Start date in YYYY-MM-DD format (overrides --days)')
+    parser.add_argument('--end-date', type=str,
+                        help='End date in YYYY-MM-DD format (overrides --days)')
+    return parser.parse_args()
+
+def calculate_dates(args):
+    """Calculate start and end dates based on arguments."""
+    if args.start_date and args.end_date:
+        # Use explicit start and end dates
+        start_date = datetime.strptime(args.start_date, '%Y-%m-%d').date()
+        end_date = datetime.strptime(args.end_date, '%Y-%m-%d').date()
+    elif args.start_date:
+        # Use start date with days parameter
+        start_date = datetime.strptime(args.start_date, '%Y-%m-%d').date()
+        end_date = start_date + timedelta(days=args.days - 1)
+    else:
+        # Default behavior: X days starting from yesterday
+        yesterday = datetime.now().date() - timedelta(days=1)
+        end_date = yesterday
+        start_date = end_date - timedelta(days=args.days - 1)
+    
+    return start_date, end_date
 
 CATEGORIES = {
     "News": {"latest-news", "focus-italia"},
@@ -45,10 +70,19 @@ CATEGORIES = {
 }
 
 def main():
-    print(f"\n=== TOP {N_TOP} ARTICOLI DELLA SETTIMANA ===\n")
-    # Calcola le date
-    # Already calculated above for MIDREPORT_FILENAME  
-    print(f"Periodo analizzato: {start_date} → {end_date}")
+    # Parse command line arguments
+    args = parse_arguments()
+    
+    # Calculate dates based on arguments
+    start_date, end_date = calculate_dates(args)
+    
+    # Set up output directory and filename
+    OUTPUT_DIR = os.path.join(WEEKLY_OUTPUT_DIR, 'Weekly Midreports')
+    MIDREPORT_FILENAME = os.path.join(OUTPUT_DIR, f"top_articles_{start_date.strftime('%y%m%d')}_{end_date.strftime('%y%m%d')}.xlsx")
+    
+    print(f"\n=== TOP {N_TOP} ARTICOLI ===\n")
+    print(f"Periodo analizzato: {start_date} → {end_date} ({args.days} giorni)")
+    print(f"Output file: {MIDREPORT_FILENAME}\n")
 
     # Inizializza il client GA4
     print("Inizializzazione client GA4...")
@@ -114,6 +148,14 @@ def main():
     print(f"Salvataggio risultati in '{MIDREPORT_FILENAME}'...")
     top_df.to_excel(MIDREPORT_FILENAME, index=False)
     print(f"Top {N_TOP} articoli salvati in {MIDREPORT_FILENAME}\n")
+    
+    # Auto-open Excel if environment variable is set
+    if os.getenv('EXCEL_AUTO_OPEN', 'true').lower() == 'true':
+        try:
+            os.startfile(MIDREPORT_FILENAME)
+            print("File Excel aperto automaticamente.")
+        except Exception as e:
+            print(f"Impossibile aprire automaticamente il file Excel: {e}")
 
     # Stampa a schermo in modo leggibile
     print(f"\n📊 TOP {N_TOP} ARTICOLI DELLA SETTIMANA\n")
