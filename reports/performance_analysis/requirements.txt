@@ -1,0 +1,27 @@
+# Requirements for Performance Analysis Module
+
+# Core data processing
+pandas>=1.5.0
+numpy>=1.21.0
+
+# PDF generation
+reportlab>=3.6.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+
+# Data visualization
+plotly>=5.0.0  # Optional for interactive charts
+
+# Date handling
+python-dateutil>=2.8.0
+
+# Google Analytics 4 API (already available in parent project)
+# google-analytics-data>=0.16.0
+
+# Development and testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Optional enhancements
+openpyxl>=3.0.0  # For Excel compatibility 
+Pillow>=8.0.0    # For image processing in PDFs
