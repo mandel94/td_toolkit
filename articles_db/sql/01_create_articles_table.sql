@@ -4,8 +4,9 @@
 
 CREATE TABLE IF NOT EXISTS articles (
     id SERIAL PRIMARY KEY,
-    title VARCHAR(500) NOT NULL,
-    author VARCHAR(255),
+    page_path VARCHAR(1024) UNIQUE, -- Using page_path as the unique identifier
+    title VARCHAR(500) DEFAULT 'N/A',
+    author VARCHAR(255) DEFAULT 'N/A',
     categoria VARCHAR(100),
     screen_page_views INTEGER DEFAULT 0,
     engaged_sessions INTEGER DEFAULT 0,
@@ -50,6 +51,6 @@ COMMENT ON COLUMN articles.engaged_sessions IS 'Number of engaged sessions for t
 COMMENT ON COLUMN articles.sessions IS 'Total number of sessions for the article';
 COMMENT ON COLUMN articles.engagement_rate IS 'Engagement rate as decimal (0-1)';
 COMMENT ON COLUMN articles.average_session_duration IS 'Average session duration in seconds';
-COMMENT ON COLUMN articles.publication_date IS 'Date when the article was published';
+COMMENT ON COLUMN articles.postgres_data IS 'Date when the article was published';
 COMMENT ON COLUMN articles.created_at IS 'Timestamp when record was created';
 COMMENT ON COLUMN articles.updated_at IS 'Timestamp when record was last updated';

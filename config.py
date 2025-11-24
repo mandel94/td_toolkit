@@ -37,3 +37,12 @@ MONTHLY_OUTPUT_DIR = os.path.join(OUTPUT_DIR, 'monthly')
 # MONTHLY PARAMETERS
 MONTHLY_PARAMETERS_MONTH = "August"
 MONTHLY_REPORT_METRICS = ["activeUsers", "screenPageViews", 'engagementRate', 'bounceRate', 'averageSessionDuration']
+
+# --- Articles DB Configuration ---
+ARTICLES_DB_METRICS = [
+    "screenPageViews",
+    "engagedSessions",
+    "sessions",
+    "engagementRate",
+    "averageSessionDuration",
+]
