@@ -4,6 +4,8 @@ import os
 import sys
 from datetime import datetime, timedelta
 import pandas as pd
+from sqlalchemy import create_engine, text, table, column
+from sqlalchemy.dialects.postgresql import insert
 
 # Adjust system path to include parent directories
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -12,6 +14,43 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 from ga4_api.ga4_api import Ga4Client
 from etl.page_and_screen_etl import PageAndScreenETLFactory
 from config import ARTICLES_DB_METRICS
+
+def upsert(sql_table, conn, keys, data_iter):
+    """
+    Perform an "upsert" (insert on conflict update) on the given table.
+    
+    :param sql_table: pandas.io.sql.SQLTable object
+    :param conn: SQLAlchemy connection object
+    :param keys: A list of column names that constitute a unique constraint.
+    :param data_iter: An iterator of tuples, where each tuple represents a row to be inserted.
+    """
+    # Get the table name and columns from the pandas SQLTable object
+    table_name = sql_table.name
+    columns = [c.name for c in sql_table.table.columns]
+    
+    # Create a SQLAlchemy table object
+    db_table = table(table_name, *[column(c) for c in columns])
+
+    # Convert iterator of tuples to list of dictionaries
+    data = [dict(zip(columns, row)) for row in data_iter]
+    if not data:
+        return
+
+    # Create the insert statement
+    insert_stmt = insert(db_table).values(data)
+    
+    # Define the update statement for when a conflict occurs.
+    update_dict = {c.name: c for c in insert_stmt.excluded if c.name not in keys}
+    
+    # Define the "on conflict" statement.
+    upsert_stmt = insert_stmt.on_conflict_do_update(
+        index_elements=keys,
+        set_=update_dict,
+    )
+    
+    # Execute the upsert statement.
+    conn.execute(upsert_stmt)
+
 
 class GA4ToArticlesDB:
     """
@@ -94,18 +133,24 @@ class GA4ToArticlesDB:
     def load(self, df):
         """
         Load the transformed data into the PostgreSQL database.
-        (This is a placeholder for the actual database loading logic)
         """
         print("Loading data into articles_db...")
-        # Here you would implement the logic to connect to PostgreSQL
-        # and insert/update the data in the 'articles' table.
-        # For now, we'll just print the DataFrame.
-        print(df.head())
-        print(f"Successfully prepared {len(df)} records for loading.")
-        # Example of what the loading logic would look like:
-        # from sqlalchemy import create_engine
-        # engine = create_engine('postgresql://user:password@host:port/dbname')
-        # df.to_sql('articles', engine, if_exists='append', index=False)
+        try:
+            # Create a connection to the database.
+            engine = create_engine('postgresql://articles_user:secure_password_2025@localhost:5432/articles_db')
+            
+            # Use the 'upsert' function to load the data.
+            df.to_sql(
+                'articles', 
+                engine, 
+                if_exists='append', 
+                index=False, 
+                method=lambda sql_table, conn, keys, data_iter: upsert(sql_table, conn, ['page_path'], data_iter)
+            )
+            
+            print(f"Successfully loaded {len(df)} records into the 'articles' table.")
+        except Exception as e:
+            print(f"An error occurred during the database load: {e}")
 
     def run(self):
         """
