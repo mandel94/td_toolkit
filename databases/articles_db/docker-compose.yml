@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  articles_postgres:
+    image: postgres:15-alpine
+    container_name: articles_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: articles_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - articles_postgres_data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+      - ./backups:/backups
+    networks:
+      - articles_network
+
+  articles_pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: articles_pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@taxidrivers.local
+      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "8080:80"
+    volumes:
+      - articles_pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - articles_postgres
+    networks:
+      - articles_network
+
+volumes:
+  articles_postgres_data:
+    driver: local
+  articles_pgadmin_data:
+    driver: local
+
+networks:
+  articles_network:
+    driver: bridge
