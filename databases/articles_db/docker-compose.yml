@@ -36,6 +36,28 @@ services:
     networks:
       - articles_network
 
+  schemaspy:
+    image: schemaspy/schemaspy:latest
+    container_name: articles_schemaspy
+    volumes:
+      - ./schemaspy-output:/output
+    command: >
+      -t pgsql
+      -host articles_postgres
+      -port 5432
+      -db articles_db
+      -u postgres
+      -p postgres123
+      -s public
+      -o /output
+      -dp /drivers/postgresql.jar
+    depends_on:
+      - articles_postgres
+    networks:
+      - articles_network
+    profiles:
+      - erd
+
 volumes:
   articles_postgres_data:
     driver: local

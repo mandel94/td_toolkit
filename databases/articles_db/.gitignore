@@ -5,6 +5,9 @@ backups/*.gz
 # Docker volumes data (will be recreated)
 volumes/
 
+# SchemaSpy ERD output
+schemaspy-output/
+
 # Logs
 *.log
 
