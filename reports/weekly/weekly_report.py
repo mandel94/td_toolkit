@@ -5,10 +5,11 @@ import sys
 import time
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 import pandas as pd
 import concurrent.futures
 from requests.exceptions import Timeout
+import argparse
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 # And one level
@@ -213,9 +214,15 @@ def run_weekly_report(
         The processed DataFrame
     If use_gemini is True and gemini_api_key is provided, also generate the Gemini summary and return it.
     """
+    print("--- Starting Weekly Report ---")
     if data_args is None:
         data_args = {}
+    
+    print(f"Fetching GA4 data from {data_args.get('start_date')} to {data_args.get('end_date')}...")
     df = get_ga4_data(**data_args)
+    print("GA4 data fetched successfully.")
+
+    print("Processing data: mapping categories and cleaning metrics...")
     df["Categoria"] = df["pagePath"].apply(map_categories_func)
     # Map si farà articles directly in Categoria
     df.loc[df["pagePath"].apply(si_fara_func), "Categoria"] = "Si farà"
@@ -228,16 +235,19 @@ def run_weekly_report(
     for metric_col in WEEKLY_REPORT_METRICS:
         if metric_col in df.columns:
             df[metric_col] = pd.to_numeric(df[metric_col], errors="coerce").fillna(0)
+    
+    print("Filtering articles with more than 30 page views...")
     # Keep only articles with more than 30 page views
     df = df[df["screenPageViews"] > 30] if "screenPageViews" in df.columns else df
-    # Print len(df), dtypes
-    print(f"Results dataFrame length: {len(df)}")
+    
+    print(f"Found {len(df)} articles matching criteria.")
     # Scrape metadata for each article
     print("Scraping article metadata...")
     paths = df["pagePath"].tolist()
     pub_dates, authors, titles = scrape_article_metadata(
         paths, domain, max_workers=max_workers
     )
+    print("Metadata scraping complete.")
     # Convert publication dates to JSON serializable format
     df["Publication Date"] = [
         d.isoformat() if isinstance(d, datetime) else None for d in pub_dates
@@ -245,23 +255,34 @@ def run_weekly_report(
     #
     df["Author"] = authors
     df["Title"] = titles
-    df.to_csv(csv_output_path, index=False) if csv_output_path else None
+    
+    if csv_output_path:
+        print(f"Saving CSV output to {csv_output_path}...")
+        df.to_csv(csv_output_path, index=False)
+    
     if excel_output_path:
+        print(f"Saving Excel output to {excel_output_path}...")
         df.to_excel(excel_output_path, index=False)
         print(f"Top articles saved to {excel_output_path}")
+        
     gemini_summary = None
     template_summary = None
     if use_gemini and gemini_api_key:
         from gemini import WeeklyTopOfTheTops
-
+        
+        print("Generating Gemini summary...")
         weekly_gemini = WeeklyTopOfTheTops(api_key=gemini_api_key)
         gemini_summary = weekly_gemini.generate(df, model="gemini-2.5-pro")
         print(gemini_summary)
+        
     if use_template and excel_output_path:
+        print("Generating report from template...")
         template_summary = weekly_top_template_from_df(
             excel_output_path, n=3, metric=sort_by_metric
         )
         print(template_summary)
+        
+    print("--- Weekly Report Finished ---")
     return df
 
 
@@ -270,6 +291,22 @@ def run_weekly_report(
 # print(df.head())
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Run weekly report.")
+    parser.add_argument("--start-date", help="Start date in YYYY-MM-DD format.")
+    parser.add_argument("--end-date", help="End date in YYYY-MM-DD format.")
+    args = parser.parse_args()
+
+    # Set default date range to the last 7 days if not provided
+    if args.start_date and args.end_date:
+        start_date_str = args.start_date
+        end_date_str = args.end_date
+    else:
+        today = datetime.now()
+        end_date = today - timedelta(days=1)
+        start_date = end_date - timedelta(days=6)
+        start_date_str = start_date.strftime("%Y-%m-%d")
+        end_date_str = end_date.strftime("%Y-%m-%d")
+
     # Append one to three folder above
     sys.path.append(
         os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
@@ -285,8 +322,8 @@ if __name__ == "__main__":
             "property_id": "394327334",
             "dimensions": ["pagePath"],
             "metrics": WEEKLY_REPORT_METRICS,
-            "start_date": WEEKLY_REPORT_DATA_RANGE[0],
-            "end_date": WEEKLY_REPORT_DATA_RANGE[1],
+            "start_date": start_date_str,
+            "end_date": end_date_str,
         },
         domain="https://taxidrivers.it",
         n=10,
@@ -294,7 +331,7 @@ if __name__ == "__main__":
         csv_output_path=os.path.join(WEEKLY_OUTPUT_DIR, WEEKLY_REPORT_OUTPUT_FILENAME),
         excel_output_path=os.path.join(
             WEEKLY_OUTPUT_DIR,
-            f"top_articles_by_category_{WEEKLY_REPORT_DATA_RANGE[0].replace('-', '')}_{WEEKLY_REPORT_DATA_RANGE[1].replace('-', '')}.xlsx",
+            f"top_articles_by_category_{start_date_str.replace('-', '')}_{end_date_str.replace('-', '')}.xlsx",
         ),
         output_dir=WEEKLY_OUTPUT_DIR,
         gemini_api_key=os.getenv("GEMINI_API_KEY"),

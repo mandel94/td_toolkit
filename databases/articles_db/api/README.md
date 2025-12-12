@@ -227,7 +227,7 @@ curl "http://localhost:8000/api/v1/analytics/engagement-trends?article_id=123"
 
 - **DimAuthor**: Authors dimension
 - **DimCategory**: Categories dimension
-- **DimDate**: Date hierarchy dimension
+- **DimWeek**: Week dimension (year, week, date range)
 - **DimArticle**: Article master data
 - **FactWeeklyMetrics**: Weekly performance metrics (fact table)
 

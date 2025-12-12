@@ -8,17 +8,17 @@ from typing import List, Optional
 from datetime import date
 import logging
 
-from .config import get_settings
-from .database import get_db
-from .services import AnalyticsService
-from .schemas import (
+from config import get_settings
+from database import get_db
+from services import AnalyticsService
+from schemas import (
     TopArticleResponse,
     AuthorPerformanceResponse,
     CategoryPerformanceResponse,
     EngagementTrendResponse,
     ArticleResponse
 )
-from .models import DimAuthor, DimCategory
+from models import DimAuthor, DimCategory
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

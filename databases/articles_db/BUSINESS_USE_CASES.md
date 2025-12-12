@@ -158,7 +158,7 @@ This document presents the most impactful use cases enabled by the *Articles & A
 - `dim_articles` - Article master data (title, path, publication date)
 - `dim_authors` - Content creators
 - `dim_categories` - Content classification
-- `dim_dates` - Time dimension for temporal analysis
+- `dim_weeks` - Time dimension for weekly temporal analysis
 
 ### Key Relationships
 - Articles ↔ Weekly Metrics (1:N)

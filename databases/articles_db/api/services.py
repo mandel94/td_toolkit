@@ -7,11 +7,11 @@ from typing import List, Optional, Tuple
 from datetime import date, datetime
 import logging
 
-from .models import (
-    DimArticle, DimAuthor, DimCategory, 
+from models import (
+    DimArticle, DimAuthor, DimCategory, DimWeek,
     FactWeeklyMetrics
 )
-from .schemas import (
+from schemas import (
     TopArticleResponse, AuthorPerformanceResponse,
     CategoryPerformanceResponse, EngagementTrendResponse
 )
@@ -205,12 +205,15 @@ class AnalyticsService:
                 FactWeeklyMetrics.article_id,
                 DimArticle.title,
                 DimArticle.publication_date,
-                FactWeeklyMetrics.year,
-                FactWeeklyMetrics.week_of_year,
+                DimWeek.year,
+                DimWeek.week_of_year,
+                DimWeek.week_start_date,
+                DimWeek.week_end_date,
                 FactWeeklyMetrics.engagement_rate,
                 FactWeeklyMetrics.sessions
             )
             .join(DimArticle, FactWeeklyMetrics.article_id == DimArticle.article_id)
+            .join(DimWeek, FactWeeklyMetrics.week_id == DimWeek.week_id)
             .filter(FactWeeklyMetrics.engagement_rate.isnot(None))
         )
         
@@ -221,8 +224,8 @@ class AnalyticsService:
             query
             .order_by(
                 FactWeeklyMetrics.article_id,
-                FactWeeklyMetrics.year,
-                FactWeeklyMetrics.week_of_year
+                DimWeek.year,
+                DimWeek.week_of_year
             )
             .limit(limit)
             .all()

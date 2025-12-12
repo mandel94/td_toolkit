@@ -70,7 +70,7 @@ start schemaspy-output/index.html
 ### Dimension Tables
 - `dim_authors` - Article authors
 - `dim_categories` - Article categories
-- `dim_dates` - Time dimension (date hierarchy)
+- `dim_weeks` - Week dimension (year, week, date range)
 - `dim_articles` - Article master data
 
 ### Fact Tables

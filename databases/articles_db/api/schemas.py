@@ -21,10 +21,27 @@ class ArticleResponse(ArticleBase):
     model_config = ConfigDict(from_attributes=True)
 
 
-class WeeklyMetricsBase(BaseModel):
-    """Base schema for weekly metrics"""
+class WeekBase(BaseModel):
+    """Base schema for week dimension"""
     year: int
     week_of_year: int
+    week_start_date: date
+    week_end_date: date
+    quarter: int
+    month: int
+    year_week: str
+
+
+class WeekResponse(WeekBase):
+    """Schema for week dimension API responses"""
+    week_id: int
+    
+    model_config = ConfigDict(from_attributes=True)
+
+
+class WeeklyMetricsBase(BaseModel):
+    """Base schema for weekly metrics"""
+    week_id: int
     screen_page_views: Optional[int] = None
     engaged_sessions: Optional[int] = None
     sessions: Optional[int] = None

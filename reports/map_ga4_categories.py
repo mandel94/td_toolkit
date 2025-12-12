@@ -5,8 +5,7 @@ from re import sub
 CATEGORIES = {
     "News": {"latest-news", "focus-italia"},
     # "Anticipazioni": {"anticipazioni"},
-    "Recensioni": {"review", "netflix-film", "sky-film", "disney-film", "mubi", "mubi-film",
-                    "approfondimenti", "streaming"},
+    "Recensioni": {"review", "approfondimenti", "streaming"},
     "In Sala": {"in-sala"},
     "Cult Movies": {"cult-movie"},
     "Animazione": {"animazione", "animazione/anime"},
