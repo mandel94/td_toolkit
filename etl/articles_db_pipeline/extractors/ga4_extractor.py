@@ -1,8 +1,8 @@
 """GA4 data extraction module for weekly metrics."""
 import sys
 import os
-from typing import List, Dict, Any
-from datetime import datetime, date
+from typing import List, Dict, Any, Tuple
+from datetime import datetime, date, timedelta
 import pandas as pd
 from loguru import logger
 
@@ -27,7 +27,8 @@ class GA4Extractor:
         self,
         start_date: str = '2025-01-01',
         end_date: str = None,
-        min_page_views: int = MIN_PAGE_VIEWS_THRESHOLD
+        min_page_views: int = MIN_PAGE_VIEWS_THRESHOLD,
+        validate_week_alignment: bool = True
     ) -> List[RawWeeklyData]:
         """Extract weekly article data from GA4.
         
@@ -35,12 +36,20 @@ class GA4Extractor:
             start_date: Start date in YYYY-MM-DD format (default: 2025-01-01)
             end_date: End date in YYYY-MM-DD format (default: today)
             min_page_views: Minimum page views threshold per week
+            validate_week_alignment: If True, validates date range aligns with ISO weeks
             
         Returns:
             List of RawWeeklyData objects
+            
+        Raises:
+            ValueError: If date range doesn't align with ISO week boundaries
         """
         if not end_date:
             end_date = date.today().strftime('%Y-%m-%d')
+        
+        # Validate week alignment if requested
+        if validate_week_alignment:
+            self._validate_week_alignment(start_date, end_date)
         
         # GA4 dimensions and metrics for weekly data
         dimensions = ['pagePath', 'year', 'week']
@@ -129,3 +138,84 @@ class GA4Extractor:
                 continue
         
         return raw_weekly_data
+    
+    def _validate_week_alignment(self, start_date: str, end_date: str) -> None:
+        """Validate that date range aligns with ISO week boundaries (Monday-Sunday).
+        
+        Args:
+            start_date: Start date in YYYY-MM-DD format
+            end_date: End date in YYYY-MM-DD format
+            
+        Raises:
+            ValueError: If dates don't align with week boundaries
+        """
+        start = datetime.strptime(start_date, '%Y-%m-%d').date()
+        end = datetime.strptime(end_date, '%Y-%m-%d').date()
+        
+        # Check if start_date is a Monday (ISO weekday 1)
+        if start.weekday() != 0:
+            monday = start - timedelta(days=start.weekday())
+            raise ValueError(
+                f"Start date {start_date} ({start.strftime('%A')}) is not a Monday. "
+                f"ISO weeks start on Monday. Nearest Monday is {monday.strftime('%Y-%m-%d')}."
+            )
+        
+        # Check if end_date is a Sunday (ISO weekday 6)
+        if end.weekday() != 6:
+            sunday = end + timedelta(days=(6 - end.weekday()))
+            raise ValueError(
+                f"End date {end_date} ({end.strftime('%A')}) is not a Sunday. "
+                f"ISO weeks end on Sunday. Nearest Sunday is {sunday.strftime('%Y-%m-%d')}."
+            )
+        
+        # Check that the date range is exactly N complete weeks
+        days_diff = (end - start).days + 1  # +1 to include both days
+        if days_diff % 7 != 0:
+            raise ValueError(
+                f"Date range {start_date} to {end_date} spans {days_diff} days, "
+                f"which is not a multiple of 7. Must cover complete weeks only."
+            )
+        
+        num_weeks = days_diff // 7
+        logger.info(f"✓ Date range validation passed: {num_weeks} complete ISO week(s)")
+    
+    def get_week_boundaries(self, year: int, week: int) -> Tuple[date, date]:
+        """Get the start (Monday) and end (Sunday) dates for a given ISO week.
+        
+        Args:
+            year: ISO year
+            week: ISO week number (1-53)
+            
+        Returns:
+            Tuple of (start_date, end_date) as date objects
+        """
+        # ISO week 1 is the week with the first Thursday of the year
+        jan_4 = date(year, 1, 4)
+        week_1_monday = jan_4 - timedelta(days=jan_4.weekday())
+        week_start = week_1_monday + timedelta(weeks=week - 1)
+        week_end = week_start + timedelta(days=6)
+        
+        return week_start, week_end
+    
+    def suggest_aligned_dates(self, target_date: str) -> Dict[str, str]:
+        """Suggest week-aligned dates for a given target date.
+        
+        Args:
+            target_date: Date in YYYY-MM-DD format
+            
+        Returns:
+            Dictionary with suggested start and end dates
+        """
+        target = datetime.strptime(target_date, '%Y-%m-%d').date()
+        
+        # Find the Monday of the week containing target_date
+        monday = target - timedelta(days=target.weekday())
+        # Find the Sunday of the week containing target_date
+        sunday = target + timedelta(days=(6 - target.weekday()))
+        
+        return {
+            'week_start': monday.strftime('%Y-%m-%d'),
+            'week_end': sunday.strftime('%Y-%m-%d'),
+            'iso_year': monday.isocalendar()[0],
+            'iso_week': monday.isocalendar()[1]
+        }
