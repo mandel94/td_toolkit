@@ -1,0 +1,55 @@
+/* Custom styles for Movie Trends API Documentation */
+
+:root {
+    --md-primary-fg-color: #673AB7;
+    --md-accent-fg-color: #E91E63;
+}
+
+/* Mermaid diagram styling */
+.mermaid {
+    background-color: transparent;
+    text-align: center;
+}
+
+/* Code block enhancements */
+.highlight code {
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+/* Grid card styling */
+.md-typeset .grid.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.md-typeset .grid.cards > * {
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.md-typeset .grid.cards > *:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Admonition customization */
+.md-typeset .admonition {
+    border-left: 4px solid;
+}
+
+/* Make diagrams responsive */
+@media screen and (max-width: 768px) {
+    .mermaid svg {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Math equation styling */
+.arithmatex {
+    overflow-x: auto;
+}

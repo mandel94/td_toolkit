@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  docs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: movie-trends-docs
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./:/docs
+    restart: unless-stopped
+    environment:
+      - LIVE_RELOAD_SUPPORT=true
+      - FAST_MODE=true
+    networks:
+      - docs-network
+
+networks:
+  docs-network:
+    name: movie-trends-docs-network
+    driver: bridge
