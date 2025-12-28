@@ -16,6 +16,7 @@ from data import CachedAnalyticsRepository
 from services import AnalyticsService, TrendService
 from ui import create_layout
 from ui.callbacks import register_callbacks
+from __version__ import __version__, __title__
 
 
 def create_app() -> Dash:
@@ -54,8 +55,9 @@ def main():
     
     print(f"""
     ╔══════════════════════════════════════════════════════════════╗
-    ║  📊 Editorial Analytics Dashboard                           ║
-    ║  Taxi Drivers Magazine - 2025                                      ║
+    ║  📊 {__title__:<55} ║
+    ║  Version {__version__:<50} ║
+    ║  Taxi Drivers Magazine - 2025                              ║
     ╚══════════════════════════════════════════════════════════════╝
     
     🚀 Starting dashboard server...
