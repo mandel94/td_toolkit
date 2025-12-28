@@ -1,0 +1,27 @@
+# Python dependencies for Editorial Analytics Dashboard
+# Following 2025 best practices
+
+# Core dashboard framework
+dash==2.14.2
+dash-core-components==2.0.0
+dash-html-components==2.0.0
+plotly==5.18.0
+
+# Data manipulation
+pandas==2.1.4
+numpy==1.26.2
+
+# Google Analytics 4 API
+google-analytics-data==0.18.1
+google-auth==2.25.2
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0
+
+# Date/time utilities
+python-dateutil==2.8.2
+
+# Environment variables (optional)
+python-dotenv==1.0.0
+
+# Type hints support
+typing-extensions==4.9.0

@@ -1,0 +1,29 @@
+# Environment files
+.env
+
+# Data files and backups
+data/*.sql
+data/*.csv
+data/*.json
+data/*.xml
+
+# Docker volumes
+postgres_data/
+
+# Logs
+*.log
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python cache files (if using Python scripts)
+__pycache__/
+*.pyc
+*.pyo

@@ -1,0 +1,36 @@
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: td_db_container
+    restart: always
+    environment:
+      POSTGRES_USER: manuel94
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: td_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - td_db_data:/var/lib/postgresql/data
+    networks:
+      - td_db_network
+
+  adminer:
+    image: adminer
+    ports:
+      - 8081:8080 
+    networks:
+      - td_db_network
+
+  metabase:
+    image: metabase/metabase
+    ports:
+      - 3000:3000
+    networks:
+      - td_db_network
+
+volumes:
+  td_db_data:
+
+networks:
+  td_db_network:

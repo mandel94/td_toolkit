@@ -236,9 +236,9 @@ def run_weekly_report(
         if metric_col in df.columns:
             df[metric_col] = pd.to_numeric(df[metric_col], errors="coerce").fillna(0)
     
-    print("Filtering articles with more than 30 page views...")
-    # Keep only articles with more than 30 page views
-    df = df[df["screenPageViews"] > 30] if "screenPageViews" in df.columns else df
+    print("Filtering articles with more than 10 page views...")
+    # Keep only articles with more than 10 page views
+    df = df[df["screenPageViews"] > 10] if "screenPageViews" in df.columns else df
     
     print(f"Found {len(df)} articles matching criteria.")
     # Scrape metadata for each article
