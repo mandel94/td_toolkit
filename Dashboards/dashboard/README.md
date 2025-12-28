@@ -1,5 +1,9 @@
 # Editorial Analytics Dashboard
 
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+
 **Production-ready analytics dashboard for editorial teams**  
 Built with Python, Dash, and Google Analytics 4 following 2025 best practices.
 
