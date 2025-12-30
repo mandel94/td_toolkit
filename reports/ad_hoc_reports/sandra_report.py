@@ -8,6 +8,12 @@ import pandas as pd
 from datetime import datetime, timedelta
 from ga4_api.ga4_api import Ga4Client
 from etl.page_and_screen_etl import PageAndScreenETLFactory
+from etl.content_scoring import (
+    ContentScoreCalculator,
+    ContentScoreSegmentation,
+    ContentScoreValidator,
+    ContentScoringConfig
+)
 from map_ga4_categories import map_ga4_categories
 from td_data_toolkit.article_analytics.metadata import get_article_metadata
 from config import OUTPUT_DIR, WEEKLY_OUTPUT_DIR
@@ -15,7 +21,7 @@ from config import OUTPUT_DIR, WEEKLY_OUTPUT_DIR
 # Configurazione
 PROPERTY_ID = '394327334'
 DIMENSIONS = ['pagePath']
-METRICS = ['screenPageViews', 'engagementRate', 'bounceRate', 'averageSessionDuration']  # Aggiunto engagementTime per avere un secondo metrica utile
+METRICS = ['screenPageViews', 'engagementRate', 'averageSessionDuration']  # bounceRate rimosso (ridondante con engagementRate)
 DEFAULT_DAYS = 7
 N_TOP = 100
 DOMAIN = "https://taxidrivers.it"
@@ -110,7 +116,7 @@ def main():
     df = df.sort_values(METRICS[0], ascending=False)
     top_df = df.head(N_TOP).copy()
 
-    # Estrai i titoli, autori e date
+    # Estrai i titoli, autori e date con error handling
     print(f"Estrazione titoli articoli, autori e date per la top {N_TOP}...")
     titles = []
     authors = []
@@ -118,25 +124,95 @@ def main():
     for idx, path in enumerate(top_df["pagePath"], 1):
         url = DOMAIN + path if path.startswith("/") else DOMAIN + "/" + path
         print(f"[{idx}/{N_TOP}] Recupero metadati per: {url}")
-        pub_date, author, title = get_article_metadata(url)
-        titles.append(title if title else "Titolo non trovato")
-        authors.append(author if author else "Autore non trovato")
-        pub_dates.append(pub_date.strftime('%Y-%m-%d') if pub_date else "Data non trovata")
+        try:
+            pub_date, author, title = get_article_metadata(url)
+            titles.append(title if title else "Titolo non trovato")
+            authors.append(author if author else "Autore non trovato")
+            pub_dates.append(pub_date.strftime('%Y-%m-%d') if pub_date else "Data non trovata")
+        except Exception as e:
+            print(f"  ⚠ Errore: {str(e)[:50]}")
+            titles.append("Errore recupero titolo")
+            authors.append("Errore recupero autore")
+            pub_dates.append("Errore recupero data")
     top_df["title"] = titles
     top_df["author"] = authors
     top_df["category"] = top_df["pagePath"].apply(map_ga4_categories)
     top_df["publication_date"] = pub_dates
+    
+    # Ensure numeric columns are properly typed before scoring
+    print("\nConversione colonne numeriche...")
+    numeric_cols = ['screenPageViews', 'engagementRate', 'averageSessionDuration']
+    for col in numeric_cols:
+        if col in top_df.columns:
+            top_df[col] = pd.to_numeric(top_df[col], errors='coerce')
+    print(f"✓ Colonne numeriche convertite: {numeric_cols}")
+    
+    # Calculate Content Scores
+    print("\n📊 Calcolo Editorial Score...")
+    try:
+        # Initialize content scoring with Balanced strategy (Strategy Pattern)
+        config = ContentScoringConfig(strategy_name='balanced')
+        calculator = ContentScoreCalculator(config)
+        segmenter = ContentScoreSegmentation(config)
+        validator = ContentScoreValidator(config)
+        
+        print(f"Strategia utilizzata: {calculator.strategy.get_name()}")
+        strategy_weights = calculator.strategy.get_weights()
+        print(f"Pesi: Reach={strategy_weights['reach']:.0%}, "
+              f"Engagement={strategy_weights['engagement']:.0%}, "
+              f"Depth={strategy_weights['depth']:.0%}")
+        
+        # Calculate scores
+        top_df = calculator.calculate(top_df)
+        print(f"✓ Editorial Score calcolato per {len(top_df)} articoli")
+        
+        # Apply segmentation
+        top_df = segmenter.segment(top_df)
+        print(f"✓ Segmentazione completata")
+        
+        # Validate and flag anomalies
+        is_valid, issues = validator.validate(top_df)
+        if not is_valid:
+            print(f"⚠ Rilevati {len(issues)} problemi di validazione")
+            for issue in issues[:3]:  # Show first 3 issues
+                print(f"  - {issue['type']}: {issue['message']}")
+        
+        top_df = validator.flag_anomalies(top_df)
+        
+        # Print segment distribution
+        segment_dist = top_df['content_segment'].value_counts()
+        print(f"\n📋 Distribuzione Segmenti:")
+        for segment, count in segment_dist.items():
+            print(f"  - {segment}: {count} articoli")
+        
+        # Print score statistics
+        print(f"\n📈 Statistiche Score:")
+        print(f"  Media: {top_df['editorial_score'].mean():.2f}")
+        print(f"  Mediana: {top_df['editorial_score'].median():.2f}")
+        print(f"  Min: {top_df['editorial_score'].min():.2f}")
+        print(f"  Max: {top_df['editorial_score'].max():.2f}")
+        
+    except Exception as e:
+        print(f"⚠ Errore nel calcolo Editorial Score: {e}")
+        print("Continuazione senza score...")
+    
     # Reorder columns as requested
     ordered_cols = [
+        'editorial_rank',
+        'editorial_score',
         'title',
         'pagePath',
         'publication_date',
         'author',
         'category',
+        'content_segment',
         'screenPageViews',
         'engagementRate',
-        'bounceRate',
-        'averageSessionDuration (s)'
+        'averageSessionDuration',
+        'feature_reach_rank',
+        'feature_engagement_rank',
+        'feature_depth_rank',
+        'anomaly_flag'
     ]
     # Add any extra columns at the end
     extra_cols = [col for col in top_df.columns if col not in ordered_cols]
