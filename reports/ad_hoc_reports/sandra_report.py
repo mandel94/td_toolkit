@@ -18,6 +18,9 @@ from map_ga4_categories import map_ga4_categories
 from td_data_toolkit.article_analytics.metadata import get_article_metadata
 from config import OUTPUT_DIR, WEEKLY_OUTPUT_DIR
 
+# Project root directory (2 levels up from this file)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+
 # Configurazione
 PROPERTY_ID = '394327334'
 DIMENSIONS = ['pagePath']
@@ -224,6 +227,13 @@ def main():
     print(f"Salvataggio risultati in '{MIDREPORT_FILENAME}'...")
     top_df.to_excel(MIDREPORT_FILENAME, index=False)
     print(f"Top {N_TOP} articoli salvati in {MIDREPORT_FILENAME}\n")
+    
+    # Salva in formato CSV per notebook EDA (sempre nello stesso path)
+    csv_output_dir = os.path.join(PROJECT_ROOT, 'output')
+    os.makedirs(csv_output_dir, exist_ok=True)
+    csv_filename = os.path.join(csv_output_dir, 'sandra_midreport_data.csv')
+    top_df.to_csv(csv_filename, index=False)
+    print(f"Dati salvati anche in {csv_filename} per analisi EDA\n")
     
     # Auto-open Excel if environment variable is set
     if os.getenv('EXCEL_AUTO_OPEN', 'true').lower() == 'true':
