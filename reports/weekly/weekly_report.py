@@ -25,6 +25,12 @@ from config import (
     WEEKLY_REPORT_DATA_RANGE,
 )
 from etl.page_and_screen_etl import PageAndScreenETLFactory
+from etl.content_scoring import (
+    ContentScoreCalculator,
+    ContentScoreSegmentation,
+    ContentScoreValidator,
+    ContentScoringConfig,
+)
 # from gemini import WeeklyTopOfTheTops
 from reports.weekly.weekly_top_template import (
     weekly_top_template_from_df,
@@ -255,6 +261,54 @@ def run_weekly_report(
     #
     df["Author"] = authors
     df["Title"] = titles
+
+    # Calculate Editorial Score using balanced strategy
+    print("Calculating Editorial Score (balanced strategy)...")
+    try:
+        # Ensure numeric columns
+        numeric_cols = ["screenPageViews", "engagementRate", "averageSessionDuration"]
+        for col in numeric_cols:
+            if col in df.columns:
+                df[col] = pd.to_numeric(df[col], errors="coerce")
+
+        scoring_config = ContentScoringConfig(strategy_name="balanced")
+        calculator = ContentScoreCalculator(scoring_config)
+        segmenter = ContentScoreSegmentation(scoring_config)
+        validator = ContentScoreValidator(scoring_config)
+
+        df = calculator.calculate(df)
+        df = segmenter.segment(df)
+
+        # Optional validation and anomaly flagging
+        is_valid, issues = validator.validate(df)
+        if not is_valid:
+            print(f"Validation found {len(issues)} issues; proceeding with flags.")
+        df = validator.flag_anomalies(df)
+
+        # Reorder columns to surface score-related fields first
+        ordered_cols = [
+            "editorial_rank",
+            "editorial_score",
+            "Title",
+            "pagePath",
+            "Publication Date",
+            "Author",
+            "Categoria",
+            "content_segment",
+            "screenPageViews",
+            "engagementRate",
+            "averageSessionDuration",
+            "feature_reach_rank",
+            "feature_engagement_rank",
+            "feature_depth_rank",
+            "anomaly_flag",
+        ]
+        extra_cols = [c for c in df.columns if c not in ordered_cols]
+        df = df[[c for c in ordered_cols if c in df.columns] + extra_cols]
+        print("Editorial Score calculated and columns organized.")
+    except Exception as e:
+        print(f"Error calculating Editorial Score: {e}")
+        print("Continuing without score...")
     
     if csv_output_path:
         print(f"Saving CSV output to {csv_output_path}...")
