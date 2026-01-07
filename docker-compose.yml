@@ -19,8 +19,8 @@ services:
     volumes:
       # Mount data directory if you need access to local data files
       - ./data:/app/data:ro
-      # Mount credentials if needed
-      - ../../ga4_api:/app/ga4_api:ro
+      # Mount credentials (read-write for token.pickle)
+      - ../../ga4_api:/app/ga4_api:rw
     restart: unless-stopped
     networks:
       - dashboard_network
