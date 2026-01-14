@@ -7,6 +7,8 @@
 **Production-ready analytics dashboard for editorial teams**  
 Built with Python, Dash, and Google Analytics 4 following 2025 best practices.
 
+![Demo GIF](assets/demo.gif)
+
 ---
 
 ## 🎯 Overview
@@ -107,6 +109,28 @@ python app.py
 5. **Open browser**
 
 Navigate to `http://127.0.0.1:8050`
+
+---
+
+## 🧪 Demo (Docker)
+
+Run the anonymized demo (no GA4, mock data) via Docker:
+
+```bash
+# Build and start demo container
+docker compose -f docker-compose.demo.yml up --build
+
+# Stop
+docker compose -f docker-compose.demo.yml down
+```
+
+The app runs at `http://localhost:8050` and shows synthetic time series and anonymized top pages. No secrets or real data are used.
+
+To run locally without Docker:
+
+```bash
+python -c "import os; os.environ['DEMO_MODE']='True'; import app; app.main()"
+```
 
 ---
 
