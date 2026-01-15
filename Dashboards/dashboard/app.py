@@ -8,6 +8,7 @@ Following 2025 best practices:
 - Separation of concerns
 - Editor-friendly interface
 """
+import os
 import dash
 from dash import Dash
 
@@ -52,6 +53,7 @@ def main():
     Main entry point
     """
     app = create_app()
+    use_demo = os.getenv("DEMO_MODE", "False").lower() == "true"
     
     print(f"""
     ╔══════════════════════════════════════════════════════════════╗
@@ -62,7 +64,7 @@ def main():
     
     🚀 Starting dashboard server...
     🌐 URL: http://{dashboard_config.host}:{dashboard_config.port}
-    📁 GA4 Property: {ga4_config.property_id}
+    📁 GA4 Property: {ga4_config.property_id}  (Demo Mode: {use_demo})
     
     Press CTRL+C to stop
     """)

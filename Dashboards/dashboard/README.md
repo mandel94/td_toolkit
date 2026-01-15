@@ -259,3 +259,42 @@ For issues or questions:
 ---
 
 **Built with ❤️ following 2025 analytics best practices**
+
+---
+
+## ⚙️ PowerShell CLI (Docker Compose)
+
+Use the PowerShell helper to manage the dashboard via Docker Compose.
+
+- Script: [Dashboards/dashboard/Start-Dashboard.ps1](Dashboards/dashboard/Start-Dashboard.ps1)
+
+Common commands:
+
+```powershell
+# Demo mode (no GA4), build, run detached, open browser
+./Dashboards/dashboard/Start-Dashboard.ps1 -Demo -Build -Detach -Open
+
+# Full GA4 setup (uses .env), build and run detached, open browser
+./Dashboards/dashboard/Start-Dashboard.ps1 -Build -Detach -Open
+
+# Stop and remove containers/network
+./Dashboards/dashboard/Start-Dashboard.ps1 -Down
+
+# Tail logs
+./Dashboards/dashboard/Start-Dashboard.ps1 -Logs
+
+# Show status
+./Dashboards/dashboard/Start-Dashboard.ps1 -Status
+```
+
+One‑click demo shortcut:
+
+- File: [Dashboards/dashboard/Run-Dashboard-Demo.bat](Dashboards/dashboard/Run-Dashboard-Demo.bat)
+- Double‑click to build and start the demo at `http://localhost:8050`.
+
+If script execution is blocked, temporarily allow it:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
