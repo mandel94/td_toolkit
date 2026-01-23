@@ -285,23 +285,30 @@ def run_weekly_report(
             print(f"Validation found {len(issues)} issues; proceeding with flags.")
         df = validator.flag_anomalies(df)
 
-        # Reorder columns to surface score-related fields first
+        # Prepare aliases to match requested final column names/order
+        if "Title" in df.columns:
+            df["title"] = df["Title"]
+        if "editorial_score" in df.columns:
+            df["editorialScore"] = df["editorial_score"]
+        if "Publication Date" in df.columns:
+            df["publication_date"] = df["Publication Date"]
+        if "Author" in df.columns:
+            df["author"] = df["Author"]
+        if "Categoria" in df.columns:
+            df["category"] = df["Categoria"]
+        if "screenPageViews" in df.columns:
+            df["Page Views"] = pd.to_numeric(df["screenPageViews"], errors="coerce")
+
+        # Reorder columns to place requested ones first; keep others afterward
         ordered_cols = [
-            "editorial_rank",
-            "editorial_score",
-            "Title",
-            "pagePath",
-            "Publication Date",
-            "Author",
-            "Categoria",
-            "content_segment",
-            "screenPageViews",
+            "title",
+            "editorialScore",
+            "publication_date",
+            "author",
+            "category",
+            "Page Views",
             "engagementRate",
             "averageSessionDuration",
-            "feature_reach_rank",
-            "feature_engagement_rank",
-            "feature_depth_rank",
-            "anomaly_flag",
         ]
         extra_cols = [c for c in df.columns if c not in ordered_cols]
         df = df[[c for c in ordered_cols if c in df.columns] + extra_cols]
