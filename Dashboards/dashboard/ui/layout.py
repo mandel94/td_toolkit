@@ -161,6 +161,30 @@ def create_layout() -> html.Div:
                 "marginBottom": "30px"
             }),
             
+            # Monthly views bar chart
+            html.Div([
+                html.H3(
+                    "📅 Visualizzazioni per Mese",
+                    style={
+                        "color": "#333",
+                        "marginBottom": "20px",
+                        "fontSize": "20px",
+                        "fontWeight": "600"
+                    }
+                ),
+                dcc.Loading(
+                    id="loading-monthly",
+                    type="default",
+                    children=dcc.Graph(id="monthly-views-chart")
+                )
+            ], style={
+                "backgroundColor": "#fff",
+                "padding": "25px",
+                "borderRadius": "8px",
+                "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",
+                "marginBottom": "30px"
+            }),
+            
             # Seasonality analysis
             html.Div([
                 html.H3(
