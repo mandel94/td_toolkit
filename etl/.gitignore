@@ -1,16 +1,9 @@
-credentials.json
-.vscode
-REPORT_SEGMENTI*
-er_*
-*venv
 __pycache__
 *.py[cod]
 *.pyo
 *.pyd
 *.db
-*.exe
 *.sqlite3
-*.npy
 *.log
 *.csv
 *.json
@@ -20,7 +13,3 @@ __pycache__
 *.xlsb
 *.xls
 *.ods
-.env
-data/*
-*.xml
-*.pickle

@@ -1,0 +1,27 @@
+TAXI DRIVERS WEBSITE PERFORMANCE ANALYSIS SUMMARY
+=======================================================
+
+Analysis completed: November 24, 2025 at 02:48 PM
+Total periods analyzed: 46
+
+CURRENT PERIOD PERFORMANCE
+------------------------------
+Period: 2025-11-17 to 2025-11-23
+Page Views: 3,967,369,935,393,509,507,296,395,264
+Active Users: 2,387,226,722,542,184,229,660,262,400
+New Users: 2,128,202,020,541,951,252,484,849,664
+Sessions: 2,805,269,526,732,587,271,913,996,288
+Bounce Rate: 0.0%
+Engagement Rate: 0.0%
+
+PERIOD-OVER-PERIOD CHANGES
+------------------------------
+Page Views: -51.1% (-4,152,089,805,080,145,313,891,614,720)
+Active Users: -64.6% (-4,364,091,404,730,081,566,953,308,160)
+New Users: -67.2% (-4,351,091,704,620,099,106,812,985,344)
+Sessions: -61.7% (-4,525,088,404,220,089,450,874,535,936)
+
+GENERATED FILES
+---------------
+JSON: output\performance_analysis_20251117_20251123.json
+PDF: output\performance_report_20251117_20251123.pdf

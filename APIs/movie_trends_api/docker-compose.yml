@@ -1,0 +1,125 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: movie-trends-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: movie_trends
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - movie-trends-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: movie-trends-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - movie-trends-network
+
+  # API Service
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: movie-trends-api
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:password@postgres:5432/movie_trends
+      REDIS_URL: redis://redis:6379/0
+      TMDB_API_KEY: ${TMDB_API_KEY}
+      LOG_LEVEL: INFO
+      API_WORKERS: 4
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./movie_trends:/app/movie_trends
+    networks:
+      - movie-trends-network
+    restart: unless-stopped
+
+  # Ingestion Worker
+  ingestion-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: movie-trends-ingestion
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:password@postgres:5432/movie_trends
+      REDIS_URL: redis://redis:6379/0
+      TMDB_API_KEY: ${TMDB_API_KEY}
+      LOG_LEVEL: INFO
+    command: python -m movie_trends.cli run-pipeline
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./movie_trends:/app/movie_trends
+    networks:
+      - movie-trends-network
+    restart: "no"
+
+  # Prefect Server (Optional)
+  prefect-server:
+    image: prefecthq/prefect:2-python3.12
+    container_name: movie-trends-prefect
+    command: prefect server start
+    environment:
+      PREFECT_UI_URL: http://localhost:4200/api
+      PREFECT_API_URL: http://localhost:4200/api
+    ports:
+      - "4200:4200"
+    networks:
+      - movie-trends-network
+    restart: unless-stopped
+
+  # Prometheus (Optional - for metrics)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: movie-trends-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    networks:
+      - movie-trends-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+  prometheus_data:
+
+networks:
+  movie-trends-network:
+    driver: bridge

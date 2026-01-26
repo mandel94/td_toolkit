@@ -1,0 +1,2193 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: http://localhost:8050/
+Subject: Editorial Analytics Dashboard
+Date: Thu, 15 Jan 2026 16:14:12 +0100
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----"
+
+
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----
+Content-Type: text/html
+Content-ID: <frame-822563372C0E8F0B1F6E1E8B10E8E220@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://localhost:8050/
+
+<!DOCTYPE html><html><head><meta http-equiv=3D"Content-Type" content=3D"tex=
+t/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/css" href=3D=
+"cid:css-6de0481a-6c9c-4ac6-acee-22f0e2230f1f@mhtml.blink" /><link rel=3D"s=
+tylesheet" type=3D"text/css" href=3D"cid:css-63eb911d-77b6-4e12-b640-205cb3=
+3eedda@mhtml.blink" /><link rel=3D"stylesheet" type=3D"text/css" href=3D"ci=
+d:css-026bf7af-8cf5-4780-b3d8-b85a7a28d3e1@mhtml.blink" /><link rel=3D"styl=
+esheet" type=3D"text/css" href=3D"cid:css-e8302501-50f4-4641-9503-ac507a944=
+196@mhtml.blink" /><link rel=3D"stylesheet" type=3D"text/css" href=3D"cid:c=
+ss-ce73ab9d-5c99-4e94-ae16-18f832d62e8b@mhtml.blink" /><link rel=3D"stylesh=
+eet" type=3D"text/css" href=3D"cid:css-c48dded6-3c7c-4c65-ba12-e1f329c22f30=
+@mhtml.blink" /><link rel=3D"stylesheet" type=3D"text/css" href=3D"cid:css-=
+55589f24-23e7-4d0a-9823-0a642563072c@mhtml.blink" /><link rel=3D"stylesheet=
+" type=3D"text/css" href=3D"cid:css-5c8ed866-6ce7-429c-8848-7b87df3829ba@mh=
+tml.blink" /><link rel=3D"stylesheet" type=3D"text/css" href=3D"cid:css-67a=
+8bb36-535d-41d9-89c4-f6762fba9d18@mhtml.blink" /><link rel=3D"stylesheet" t=
+ype=3D"text/css" href=3D"cid:css-3a8b957a-3ca5-4c4c-97d2-d19ccd369db0@mhtml=
+.blink" /><link rel=3D"stylesheet" type=3D"text/css" href=3D"cid:css-6bee46=
+a7-e36c-4a6a-a4bf-a8f65aaf5015@mhtml.blink" /><link rel=3D"stylesheet" type=
+=3D"text/css" href=3D"cid:css-8c4202d2-5373-4499-8eca-71841a07874c@mhtml.bl=
+ink" /><link rel=3D"stylesheet" type=3D"text/css" href=3D"cid:css-36d9e802-=
+a57f-490b-baa9-c29397e2d3a1@mhtml.blink" />
+        <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+     =20
+      <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scal=
+e=3D1">
+        <title>Editorial Analytics Dashboard</title>
+        <link rel=3D"icon" type=3D"image/x-icon" href=3D"http://localhost:8=
+050/_favicon.ico?v=3D2.14.2">
+       =20
+    </head>
+    <body data-new-gr-c-s-check-loaded=3D"14.1268.0" data-gr-ext-installed=
+=3D"">
+        <!--[if IE]><script>
+        alert("Dash v2.7+ does not support Internet Explorer. Please use a =
+newer browser.");
+        </script><![endif]-->
+       =20
+<div id=3D"react-entry-point"><div style=3D"background-color: rgb(245, 245,=
+ 245); min-height: 100vh; font-family: Arial, Helvetica, sans-serif;"><div =
+style=3D"background-color: rgb(25, 118, 210); padding: 30px 40px; margin-bo=
+ttom: 30px; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;"><h1 style=3D"color=
+: rgb(255, 255, 255); margin: 0px; font-size: 28px; font-weight: 600;">=F0=
+=9F=93=8A Editorial Analytics Dashboard</h1><p style=3D"color: rgb(224, 224=
+, 224); margin: 8px 0px 0px; font-size: 14px;">Analisi del trend delle visu=
+alizzazioni =E2=80=A2 Taxi Drivers Magazine</p></div><div style=3D"max-widt=
+h: 1400px; margin: 0px auto; padding: 0px 40px 40px;"><div style=3D"backgro=
+und-color: rgb(255, 255, 255); padding: 25px; border-radius: 8px; box-shado=
+w: rgba(0, 0, 0, 0.1) 0px 2px 4px; margin-bottom: 30px;"><h3 style=3D"color=
+: rgb(51, 51, 51); margin-bottom: 20px; font-size: 20px; font-weight: 600;"=
+>=E2=9A=99=EF=B8=8F Controlli</h3><div style=3D"margin-bottom: 20px;"><labe=
+l style=3D"font-weight: 600; margin-bottom: 8px; display: block;">Seleziona=
+ Periodo:</label><div id=3D"date-range-picker" style=3D"position: relative;=
+ display: inline-block; margin-bottom: 10px;"><div class=3D"DateRangePicker=
+ DateRangePicker_1"><div><div class=3D"DateRangePickerInput DateRangePicker=
+Input_1 DateRangePickerInput__withBorder DateRangePickerInput__withBorder_2=
+"><div class=3D"DateInput DateInput_1"><input class=3D"DateInput_input Date=
+Input_input_1" aria-label=3D"Start Date" type=3D"text" id=3D"mkfl5y5p" name=
+=3D"mkfl5y5p" placeholder=3D"Start Date" autocomplete=3D"off" aria-describe=
+dby=3D"DateInput__screen-reader-message-mkfl5y5p" value=3D"17/10/2025"><p c=
+lass=3D"DateInput_screenReaderMessage DateInput_screenReaderMessage_1" id=
+=3D"DateInput__screen-reader-message-mkfl5y5p">Navigate forward to interact=
+ with the calendar and select a date. Press the question mark key to get th=
+e keyboard shortcuts for changing dates.</p></div><div class=3D"DateRangePi=
+ckerInput_arrow DateRangePickerInput_arrow_1" aria-hidden=3D"true" role=3D"=
+presentation"><svg class=3D"DateRangePickerInput_arrow_svg DateRangePickerI=
+nput_arrow_svg_1" focusable=3D"false" viewBox=3D"0 0 1000 1000"><path d=3D"=
+M694 242l249 250c12 11 12 21 1 32L694 773c-5 5-10 7-16 7s-11-2-16-7c-11-11-=
+11-21 0-32l210-210H68c-13 0-23-10-23-23s10-23 23-23h806L662 275c-21-22 11-5=
+4 32-33z"></path></svg></div><div class=3D"DateInput DateInput_1"><input cl=
+ass=3D"DateInput_input DateInput_input_1" aria-label=3D"End Date" type=3D"t=
+ext" id=3D"mkfl5y5q" name=3D"mkfl5y5q" placeholder=3D"End Date" autocomplet=
+e=3D"off" aria-describedby=3D"DateInput__screen-reader-message-mkfl5y5q" va=
+lue=3D"15/01/2026"><p class=3D"DateInput_screenReaderMessage DateInput_scre=
+enReaderMessage_1" id=3D"DateInput__screen-reader-message-mkfl5y5q">Navigat=
+e backward to interact with the calendar and select a date. Press the quest=
+ion mark key to get the keyboard shortcuts for changing dates.</p></div></d=
+iv></div></div></div></div><div style=3D"margin-bottom: 20px;"><label style=
+=3D"font-weight: 600; margin-bottom: 8px; display: block;">Granularit=C3=A0=
+:</label><div id=3D"granularity-selector" style=3D"margin-bottom: 10px;"><l=
+abel class=3D"" style=3D"display: inline-block;"><input class=3D"" type=3D"=
+radio" checked=3D"">Giornaliera</label><label class=3D"" style=3D"display: =
+inline-block;"><input class=3D"" type=3D"radio">Settimanale</label><label c=
+lass=3D"" style=3D"display: inline-block;"><input class=3D"" type=3D"radio"=
+>Mensile</label></div></div><div style=3D"margin-bottom: 20px;"><label styl=
+e=3D"font-weight: 600; margin-bottom: 8px; display: block;">Confronto con:<=
+/label><div id=3D"comparison-selector" class=3D"dash-dropdown" style=3D"mar=
+gin-bottom: 10px;"><div class=3D"Select has-value is-searchable Select--sin=
+gle"><div class=3D"Select-control" style=3D"margin-bottom: 10px;"><div clas=
+s=3D"Select-multi-value-wrapper" id=3D"react-select-2--value"><div class=3D=
+"Select-value"><span class=3D"Select-value-label" role=3D"option" aria-sele=
+cted=3D"true" id=3D"react-select-2--value-item">Settimana precedente (WoW)<=
+/span></div><div class=3D"Select-input" style=3D"display: inline-block;"><i=
+nput autocomplete=3D"off" aria-activedescendant=3D"react-select-2--value" a=
+ria-expanded=3D"false" aria-haspopup=3D"false" aria-owns=3D"" role=3D"combo=
+box" value=3D"" style=3D"box-sizing: content-box; width: 5px;"><div style=
+=3D"position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0p=
+x; overflow: scroll; white-space: pre; font-size: 16px; font-family: Arial,=
+ Helvetica, sans-serif; font-weight: 400; font-style: normal; letter-spacin=
+g: normal; text-transform: none;"></div></div></div><span class=3D"Select-a=
+rrow-zone"><span class=3D"Select-arrow"></span></span></div></div></div></d=
+iv><button id=3D"update-button" style=3D"width: 100%; padding: 12px; backgr=
+ound-color: rgb(25, 118, 210); color: white; border: none; border-radius: 4=
+px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 10px;">=
+=F0=9F=94=84 Aggiorna Dati</button></div><div style=3D"margin-bottom: 30px;=
+"><h3 style=3D"color: rgb(51, 51, 51); margin-bottom: 20px; font-size: 20px=
+; font-weight: 600;">=F0=9F=93=88 Metriche Chiave</h3><div id=3D"metrics-ca=
+rds"><div style=3D"display: flex; gap: 20px; flex-wrap: wrap;"><div style=
+=3D"flex: 1 1 0%; min-width: 250px;"><div style=3D"padding: 20px; backgroun=
+d-color: rgb(255, 255, 255); border-radius: 8px; box-shadow: rgba(0, 0, 0, =
+0.1) 0px 2px 4px; border: 2px solid rgb(33, 150, 243); min-height: 120px;">=
+<h4 style=3D"color: rgb(102, 102, 102); font-size: 14px; margin-bottom: 8px=
+;">Visualizzazioni Totali</h4><div><span style=3D"font-size: 32px; font-wei=
+ght: bold; color: rgb(33, 150, 243);">346,724</span><span style=3D"font-siz=
+e: 24px; margin-left: 8px; color: rgb(220, 53, 69);"> =E2=86=93</span></div=
+><p style=3D"color: rgb(153, 153, 153); font-size: 12px; margin-top: 8px;">=
+in 91 giorni</p></div></div><div style=3D"flex: 1 1 0%; min-width: 250px;">=
+<div style=3D"padding: 20px; background-color: rgb(255, 255, 255); border-r=
+adius: 8px; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; border: 2px solid r=
+gb(76, 175, 80); min-height: 120px;"><h4 style=3D"color: rgb(102, 102, 102)=
+; font-size: 14px; margin-bottom: 8px;">Media Giornaliera</h4><div><span st=
+yle=3D"font-size: 32px; font-weight: bold; color: rgb(76, 175, 80);">3,810<=
+/span><span></span></div><p style=3D"color: rgb(153, 153, 153); font-size: =
+12px; margin-top: 8px;">visualizzazioni/giorno</p></div></div><div style=3D=
+"flex: 1 1 0%; min-width: 250px;"><div style=3D"padding: 20px; background-c=
+olor: rgb(255, 255, 255); border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.1=
+) 0px 2px 4px; border: 2px solid rgb(255, 152, 0); min-height: 120px;"><h4 =
+style=3D"color: rgb(102, 102, 102); font-size: 14px; margin-bottom: 8px;">V=
+ariazione WoW</h4><div><span style=3D"font-size: 32px; font-weight: bold; c=
+olor: rgb(255, 152, 0);">-0.8%</span><span style=3D"font-size: 24px; margin=
+-left: 8px; color: rgb(255, 193, 7);"> =E2=86=92</span></div><p style=3D"co=
+lor: rgb(153, 153, 153); font-size: 12px; margin-top: 8px;">-2,867 visualiz=
+zazioni</p></div></div><div style=3D"flex: 1 1 0%; min-width: 250px;"><div =
+style=3D"padding: 20px; background-color: rgb(255, 255, 255); border-radius=
+: 8px; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px; border: 2px solid rgb(15=
+6, 39, 176); min-height: 120px;"><h4 style=3D"color: rgb(102, 102, 102); fo=
+nt-size: 14px; margin-bottom: 8px;">Trend</h4><div><span style=3D"font-size=
+: 32px; font-weight: bold; color: rgb(156, 39, 176);">Calo</span><span styl=
+e=3D"font-size: 24px; margin-left: 8px; color: rgb(220, 53, 69);"> =E2=86=
+=93</span></div><p style=3D"color: rgb(153, 153, 153); font-size: 12px; mar=
+gin-top: 8px;">direzione generale</p></div></div></div></div></div><div sty=
+le=3D"margin-bottom: 30px;"><h3 style=3D"color: rgb(51, 51, 51); margin-bot=
+tom: 20px; font-size: 20px; font-weight: 600;">=F0=9F=92=A1 Insight Automat=
+ico</h3><div id=3D"insight-box"><div style=3D"padding: 20px; background-col=
+or: rgb(255, 243, 224); border-left: 4px solid rgb(255, 152, 0); border-rad=
+ius: 4px; margin-bottom: 20px;"><h4 style=3D"color: rgb(230, 81, 0); font-s=
+ize: 16px; margin-bottom: 12px; font-weight: 600;">=E2=9A=A0=EF=B8=8F Trend=
+ in Calo</h4><p style=3D"color: rgb(230, 81, 0); font-size: 14px; line-heig=
+ht: 1.6; margin: 0px;">Il magazine sta registrando un calo lieve delle visu=
+alizzazioni. Rispetto al periodo precedente (settimana precedente), le pagi=
+ne viste sono diminuite del -0.8%. </p></div></div></div><div style=3D"back=
+ground-color: rgb(255, 255, 255); padding: 25px; border-radius: 8px; box-sh=
+adow: rgba(0, 0, 0, 0.1) 0px 2px 4px; margin-bottom: 30px;"><h3 style=3D"co=
+lor: rgb(51, 51, 51); margin-bottom: 20px; font-size: 20px; font-weight: 60=
+0;">=F0=9F=93=89 Trend delle Visualizzazioni</h3><div style=3D""><div id=3D=
+"trend-chart" class=3D"dash-graph"><div></div><div class=3D"js-plotly-plot"=
+ style=3D"height: 100%; width: 100%;"><div class=3D"plot-container plotly">=
+<div class=3D"user-select-none svg-container" style=3D"position: relative; =
+width: 1350px; height: 450px;"><svg class=3D"main-svg" xmlns=3D"http://www.=
+w3.org/2000/svg" xmlns:xlink=3D"http://www.w3.org/1999/xlink" width=3D"1350=
+" height=3D"450" style=3D"background: white;"><defs id=3D"defs-7d98f2"><g c=
+lass=3D"clips"><clipPath id=3D"clip7d98f2xyplot" class=3D"plotclip"><rect w=
+idth=3D"1072" height=3D"300"></rect></clipPath><clipPath class=3D"axesclip"=
+ id=3D"clip7d98f2x"><rect x=3D"60" y=3D"0" width=3D"1072" height=3D"450"></=
+rect></clipPath><clipPath class=3D"axesclip" id=3D"clip7d98f2y"><rect x=3D"=
+0" y=3D"80" width=3D"1350" height=3D"300"></rect></clipPath><clipPath class=
+=3D"axesclip" id=3D"clip7d98f2xy"><rect x=3D"60" y=3D"80" width=3D"1072" he=
+ight=3D"300"></rect></clipPath></g><g class=3D"gradients"></g><g class=3D"p=
+atterns"></g></defs><g class=3D"bglayer"></g><g class=3D"draglayer cursor-c=
+rosshair"><g class=3D"xy"><rect class=3D"nsewdrag drag" data-subplot=3D"xy"=
+ x=3D"60" y=3D"80" width=3D"1072" height=3D"300" style=3D"fill: transparent=
+; stroke-width: 0; pointer-events: all;"></rect><rect class=3D"nwdrag drag =
+cursor-nw-resize" data-subplot=3D"xy" x=3D"40" y=3D"60" width=3D"20" height=
+=3D"20" style=3D"fill: transparent; stroke-width: 0; pointer-events: all;">=
+</rect><rect class=3D"nedrag drag cursor-ne-resize" data-subplot=3D"xy" x=
+=3D"1132" y=3D"60" width=3D"20" height=3D"20" style=3D"fill: transparent; s=
+troke-width: 0; pointer-events: all;"></rect><rect class=3D"swdrag drag cur=
+sor-sw-resize" data-subplot=3D"xy" x=3D"40" y=3D"380" width=3D"20" height=
+=3D"20" style=3D"fill: transparent; stroke-width: 0; pointer-events: all;">=
+</rect><rect class=3D"sedrag drag cursor-se-resize" data-subplot=3D"xy" x=
+=3D"1132" y=3D"380" width=3D"20" height=3D"20" style=3D"fill: transparent; =
+stroke-width: 0; pointer-events: all;"></rect><rect class=3D"ewdrag drag cu=
+rsor-ew-resize" data-subplot=3D"xy" x=3D"167.2" y=3D"380.5" width=3D"857.6"=
+ height=3D"20" style=3D"fill: transparent; stroke-width: 0; pointer-events:=
+ all;"></rect><rect class=3D"wdrag drag cursor-w-resize" data-subplot=3D"xy=
+" x=3D"60" y=3D"380.5" width=3D"107.2" height=3D"20" style=3D"fill: transpa=
+rent; stroke-width: 0; pointer-events: all;"></rect><rect class=3D"edrag dr=
+ag cursor-e-resize" data-subplot=3D"xy" x=3D"1024.8000000000002" y=3D"380.5=
+" width=3D"107.2" height=3D"20" style=3D"fill: transparent; stroke-width: 0=
+; pointer-events: all;"></rect><rect class=3D"nsdrag drag cursor-ns-resize"=
+ data-subplot=3D"xy" x=3D"39.5" y=3D"110" width=3D"20" height=3D"240" style=
+=3D"fill: transparent; stroke-width: 0; pointer-events: all;"></rect><rect =
+class=3D"sdrag drag cursor-s-resize" data-subplot=3D"xy" x=3D"39.5" y=3D"35=
+0" width=3D"20" height=3D"30" style=3D"fill: transparent; stroke-width: 0; =
+pointer-events: all;"></rect><rect class=3D"ndrag drag cursor-n-resize" dat=
+a-subplot=3D"xy" x=3D"39.5" y=3D"80" width=3D"20" height=3D"30" style=3D"fi=
+ll: transparent; stroke-width: 0; pointer-events: all;"></rect></g></g><g c=
+lass=3D"layer-below"><g class=3D"imagelayer"></g><g class=3D"shapelayer"></=
+g></g><g class=3D"cartesianlayer"><g class=3D"subplot xy"><g class=3D"layer=
+-subplot"><g class=3D"shapelayer"></g><g class=3D"imagelayer"></g></g><g cl=
+ass=3D"minor-gridlayer"><g class=3D"x"></g><g class=3D"y"></g></g><g class=
+=3D"gridlayer"><g class=3D"x"><path class=3D"xgrid crisp" transform=3D"tran=
+slate(83.82,0)" d=3D"M0,80v300" style=3D"stroke: rgb(240, 240, 240); stroke=
+-opacity: 1; stroke-width: 1px;"></path><path class=3D"xgrid crisp" transfo=
+rm=3D"translate(250.58,0)" d=3D"M0,80v300" style=3D"stroke: rgb(240, 240, 2=
+40); stroke-opacity: 1; stroke-width: 1px;"></path><path class=3D"xgrid cri=
+sp" transform=3D"translate(417.33,0)" d=3D"M0,80v300" style=3D"stroke: rgb(=
+240, 240, 240); stroke-opacity: 1; stroke-width: 1px;"></path><path class=
+=3D"xgrid crisp" transform=3D"translate(584.09,0)" d=3D"M0,80v300" style=3D=
+"stroke: rgb(240, 240, 240); stroke-opacity: 1; stroke-width: 1px;"></path>=
+<path class=3D"xgrid crisp" transform=3D"translate(750.84,0)" d=3D"M0,80v30=
+0" style=3D"stroke: rgb(240, 240, 240); stroke-opacity: 1; stroke-width: 1p=
+x;"></path><path class=3D"xgrid crisp" transform=3D"translate(917.6,0)" d=
+=3D"M0,80v300" style=3D"stroke: rgb(240, 240, 240); stroke-opacity: 1; stro=
+ke-width: 1px;"></path><path class=3D"xgrid crisp" transform=3D"translate(1=
+084.36,0)" d=3D"M0,80v300" style=3D"stroke: rgb(240, 240, 240); stroke-opac=
+ity: 1; stroke-width: 1px;"></path></g><g class=3D"y"><path class=3D"ygrid =
+crisp" transform=3D"translate(0,341.11)" d=3D"M60,0h1072" style=3D"stroke: =
+rgb(240, 240, 240); stroke-opacity: 1; stroke-width: 1px;"></path><path cla=
+ss=3D"ygrid crisp" transform=3D"translate(0,303.1)" d=3D"M60,0h1072" style=
+=3D"stroke: rgb(240, 240, 240); stroke-opacity: 1; stroke-width: 1px;"></pa=
+th><path class=3D"ygrid crisp" transform=3D"translate(0,265.09000000000003)=
+" d=3D"M60,0h1072" style=3D"stroke: rgb(240, 240, 240); stroke-opacity: 1; =
+stroke-width: 1px;"></path><path class=3D"ygrid crisp" transform=3D"transla=
+te(0,227.08)" d=3D"M60,0h1072" style=3D"stroke: rgb(240, 240, 240); stroke-=
+opacity: 1; stroke-width: 1px;"></path><path class=3D"ygrid crisp" transfor=
+m=3D"translate(0,189.07)" d=3D"M60,0h1072" style=3D"stroke: rgb(240, 240, 2=
+40); stroke-opacity: 1; stroke-width: 1px;"></path><path class=3D"ygrid cri=
+sp" transform=3D"translate(0,151.06)" d=3D"M60,0h1072" style=3D"stroke: rgb=
+(240, 240, 240); stroke-opacity: 1; stroke-width: 1px;"></path><path class=
+=3D"ygrid crisp" transform=3D"translate(0,113.05)" d=3D"M60,0h1072" style=
+=3D"stroke: rgb(240, 240, 240); stroke-opacity: 1; stroke-width: 1px;"></pa=
+th></g></g><g class=3D"zerolinelayer"></g><path class=3D"xlines-below"></pa=
+th><path class=3D"ylines-below"></path><g class=3D"overlines-below"></g><g =
+class=3D"xaxislayer-below"></g><g class=3D"yaxislayer-below"></g><g class=
+=3D"overaxes-below"></g><g class=3D"plot" transform=3D"translate(60,80)" cl=
+ip-path=3D"url(#clip7d98f2xyplot)"><g class=3D"scatterlayer mlayer"><g clas=
+s=3D"trace scatter trace8af6ef" style=3D"stroke-miterlimit: 2; opacity: 1;"=
+><g class=3D"fills"></g><g class=3D"errorbars"></g><g class=3D"lines"><path=
+ class=3D"js-line" d=3D"M0,226.96L11.91,228.35L23.82,218.29L35.73,201.78L47=
+.64,210.06L71.47,229.87L83.38,232.74L95.29,235.4L107.2,231.35L119.11,225.9L=
+131.02,236.39L142.93,237.98L154.84,232.17L178.67,240.51L190.58,228.31L202.4=
+9,227.26L214.4,234.07L226.31,243.55L238.22,15L250.13,19.71L262.04,156.19L27=
+3.96,201.65L285.87,144.82L297.78,211.76L309.69,222.21L321.6,229.66L333.51,2=
+33.93L345.42,238.06L357.33,234.87L369.24,223.73L381.16,228.82L393.07,232.43=
+L404.98,238.06L416.89,235.68L428.8,239.69L440.71,231.86L452.62,225.84L464.5=
+3,218.71L476.44,223.18L488.36,221.79L500.27,225.38L512.18,238.13L524.09,235=
+.8L536,228.84L547.91,237.85L571.73,235.85L583.64,232.43L595.56,239.67L607.4=
+7,242.75L619.38,235.34L631.29,229.87L643.2,235.72L655.11,232.2L667.02,242.2=
+2L678.93,244.41L690.84,238.29L702.76,234.39L714.67,229.51L726.58,236.77L738=
+.49,242.68L750.4,238.82L762.31,240.78L774.22,243.53L786.13,240.57L798.04,24=
+1.1L809.96,255.56L821.87,257.23L833.78,248.99L845.69,244.69L857.6,229.96L86=
+9.51,238.31L881.42,243.55L893.33,255.79L905.24,248.21L917.16,227.42L929.07,=
+236.88L940.98,226.43L952.89,209.42L964.8,209.55L976.71,221.51L988.62,235.04=
+L1000.53,230.13L1012.44,227.91L1024.36,231.69L1036.27,229.16L1048.18,236.65=
+L1060.09,236.01L1072,285" style=3D"vector-effect: non-scaling-stroke; fill:=
+ none; stroke: rgb(33, 150, 243); stroke-opacity: 1; stroke-width: 2px; opa=
+city: 1;"></path></g><g class=3D"points"></g><g class=3D"text"></g></g><g c=
+lass=3D"trace scatter traceb641bb" style=3D"stroke-miterlimit: 2; opacity: =
+1;"><g class=3D"fills"></g><g class=3D"errorbars"></g><g class=3D"lines"><p=
+ath class=3D"js-line" d=3D"M0,226.96L11.91,227.65L23.82,224.53L35.73,218.84=
+L47.64,217.09L59.56,217.6L71.47,219.35L95.29,221.19L107.2,223.05L131.02,230=
+.26L142.93,232.8L178.67,234.42L190.58,233.99L226.31,234.65L238.22,203.62L25=
+0.13,172.63L262.04,160.58L273.96,156.78L285.87,145L309.69,138.76L321.6,169.=
+43L333.51,200.03L345.42,211.73L357.33,216.47L369.24,227.74L381.16,230.18L39=
+3.07,231.64L404.98,232.84L416.89,233.09L452.62,233.2L464.53,231.75L476.44,2=
+30.43L488.36,228.11L500.27,226.64L512.18,226.41L536,227.4L547.91,230.14L571=
+.73,234.15L583.64,235.16L595.56,235.38L607.47,236.37L619.38,237.3L631.29,23=
+6.16L655.11,235.43L667.02,236.83L678.93,237.5L690.84,236.86L726.58,236.83L7=
+38.49,238.32L762.31,237.32L774.22,238.07L786.13,238.95L798.04,240.6L821.87,=
+245.37L833.78,246.82L845.69,247.38L857.6,245.44L881.42,245.47L893.33,245.5L=
+905.24,244.21L917.16,241.13L940.98,239.51L952.89,235.38L976.71,225.63L988.6=
+2,223.75L1000.53,224.14L1012.44,222.85L1024.36,223.61L1036.27,226.43L1048.1=
+8,230.3L1060.09,232.37L1072,239.51" style=3D"vector-effect: non-scaling-str=
+oke; fill: none; stroke: rgb(76, 175, 80); stroke-opacity: 1; stroke-width:=
+ 2px; opacity: 1;"></path></g><g class=3D"points"></g><g class=3D"text"></g=
+></g></g></g><g class=3D"overplot"></g><path class=3D"xlines-above crisp" d=
+=3D"M59,380.5H1132" style=3D"fill: none; stroke-width: 1px; stroke: rgb(221=
+, 221, 221); stroke-opacity: 1;"></path><path class=3D"ylines-above crisp" =
+d=3D"M59.5,80V380" style=3D"fill: none; stroke-width: 1px; stroke: rgb(221,=
+ 221, 221); stroke-opacity: 1;"></path><g class=3D"overlines-above"></g><g =
+class=3D"xaxislayer-above"><g class=3D"xtick"><text text-anchor=3D"middle" =
+x=3D"0" y=3D"395.4" data-unformatted=3D"Oct 19&lt;br&gt;2025" data-math=3D"=
+N" transform=3D"translate(83.82,0)" style=3D"font-family: Arial, sans-serif=
+; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; white-space: =
+pre; opacity: 1;"><tspan class=3D"line" dy=3D"0em" x=3D"0" y=3D"395.4">Oct =
+19</tspan><tspan class=3D"line" dy=3D"1.3em" x=3D"0" y=3D"395.4">2025</tspa=
+n></text></g><g class=3D"xtick"><text text-anchor=3D"middle" x=3D"0" y=3D"3=
+95.4" data-unformatted=3D"Nov 2" data-math=3D"N" style=3D"font-family: Aria=
+l, sans-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; =
+white-space: pre; opacity: 1;" transform=3D"translate(250.58,0)">Nov 2</tex=
+t></g><g class=3D"xtick"><text text-anchor=3D"middle" x=3D"0" y=3D"395.4" d=
+ata-unformatted=3D"Nov 16" data-math=3D"N" style=3D"font-family: Arial, san=
+s-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; white-=
+space: pre; opacity: 1;" transform=3D"translate(417.33,0)">Nov 16</text></g=
+><g class=3D"xtick"><text text-anchor=3D"middle" x=3D"0" y=3D"395.4" data-u=
+nformatted=3D"Nov 30" data-math=3D"N" style=3D"font-family: Arial, sans-ser=
+if; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; white-space=
+: pre; opacity: 1;" transform=3D"translate(584.09,0)">Nov 30</text></g><g c=
+lass=3D"xtick"><text text-anchor=3D"middle" x=3D"0" y=3D"395.4" data-unform=
+atted=3D"Dec 14" data-math=3D"N" style=3D"font-family: Arial, sans-serif; f=
+ont-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; white-space: pre=
+; opacity: 1;" transform=3D"translate(750.84,0)">Dec 14</text></g><g class=
+=3D"xtick"><text text-anchor=3D"middle" x=3D"0" y=3D"395.4" data-unformatte=
+d=3D"Dec 28" data-math=3D"N" style=3D"font-family: Arial, sans-serif; font-=
+size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; white-space: pre; op=
+acity: 1;" transform=3D"translate(917.6,0)">Dec 28</text></g><g class=3D"xt=
+ick"><text text-anchor=3D"middle" x=3D"0" y=3D"395.4" data-unformatted=3D"J=
+an 11&lt;br&gt;2026" data-math=3D"N" style=3D"font-family: Arial, sans-seri=
+f; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; white-space:=
+ pre; opacity: 1;" transform=3D"translate(1084.36,0)"><tspan class=3D"line"=
+ dy=3D"0em" x=3D"0" y=3D"395.4">Jan 11</tspan><tspan class=3D"line" dy=3D"1=
+.3em" x=3D"0" y=3D"395.4">2026</tspan></text></g></g><g class=3D"yaxislayer=
+-above"><g class=3D"ytick"><text text-anchor=3D"end" x=3D"56.6" y=3D"4.1999=
+99999999999" data-unformatted=3D"0" data-math=3D"N" transform=3D"translate(=
+0,379.12)" style=3D"font-family: Arial, sans-serif; font-size: 12px; fill: =
+rgb(102, 102, 102); fill-opacity: 1; white-space: pre; opacity: 1;">0</text=
+></g><g class=3D"ytick"><text text-anchor=3D"end" x=3D"56.6" y=3D"4.1999999=
+99999999" data-unformatted=3D"2k" data-math=3D"N" style=3D"font-family: Ari=
+al, sans-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1;=
+ white-space: pre; opacity: 1;" transform=3D"translate(0,341.11)">2k</text>=
+</g><g class=3D"ytick"><text text-anchor=3D"end" x=3D"56.6" y=3D"4.19999999=
+9999999" data-unformatted=3D"4k" data-math=3D"N" style=3D"font-family: Aria=
+l, sans-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; =
+white-space: pre; opacity: 1;" transform=3D"translate(0,303.1)">4k</text></=
+g><g class=3D"ytick"><text text-anchor=3D"end" x=3D"56.6" y=3D"4.1999999999=
+99999" data-unformatted=3D"6k" data-math=3D"N" style=3D"font-family: Arial,=
+ sans-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; wh=
+ite-space: pre; opacity: 1;" transform=3D"translate(0,265.09000000000003)">=
+6k</text></g><g class=3D"ytick"><text text-anchor=3D"end" x=3D"56.6" y=3D"4=
+.199999999999999" data-unformatted=3D"8k" data-math=3D"N" style=3D"font-fam=
+ily: Arial, sans-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opa=
+city: 1; white-space: pre; opacity: 1;" transform=3D"translate(0,227.08)">8=
+k</text></g><g class=3D"ytick"><text text-anchor=3D"end" x=3D"56.6" y=3D"4.=
+199999999999999" data-unformatted=3D"10k" data-math=3D"N" style=3D"font-fam=
+ily: Arial, sans-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opa=
+city: 1; white-space: pre; opacity: 1;" transform=3D"translate(0,189.07)">1=
+0k</text></g><g class=3D"ytick"><text text-anchor=3D"end" x=3D"56.6" y=3D"4=
+.199999999999999" data-unformatted=3D"12k" data-math=3D"N" style=3D"font-fa=
+mily: Arial, sans-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-op=
+acity: 1; white-space: pre; opacity: 1;" transform=3D"translate(0,151.06)">=
+12k</text></g><g class=3D"ytick"><text text-anchor=3D"end" x=3D"56.6" y=3D"=
+4.199999999999999" data-unformatted=3D"14k" data-math=3D"N" style=3D"font-f=
+amily: Arial, sans-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-o=
+pacity: 1; white-space: pre; opacity: 1;" transform=3D"translate(0,113.05)"=
+>14k</text></g></g><g class=3D"overaxes-above"></g></g></g><g class=3D"pola=
+rlayer"></g><g class=3D"smithlayer"></g><g class=3D"ternarylayer"></g><g cl=
+ass=3D"geolayer"></g><g class=3D"funnelarealayer"></g><g class=3D"pielayer"=
+></g><g class=3D"iciclelayer"></g><g class=3D"treemaplayer"></g><g class=3D=
+"sunburstlayer"></g><g class=3D"glimages"></g></svg><div class=3D"gl-contai=
+ner"></div><svg class=3D"main-svg" xmlns=3D"http://www.w3.org/2000/svg" xml=
+ns:xlink=3D"http://www.w3.org/1999/xlink" width=3D"1350" height=3D"450"><de=
+fs id=3D"topdefs-7d98f2"><g class=3D"clips"></g><clipPath id=3D"legend7d98f=
+2"><rect width=3D"185" height=3D"48" x=3D"0" y=3D"0"></rect></clipPath><cli=
+pPath id=3D"hover7d98f2"><rect width=3D"170" height=3D"64" x=3D"1" y=3D"1">=
+</rect></clipPath></defs><g class=3D"indicatorlayer"></g><g class=3D"layer-=
+above"><g class=3D"imagelayer"></g><g class=3D"shapelayer"></g></g><g class=
+=3D"selectionlayer"></g><g class=3D"infolayer"><g class=3D"g-gtitle"><text =
+class=3D"gtitle" x=3D"67.5" y=3D"40" text-anchor=3D"start" dy=3D"0em" data-=
+unformatted=3D"Trend delle Visualizzazioni (Daily)" data-math=3D"N" style=
+=3D"font-family: Arial, sans-serif; font-size: 20px; fill: rgb(51, 51, 51);=
+ opacity: 1; font-weight: normal; white-space: pre;">Trend delle Visualizza=
+zioni (Daily)</text></g><g class=3D"legend" pointer-events=3D"all" transfor=
+m=3D"translate(1153.44,80)"><rect class=3D"bg" shape-rendering=3D"crispEdge=
+s" style=3D"stroke: rgb(68, 68, 68); stroke-opacity: 1; fill: rgb(255, 255,=
+ 255); fill-opacity: 1; stroke-width: 0px;" width=3D"185" height=3D"48" x=
+=3D"0" y=3D"0"></rect><g class=3D"scrollbox" transform=3D"" clip-path=3D"ur=
+l(#legend7d98f2)"><g class=3D"groups"><g class=3D"traces" transform=3D"tran=
+slate(0,14.5)" style=3D"opacity: 1;"><text class=3D"legendtext" text-anchor=
+=3D"start" x=3D"40" y=3D"4.680000000000001" data-unformatted=3D"screenPageV=
+iews" data-math=3D"N" style=3D"font-family: Arial, sans-serif; font-size: 1=
+2px; fill: rgb(102, 102, 102); fill-opacity: 1; white-space: pre;">screenPa=
+geViews</text><g class=3D"layers" style=3D"opacity: 1;"><g class=3D"legendf=
+ill"></g><g class=3D"legendlines"><path class=3D"js-line" d=3D"M5,0h30" sty=
+le=3D"fill: none; stroke: rgb(33, 150, 243); stroke-opacity: 1; stroke-widt=
+h: 2px;"></path></g><g class=3D"legendsymbols"><g class=3D"legendpoints"></=
+g></g></g><rect class=3D"legendtoggle" pointer-events=3D"all" x=3D"0" y=3D"=
+-9.5" width=3D"179.21250915527344" height=3D"19" style=3D"cursor: pointer; =
+fill: rgb(0, 0, 0); fill-opacity: 0;"></rect></g><g class=3D"traces" transf=
+orm=3D"translate(0,33.5)" style=3D"opacity: 1;"><text class=3D"legendtext" =
+text-anchor=3D"start" x=3D"40" y=3D"4.680000000000001" data-unformatted=3D"=
+screenPageViews_ma_7d" data-math=3D"N" style=3D"font-family: Arial, sans-se=
+rif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; white-spac=
+e: pre;">screenPageViews_ma_7d</text><g class=3D"layers" style=3D"opacity: =
+1;"><g class=3D"legendfill"></g><g class=3D"legendlines"><path class=3D"js-=
+line" d=3D"M5,0h30" style=3D"fill: none; stroke: rgb(76, 175, 80); stroke-o=
+pacity: 1; stroke-width: 2px;"></path></g><g class=3D"legendsymbols"><g cla=
+ss=3D"legendpoints"></g></g></g><rect class=3D"legendtoggle" pointer-events=
+=3D"all" x=3D"0" y=3D"-9.5" width=3D"179.21250915527344" height=3D"19" styl=
+e=3D"cursor: pointer; fill: rgb(0, 0, 0); fill-opacity: 0;"></rect></g></g>=
+</g><rect class=3D"scrollbar" rx=3D"20" ry=3D"3" width=3D"0" height=3D"0" s=
+tyle=3D"fill: rgb(128, 139, 164); fill-opacity: 1;" x=3D"0" y=3D"0"></rect>=
+</g><g class=3D"g-xtitle"><text class=3D"xtitle" x=3D"596" y=3D"437.7001960=
+7543946" text-anchor=3D"middle" data-unformatted=3D"Data" data-math=3D"N" s=
+tyle=3D"font-family: Arial, sans-serif; font-size: 14px; fill: rgb(102, 102=
+, 102); opacity: 1; font-weight: normal; white-space: pre;">Data</text></g>=
+<g class=3D"g-ytitle"><text class=3D"ytitle" transform=3D"rotate(-90,12.950=
+000000000003,230)" x=3D"12.950000000000003" y=3D"230" text-anchor=3D"middle=
+" data-unformatted=3D"Visualizzazioni" data-math=3D"N" style=3D"font-family=
+: Arial, sans-serif; font-size: 14px; fill: rgb(102, 102, 102); opacity: 1;=
+ font-weight: normal; white-space: pre;">Visualizzazioni</text></g></g><g c=
+lass=3D"menulayer"></g><g class=3D"zoomlayer"></g></svg><div class=3D"modeb=
+ar-container" style=3D"position: absolute; top: 0px; right: 0px; width: 100=
+%;"><div id=3D"modebar-7d98f2" class=3D"modebar modebar--hover ease-bg"><di=
+v class=3D"modebar-group"><a rel=3D"tooltip" class=3D"modebar-btn" data-tit=
+le=3D"Download plot as a png" data-toggle=3D"false" data-gravity=3D"n"><svg=
+ viewBox=3D"0 0 1000 1000" class=3D"icon" height=3D"1em" width=3D"1em"><pat=
+h d=3D"m500 450c-83 0-150-67-150-150 0-83 67-150 150-150 83 0 150 67 150 15=
+0 0 83-67 150-150 150z m400 150h-120c-16 0-34 13-39 29l-31 93c-6 15-23 28-4=
+0 28h-340c-16 0-34-13-39-28l-31-94c-6-15-23-28-40-28h-120c-55 0-100-45-100-=
+100v-450c0-55 45-100 100-100h800c55 0 100 45 100 100v450c0 55-45 100-100 10=
+0z m-400-550c-138 0-250 112-250 250 0 138 112 250 250 250 138 0 250-112 250=
+-250 0-138-112-250-250-250z m365 380c-19 0-35 16-35 35 0 19 16 35 35 35 19 =
+0 35-16 35-35 0-19-16-35-35-35z" transform=3D"matrix(1 0 0 -1 0 850)"></pat=
+h></svg></a></div><div class=3D"modebar-group"><a rel=3D"tooltip" class=3D"=
+modebar-btn active" data-title=3D"Zoom" data-attr=3D"dragmode" data-val=3D"=
+zoom" data-toggle=3D"false" data-gravity=3D"n"><svg viewBox=3D"0 0 1000 100=
+0" class=3D"icon" height=3D"1em" width=3D"1em"><path d=3D"m1000-25l-250 251=
+c40 63 63 138 63 218 0 224-182 406-407 406-224 0-406-182-406-406s183-406 40=
+7-406c80 0 155 22 218 62l250-250 125 125z m-812 250l0 438 437 0 0-438-437 0=
+z m62 375l313 0 0-312-313 0 0 312z" transform=3D"matrix(1 0 0 -1 0 850)"></=
+path></svg></a><a rel=3D"tooltip" class=3D"modebar-btn" data-title=3D"Pan" =
+data-attr=3D"dragmode" data-val=3D"pan" data-toggle=3D"false" data-gravity=
+=3D"n"><svg viewBox=3D"0 0 1000 1000" class=3D"icon" height=3D"1em" width=
+=3D"1em"><path d=3D"m1000 350l-187 188 0-125-250 0 0 250 125 0-188 187-187-=
+187 125 0 0-250-250 0 0 125-188-188 186-187 0 125 252 0 0-250-125 0 187-188=
+ 188 188-125 0 0 250 250 0 0-126 187 188z" transform=3D"matrix(1 0 0 -1 0 8=
+50)"></path></svg></a></div><div class=3D"modebar-group"><a rel=3D"tooltip"=
+ class=3D"modebar-btn" data-title=3D"Zoom in" data-attr=3D"zoom" data-val=
+=3D"in" data-toggle=3D"false" data-gravity=3D"n"><svg viewBox=3D"0 0 875 10=
+00" class=3D"icon" height=3D"1em" width=3D"1em"><path d=3D"m1 787l0-875 875=
+ 0 0 875-875 0z m687-500l-187 0 0-187-125 0 0 187-188 0 0 125 188 0 0 187 1=
+25 0 0-187 187 0 0-125z" transform=3D"matrix(1 0 0 -1 0 850)"></path></svg>=
+</a><a rel=3D"tooltip" class=3D"modebar-btn" data-title=3D"Zoom out" data-a=
+ttr=3D"zoom" data-val=3D"out" data-toggle=3D"false" data-gravity=3D"n"><svg=
+ viewBox=3D"0 0 875 1000" class=3D"icon" height=3D"1em" width=3D"1em"><path=
+ d=3D"m0 788l0-876 875 0 0 876-875 0z m688-500l-500 0 0 125 500 0 0-125z" t=
+ransform=3D"matrix(1 0 0 -1 0 850)"></path></svg></a><a rel=3D"tooltip" cla=
+ss=3D"modebar-btn" data-title=3D"Autoscale" data-attr=3D"zoom" data-val=3D"=
+auto" data-toggle=3D"false" data-gravity=3D"n"><svg viewBox=3D"0 0 1000 100=
+0" class=3D"icon" height=3D"1em" width=3D"1em"><path d=3D"m250 850l-187 0-6=
+3 0 0-62 0-188 63 0 0 188 187 0 0 62z m688 0l-188 0 0-62 188 0 0-188 62 0 0=
+ 188 0 62-62 0z m-875-938l0 188-63 0 0-188 0-62 63 0 187 0 0 62-187 0z m875=
+ 188l0-188-188 0 0-62 188 0 62 0 0 62 0 188-62 0z m-125 188l-1 0-93-94-156 =
+156 156 156 92-93 2 0 0 250-250 0 0-2 93-92-156-156-156 156 94 92 0 2-250 0=
+ 0-250 0 0 93 93 157-156-157-156-93 94 0 0 0-250 250 0 0 0-94 93 156 157 15=
+6-157-93-93 0 0 250 0 0 250z" transform=3D"matrix(1 0 0 -1 0 850)"></path><=
+/svg></a><a rel=3D"tooltip" class=3D"modebar-btn" data-title=3D"Reset axes"=
+ data-attr=3D"zoom" data-val=3D"reset" data-toggle=3D"false" data-gravity=
+=3D"n"><svg viewBox=3D"0 0 928.6 1000" class=3D"icon" height=3D"1em" width=
+=3D"1em"><path d=3D"m786 296v-267q0-15-11-26t-25-10h-214v214h-143v-214h-214=
+q-15 0-25 10t-11 26v267q0 1 0 2t0 2l321 264 321-264q1-1 1-4z m124 39l-34-41=
+q-5-5-12-6h-2q-7 0-12 3l-386 322-386-322q-7-4-13-4-7 2-12 7l-35 41q-4 5-3 1=
+3t6 12l401 334q18 15 42 15t43-15l136-114v109q0 8 5 13t13 5h107q8 0 13-5t5-1=
+3v-227l122-102q5-5 6-12t-4-13z" transform=3D"matrix(1 0 0 -1 0 850)"></path=
+></svg></a></div><div class=3D"modebar-group"><a href=3D"https://plotly.com=
+/" target=3D"_blank" data-title=3D"Produced with Plotly.js (v2.27.0)" class=
+=3D"modebar-btn plotlyjsicon modebar-btn--logo"><svg xmlns=3D"http://www.w3=
+.org/2000/svg" viewBox=3D"0 0 132 132" height=3D"1em" width=3D"1em"><defs> =
+<style>  .cls-0{fill:#000;}  .cls-1{fill:#FFF;}  .cls-2{fill:#F26;}  .cls-3=
+{fill:#D69;}  .cls-4{fill:#BAC;}  .cls-5{fill:#9EF;} </style></defs> <title=
+>plotly-logomark</title> <g id=3D"symbol">  <rect class=3D"cls-0" x=3D"0" y=
+=3D"0" width=3D"132" height=3D"132" rx=3D"18" ry=3D"18"></rect>  <circle cl=
+ass=3D"cls-5" cx=3D"102" cy=3D"30" r=3D"6"></circle>  <circle class=3D"cls-=
+4" cx=3D"78" cy=3D"30" r=3D"6"></circle>  <circle class=3D"cls-4" cx=3D"78"=
+ cy=3D"54" r=3D"6"></circle>  <circle class=3D"cls-3" cx=3D"54" cy=3D"30" r=
+=3D"6"></circle>  <circle class=3D"cls-2" cx=3D"30" cy=3D"30" r=3D"6"></cir=
+cle>  <circle class=3D"cls-2" cx=3D"30" cy=3D"54" r=3D"6"></circle>  <path =
+class=3D"cls-1" d=3D"M30,72a6,6,0,0,0-6,6v24a6,6,0,0,0,12,0V78A6,6,0,0,0,30=
+,72Z"></path>  <path class=3D"cls-1" d=3D"M78,72a6,6,0,0,0-6,6v24a6,6,0,0,0=
+,12,0V78A6,6,0,0,0,78,72Z"></path>  <path class=3D"cls-1" d=3D"M54,48a6,6,0=
+,0,0-6,6v48a6,6,0,0,0,12,0V54A6,6,0,0,0,54,48Z"></path>  <path class=3D"cls=
+-1" d=3D"M102,48a6,6,0,0,0-6,6v48a6,6,0,0,0,12,0V54A6,6,0,0,0,102,48Z"></pa=
+th> </g></svg></a></div></div></div><svg class=3D"main-svg" xmlns=3D"http:/=
+/www.w3.org/2000/svg" xmlns:xlink=3D"http://www.w3.org/1999/xlink" width=3D=
+"1350" height=3D"450"><g class=3D"hoverlayer"></g></svg></div></div></div><=
+/div><div style=3D""></div></div></div><div style=3D"background-color: rgb(=
+255, 255, 255); padding: 25px; border-radius: 8px; box-shadow: rgba(0, 0, 0=
+, 0.1) 0px 2px 4px; margin-bottom: 30px;"><h3 style=3D"color: rgb(51, 51, 5=
+1); margin-bottom: 20px; font-size: 20px; font-weight: 600;">=F0=9F=94=84 A=
+nalisi Stagionalit=C3=A0</h3><div style=3D""><div id=3D"seasonality-chart" =
+class=3D"dash-graph"><div></div><div class=3D"js-plotly-plot" style=3D"heig=
+ht: 100%; width: 100%;"><div class=3D"plot-container plotly"><div class=3D"=
+user-select-none svg-container" style=3D"position: relative; width: 1350px;=
+ height: 450px;"><svg class=3D"main-svg" xmlns=3D"http://www.w3.org/2000/sv=
+g" xmlns:xlink=3D"http://www.w3.org/1999/xlink" width=3D"1350" height=3D"45=
+0" style=3D"background: white;"><defs id=3D"defs-9a6bbd"><g class=3D"clips"=
+><clipPath id=3D"clip9a6bbdxyplot" class=3D"plotclip"><rect width=3D"1243" =
+height=3D"330"></rect></clipPath><clipPath class=3D"axesclip" id=3D"clip9a6=
+bbdx"><rect x=3D"67" y=3D"0" width=3D"1243" height=3D"450"></rect></clipPat=
+h><clipPath class=3D"axesclip" id=3D"clip9a6bbdy"><rect x=3D"0" y=3D"60" wi=
+dth=3D"1350" height=3D"330"></rect></clipPath><clipPath class=3D"axesclip" =
+id=3D"clip9a6bbdxy"><rect x=3D"67" y=3D"60" width=3D"1243" height=3D"330"><=
+/rect></clipPath></g><g class=3D"gradients"></g><g class=3D"patterns"></g><=
+/defs><g class=3D"bglayer"></g><g class=3D"draglayer cursor-crosshair"><g c=
+lass=3D"xy"><rect class=3D"nsewdrag drag" data-subplot=3D"xy" x=3D"67" y=3D=
+"60" width=3D"1243" height=3D"330" style=3D"fill: transparent; stroke-width=
+: 0; pointer-events: all;"></rect><rect class=3D"nwdrag drag cursor-nw-resi=
+ze" data-subplot=3D"xy" x=3D"47" y=3D"40" width=3D"20" height=3D"20" style=
+=3D"fill: transparent; stroke-width: 0; pointer-events: all;"></rect><rect =
+class=3D"nedrag drag cursor-ne-resize" data-subplot=3D"xy" x=3D"1310" y=3D"=
+40" width=3D"20" height=3D"20" style=3D"fill: transparent; stroke-width: 0;=
+ pointer-events: all;"></rect><rect class=3D"swdrag drag cursor-sw-resize" =
+data-subplot=3D"xy" x=3D"47" y=3D"390" width=3D"20" height=3D"20" style=3D"=
+fill: transparent; stroke-width: 0; pointer-events: all;"></rect><rect clas=
+s=3D"sedrag drag cursor-se-resize" data-subplot=3D"xy" x=3D"1310" y=3D"390"=
+ width=3D"20" height=3D"20" style=3D"fill: transparent; stroke-width: 0; po=
+inter-events: all;"></rect><rect class=3D"ewdrag drag cursor-ew-resize" dat=
+a-subplot=3D"xy" x=3D"191.3" y=3D"390.5" width=3D"994.4000000000001" height=
+=3D"20" style=3D"fill: transparent; stroke-width: 0; pointer-events: all;">=
+</rect><rect class=3D"wdrag drag cursor-w-resize" data-subplot=3D"xy" x=3D"=
+67" y=3D"390.5" width=3D"124.30000000000001" height=3D"20" style=3D"fill: t=
+ransparent; stroke-width: 0; pointer-events: all;"></rect><rect class=3D"ed=
+rag drag cursor-e-resize" data-subplot=3D"xy" x=3D"1185.7" y=3D"390.5" widt=
+h=3D"124.30000000000001" height=3D"20" style=3D"fill: transparent; stroke-w=
+idth: 0; pointer-events: all;"></rect><rect class=3D"nsdrag drag cursor-ns-=
+resize" data-subplot=3D"xy" x=3D"46.5" y=3D"93" width=3D"20" height=3D"264"=
+ style=3D"fill: transparent; stroke-width: 0; pointer-events: all;"></rect>=
+<rect class=3D"sdrag drag cursor-s-resize" data-subplot=3D"xy" x=3D"46.5" y=
+=3D"357" width=3D"20" height=3D"33" style=3D"fill: transparent; stroke-widt=
+h: 0; pointer-events: all;"></rect><rect class=3D"ndrag drag cursor-n-resiz=
+e" data-subplot=3D"xy" x=3D"46.5" y=3D"60" width=3D"20" height=3D"33" style=
+=3D"fill: transparent; stroke-width: 0; pointer-events: all;"></rect></g></=
+g><g class=3D"layer-below"><g class=3D"imagelayer"></g><g class=3D"shapelay=
+er"></g></g><g class=3D"cartesianlayer"><g class=3D"subplot xy"><g class=3D=
+"layer-subplot"><g class=3D"shapelayer"></g><g class=3D"imagelayer"></g></g=
+><g class=3D"minor-gridlayer"><g class=3D"x"></g><g class=3D"y"></g></g><g =
+class=3D"gridlayer"><g class=3D"x"></g><g class=3D"y"><path class=3D"ygrid =
+crisp" transform=3D"translate(0,353.38)" d=3D"M67,0h1243" style=3D"stroke: =
+rgb(240, 240, 240); stroke-opacity: 1; stroke-width: 1px;"></path><path cla=
+ss=3D"ygrid crisp" transform=3D"translate(0,316.76)" d=3D"M67,0h1243" style=
+=3D"stroke: rgb(240, 240, 240); stroke-opacity: 1; stroke-width: 1px;"></pa=
+th><path class=3D"ygrid crisp" transform=3D"translate(0,280.14)" d=3D"M67,0=
+h1243" style=3D"stroke: rgb(240, 240, 240); stroke-opacity: 1; stroke-width=
+: 1px;"></path><path class=3D"ygrid crisp" transform=3D"translate(0,243.52)=
+" d=3D"M67,0h1243" style=3D"stroke: rgb(240, 240, 240); stroke-opacity: 1; =
+stroke-width: 1px;"></path><path class=3D"ygrid crisp" transform=3D"transla=
+te(0,206.89)" d=3D"M67,0h1243" style=3D"stroke: rgb(240, 240, 240); stroke-=
+opacity: 1; stroke-width: 1px;"></path><path class=3D"ygrid crisp" transfor=
+m=3D"translate(0,170.26999999999998)" d=3D"M67,0h1243" style=3D"stroke: rgb=
+(240, 240, 240); stroke-opacity: 1; stroke-width: 1px;"></path><path class=
+=3D"ygrid crisp" transform=3D"translate(0,133.65)" d=3D"M67,0h1243" style=
+=3D"stroke: rgb(240, 240, 240); stroke-opacity: 1; stroke-width: 1px;"></pa=
+th><path class=3D"ygrid crisp" transform=3D"translate(0,97.03)" d=3D"M67,0h=
+1243" style=3D"stroke: rgb(240, 240, 240); stroke-opacity: 1; stroke-width:=
+ 1px;"></path></g></g><g class=3D"zerolinelayer"><path class=3D"yzl zl cris=
+p" transform=3D"translate(0,390)" d=3D"M67,0h1243" style=3D"stroke: rgb(255=
+, 255, 255); stroke-opacity: 1; stroke-width: 2px;"></path></g><path class=
+=3D"xlines-below"></path><path class=3D"ylines-below"></path><g class=3D"ov=
+erlines-below"></g><g class=3D"xaxislayer-below"></g><g class=3D"yaxislayer=
+-below"></g><g class=3D"overaxes-below"></g><g class=3D"plot" transform=3D"=
+translate(67,60)" clip-path=3D"url(#clip9a6bbdxyplot)"><g class=3D"barlayer=
+ mlayer"><g class=3D"trace bars" style=3D"opacity: 1;"><g class=3D"points">=
+<g class=3D"point"><path d=3D"M17.76,330V26.66H159.81V330Z" style=3D"vector=
+-effect: non-scaling-stroke; opacity: 1; stroke-width: 0.5px; fill: rgb(33,=
+ 150, 243); fill-opacity: 1; stroke: rgb(229, 236, 246); stroke-opacity: 1;=
+"></path><text class=3D"bartext bartext-outside" text-anchor=3D"middle" dat=
+a-notex=3D"1" data-unformatted=3D"4,142" data-math=3D"N" x=3D"0" y=3D"0" st=
+yle=3D"font-family: Arial, sans-serif; font-size: 12px; fill: rgb(102, 102,=
+ 102); fill-opacity: 1; white-space: pre;" transform=3D"translate(88.784804=
+49676513,21.260194931030274)">4,142</text></g><g class=3D"point"><path d=3D=
+"M195.33,330V57.06H337.39V330Z" style=3D"vector-effect: non-scaling-stroke;=
+ opacity: 1; stroke-width: 0.5px; fill: rgb(33, 150, 243); fill-opacity: 1;=
+ stroke: rgb(229, 236, 246); stroke-opacity: 1;"></path><text class=3D"bart=
+ext bartext-outside" text-anchor=3D"middle" data-notex=3D"1" data-unformatt=
+ed=3D"3,727" data-math=3D"N" x=3D"0" y=3D"0" style=3D"font-family: Arial, s=
+ans-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; whit=
+e-space: pre;" transform=3D"translate(266.35980449676515,51.660194931030276=
+)">3,727</text></g><g class=3D"point"><path d=3D"M372.9,330V83.8H514.96V330=
+Z" style=3D"vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0.=
+5px; fill: rgb(33, 150, 243); fill-opacity: 1; stroke: rgb(229, 236, 246); =
+stroke-opacity: 1;"></path><text class=3D"bartext bartext-outside" text-anc=
+hor=3D"middle" data-notex=3D"1" data-unformatted=3D"3,361" data-math=3D"N" =
+x=3D"0" y=3D"0" style=3D"font-family: Arial, sans-serif; font-size: 12px; f=
+ill: rgb(102, 102, 102); fill-opacity: 1; white-space: pre;" transform=3D"t=
+ranslate(443.92980449676514,78.40019493103027)">3,361</text></g><g class=3D=
+"point"><path d=3D"M550.47,330V37.75H692.53V330Z" style=3D"vector-effect: n=
+on-scaling-stroke; opacity: 1; stroke-width: 0.5px; fill: rgb(33, 150, 243)=
+; fill-opacity: 1; stroke: rgb(229, 236, 246); stroke-opacity: 1;"></path><=
+text class=3D"bartext bartext-outside" text-anchor=3D"middle" data-notex=3D=
+"1" data-unformatted=3D"3,990" data-math=3D"N" x=3D"0" y=3D"0" style=3D"fon=
+t-family: Arial, sans-serif; font-size: 12px; fill: rgb(102, 102, 102); fil=
+l-opacity: 1; white-space: pre;" transform=3D"translate(621.4998044967651,3=
+2.35019493103027)">3,990</text></g><g class=3D"point"><path d=3D"M728.04,33=
+0V16.5H870.1V330Z" style=3D"vector-effect: non-scaling-stroke; opacity: 1; =
+stroke-width: 0.5px; fill: rgb(76, 175, 80); fill-opacity: 1; stroke: rgb(2=
+29, 236, 246); stroke-opacity: 1;"></path><text class=3D"bartext bartext-ou=
+tside" text-anchor=3D"middle" data-notex=3D"1" data-unformatted=3D"4,280" d=
+ata-math=3D"N" x=3D"0" y=3D"0" style=3D"font-family: Arial, sans-serif; fon=
+t-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; white-space: pre;"=
+ transform=3D"translate(799.0698044967651,11.100194931030273)">4,280</text>=
+</g><g class=3D"point"><path d=3D"M905.61,330V69.74H1047.67V330Z" style=3D"=
+vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0.5px; fill: r=
+gb(33, 150, 243); fill-opacity: 1; stroke: rgb(229, 236, 246); stroke-opaci=
+ty: 1;"></path><text class=3D"bartext bartext-outside" text-anchor=3D"middl=
+e" data-notex=3D"1" data-unformatted=3D"3,553" data-math=3D"N" x=3D"0" y=3D=
+"0" style=3D"font-family: Arial, sans-serif; font-size: 12px; fill: rgb(102=
+, 102, 102); fill-opacity: 1; white-space: pre;" transform=3D"translate(976=
+.6398044967652,64.34019493103027)">3,553</text></g><g class=3D"point"><path=
+ d=3D"M1083.19,330V65.03H1225.24V330Z" style=3D"vector-effect: non-scaling-=
+stroke; opacity: 1; stroke-width: 0.5px; fill: rgb(33, 150, 243); fill-opac=
+ity: 1; stroke: rgb(229, 236, 246); stroke-opacity: 1;"></path><text class=
+=3D"bartext bartext-outside" text-anchor=3D"middle" data-notex=3D"1" data-u=
+nformatted=3D"3,618" data-math=3D"N" x=3D"0" y=3D"0" style=3D"font-family: =
+Arial, sans-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity:=
+ 1; white-space: pre;" transform=3D"translate(1154.2148044967653,59.6301949=
+31030275)">3,618</text></g></g></g></g></g><g class=3D"overplot"></g><path =
+class=3D"xlines-above crisp" d=3D"M66,390.5H1310" style=3D"fill: none; stro=
+ke-width: 1px; stroke: rgb(221, 221, 221); stroke-opacity: 1;"></path><path=
+ class=3D"ylines-above crisp" d=3D"M66.5,60V390" style=3D"fill: none; strok=
+e-width: 1px; stroke: rgb(221, 221, 221); stroke-opacity: 1;"></path><g cla=
+ss=3D"overlines-above"></g><g class=3D"xaxislayer-above"><g class=3D"xtick"=
+><text text-anchor=3D"middle" x=3D"0" y=3D"405.4" data-unformatted=3D"Luned=
+=C3=AC" data-math=3D"N" transform=3D"translate(155.79000000000002,0)" style=
+=3D"font-family: Arial, sans-serif; font-size: 12px; fill: rgb(102, 102, 10=
+2); fill-opacity: 1; white-space: pre; opacity: 1;">Luned=C3=AC</text></g><=
+g class=3D"xtick"><text text-anchor=3D"middle" x=3D"0" y=3D"405.4" data-unf=
+ormatted=3D"Marted=C3=AC" data-math=3D"N" transform=3D"translate(333.36,0)"=
+ style=3D"font-family: Arial, sans-serif; font-size: 12px; fill: rgb(102, 1=
+02, 102); fill-opacity: 1; white-space: pre; opacity: 1;">Marted=C3=AC</tex=
+t></g><g class=3D"xtick"><text text-anchor=3D"middle" x=3D"0" y=3D"405.4" d=
+ata-unformatted=3D"Mercoled=C3=AC" data-math=3D"N" transform=3D"translate(5=
+10.93,0)" style=3D"font-family: Arial, sans-serif; font-size: 12px; fill: r=
+gb(102, 102, 102); fill-opacity: 1; white-space: pre; opacity: 1;">Mercoled=
+=C3=AC</text></g><g class=3D"xtick"><text text-anchor=3D"middle" x=3D"0" y=
+=3D"405.4" data-unformatted=3D"Gioved=C3=AC" data-math=3D"N" transform=3D"t=
+ranslate(688.5,0)" style=3D"font-family: Arial, sans-serif; font-size: 12px=
+; fill: rgb(102, 102, 102); fill-opacity: 1; white-space: pre; opacity: 1;"=
+>Gioved=C3=AC</text></g><g class=3D"xtick"><text text-anchor=3D"middle" x=
+=3D"0" y=3D"405.4" data-unformatted=3D"Venerd=C3=AC" data-math=3D"N" transf=
+orm=3D"translate(866.07,0)" style=3D"font-family: Arial, sans-serif; font-s=
+ize: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; white-space: pre; opa=
+city: 1;">Venerd=C3=AC</text></g><g class=3D"xtick"><text text-anchor=3D"mi=
+ddle" x=3D"0" y=3D"405.4" data-unformatted=3D"Sabato" data-math=3D"N" trans=
+form=3D"translate(1043.6399999999999,0)" style=3D"font-family: Arial, sans-=
+serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; white-sp=
+ace: pre; opacity: 1;">Sabato</text></g><g class=3D"xtick"><text text-ancho=
+r=3D"middle" x=3D"0" y=3D"405.4" data-unformatted=3D"Domenica" data-math=3D=
+"N" transform=3D"translate(1221.21,0)" style=3D"font-family: Arial, sans-se=
+rif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; white-spac=
+e: pre; opacity: 1;">Domenica</text></g></g><g class=3D"yaxislayer-above"><=
+g class=3D"ytick"><text text-anchor=3D"end" x=3D"63.6" y=3D"4.1999999999999=
+99" data-unformatted=3D"0" data-math=3D"N" transform=3D"translate(0,390)" s=
+tyle=3D"font-family: Arial, sans-serif; font-size: 12px; fill: rgb(102, 102=
+, 102); fill-opacity: 1; white-space: pre; opacity: 1;">0</text></g><g clas=
+s=3D"ytick"><text text-anchor=3D"end" x=3D"63.6" y=3D"4.199999999999999" da=
+ta-unformatted=3D"500" data-math=3D"N" style=3D"font-family: Arial, sans-se=
+rif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; white-spac=
+e: pre; opacity: 1;" transform=3D"translate(0,353.38)">500</text></g><g cla=
+ss=3D"ytick"><text text-anchor=3D"end" x=3D"63.6" y=3D"4.199999999999999" d=
+ata-unformatted=3D"1000" data-math=3D"N" style=3D"font-family: Arial, sans-=
+serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; white-sp=
+ace: pre; opacity: 1;" transform=3D"translate(0,316.76)">1000</text></g><g =
+class=3D"ytick"><text text-anchor=3D"end" x=3D"63.6" y=3D"4.199999999999999=
+" data-unformatted=3D"1500" data-math=3D"N" style=3D"font-family: Arial, sa=
+ns-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; white=
+-space: pre; opacity: 1;" transform=3D"translate(0,280.14)">1500</text></g>=
+<g class=3D"ytick"><text text-anchor=3D"end" x=3D"63.6" y=3D"4.199999999999=
+999" data-unformatted=3D"2000" data-math=3D"N" style=3D"font-family: Arial,=
+ sans-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1; wh=
+ite-space: pre; opacity: 1;" transform=3D"translate(0,243.52)">2000</text><=
+/g><g class=3D"ytick"><text text-anchor=3D"end" x=3D"63.6" y=3D"4.199999999=
+999999" data-unformatted=3D"2500" data-math=3D"N" style=3D"font-family: Ari=
+al, sans-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity: 1;=
+ white-space: pre; opacity: 1;" transform=3D"translate(0,206.89)">2500</tex=
+t></g><g class=3D"ytick"><text text-anchor=3D"end" x=3D"63.6" y=3D"4.199999=
+999999999" data-unformatted=3D"3000" data-math=3D"N" style=3D"font-family: =
+Arial, sans-serif; font-size: 12px; fill: rgb(102, 102, 102); fill-opacity:=
+ 1; white-space: pre; opacity: 1;" transform=3D"translate(0,170.26999999999=
+998)">3000</text></g><g class=3D"ytick"><text text-anchor=3D"end" x=3D"63.6=
+" y=3D"4.199999999999999" data-unformatted=3D"3500" data-math=3D"N" style=
+=3D"font-family: Arial, sans-serif; font-size: 12px; fill: rgb(102, 102, 10=
+2); fill-opacity: 1; white-space: pre; opacity: 1;" transform=3D"translate(=
+0,133.65)">3500</text></g><g class=3D"ytick"><text text-anchor=3D"end" x=3D=
+"63.6" y=3D"4.199999999999999" data-unformatted=3D"4000" data-math=3D"N" st=
+yle=3D"font-family: Arial, sans-serif; font-size: 12px; fill: rgb(102, 102,=
+ 102); fill-opacity: 1; white-space: pre; opacity: 1;" transform=3D"transla=
+te(0,97.03)">4000</text></g><g class=3D"ytick"><text text-anchor=3D"end" x=
+=3D"63.6" y=3D"4.199999999999999" data-unformatted=3D"4500" data-math=3D"N"=
+ style=3D"font-family: Arial, sans-serif; font-size: 12px; fill: rgb(102, 1=
+02, 102); fill-opacity: 1; white-space: pre; opacity: 1;" transform=3D"tran=
+slate(0,60.41)">4500</text></g></g><g class=3D"overaxes-above"></g></g></g>=
+<g class=3D"polarlayer"></g><g class=3D"smithlayer"></g><g class=3D"ternary=
+layer"></g><g class=3D"geolayer"></g><g class=3D"funnelarealayer"></g><g cl=
+ass=3D"pielayer"></g><g class=3D"iciclelayer"></g><g class=3D"treemaplayer"=
+></g><g class=3D"sunburstlayer"></g><g class=3D"glimages"></g></svg><div cl=
+ass=3D"gl-container"></div><svg class=3D"main-svg" xmlns=3D"http://www.w3.o=
+rg/2000/svg" xmlns:xlink=3D"http://www.w3.org/1999/xlink" width=3D"1350" he=
+ight=3D"450"><defs id=3D"topdefs-9a6bbd"><g class=3D"clips"></g></defs><g c=
+lass=3D"indicatorlayer"></g><g class=3D"layer-above"><g class=3D"imagelayer=
+"></g><g class=3D"shapelayer"></g></g><g class=3D"selectionlayer"></g><g cl=
+ass=3D"infolayer"><g class=3D"g-gtitle"><text class=3D"gtitle" x=3D"67.5" y=
+=3D"30" text-anchor=3D"start" dy=3D"0em" data-unformatted=3D"Pattern Settim=
+anale delle Visualizzazioni" data-math=3D"N" style=3D"font-family: Arial, s=
+ans-serif; font-size: 18px; fill: rgb(51, 51, 51); opacity: 1; font-weight:=
+ normal; white-space: pre;">Pattern Settimanale delle Visualizzazioni</text=
+></g><g class=3D"g-xtitle"><text class=3D"xtitle" x=3D"688.5" y=3D"432.1001=
+9569396974" text-anchor=3D"middle" data-unformatted=3D"Giorno della Settima=
+na" data-math=3D"N" style=3D"font-family: Arial, sans-serif; font-size: 14p=
+x; fill: rgb(102, 102, 102); opacity: 1; font-weight: normal; white-space: =
+pre;">Giorno della Settimana</text></g><g class=3D"g-ytitle" transform=3D"t=
+ranslate(0.201171875,0)"><text class=3D"ytitle" transform=3D"rotate(-90,12.=
+599414062500003,225)" x=3D"12.599414062500003" y=3D"225" text-anchor=3D"mid=
+dle" data-unformatted=3D"Media Visualizzazioni" data-math=3D"N" style=3D"fo=
+nt-family: Arial, sans-serif; font-size: 14px; fill: rgb(102, 102, 102); op=
+acity: 1; font-weight: normal; white-space: pre;">Media Visualizzazioni</te=
+xt></g></g><g class=3D"menulayer"></g><g class=3D"zoomlayer"></g></svg><div=
+ class=3D"modebar-container" style=3D"position: absolute; top: 0px; right: =
+0px; width: 100%;"><div id=3D"modebar-9a6bbd" class=3D"modebar modebar--hov=
+er ease-bg"><div class=3D"modebar-group"><a rel=3D"tooltip" class=3D"modeba=
+r-btn" data-title=3D"Download plot as a png" data-toggle=3D"false" data-gra=
+vity=3D"n"><svg viewBox=3D"0 0 1000 1000" class=3D"icon" height=3D"1em" wid=
+th=3D"1em"><path d=3D"m500 450c-83 0-150-67-150-150 0-83 67-150 150-150 83 =
+0 150 67 150 150 0 83-67 150-150 150z m400 150h-120c-16 0-34 13-39 29l-31 9=
+3c-6 15-23 28-40 28h-340c-16 0-34-13-39-28l-31-94c-6-15-23-28-40-28h-120c-5=
+5 0-100-45-100-100v-450c0-55 45-100 100-100h800c55 0 100 45 100 100v450c0 5=
+5-45 100-100 100z m-400-550c-138 0-250 112-250 250 0 138 112 250 250 250 13=
+8 0 250-112 250-250 0-138-112-250-250-250z m365 380c-19 0-35 16-35 35 0 19 =
+16 35 35 35 19 0 35-16 35-35 0-19-16-35-35-35z" transform=3D"matrix(1 0 0 -=
+1 0 850)"></path></svg></a></div><div class=3D"modebar-group"><a rel=3D"too=
+ltip" class=3D"modebar-btn active" data-title=3D"Zoom" data-attr=3D"dragmod=
+e" data-val=3D"zoom" data-toggle=3D"false" data-gravity=3D"n"><svg viewBox=
+=3D"0 0 1000 1000" class=3D"icon" height=3D"1em" width=3D"1em"><path d=3D"m=
+1000-25l-250 251c40 63 63 138 63 218 0 224-182 406-407 406-224 0-406-182-40=
+6-406s183-406 407-406c80 0 155 22 218 62l250-250 125 125z m-812 250l0 438 4=
+37 0 0-438-437 0z m62 375l313 0 0-312-313 0 0 312z" transform=3D"matrix(1 0=
+ 0 -1 0 850)"></path></svg></a><a rel=3D"tooltip" class=3D"modebar-btn" dat=
+a-title=3D"Pan" data-attr=3D"dragmode" data-val=3D"pan" data-toggle=3D"fals=
+e" data-gravity=3D"n"><svg viewBox=3D"0 0 1000 1000" class=3D"icon" height=
+=3D"1em" width=3D"1em"><path d=3D"m1000 350l-187 188 0-125-250 0 0 250 125 =
+0-188 187-187-187 125 0 0-250-250 0 0 125-188-188 186-187 0 125 252 0 0-250=
+-125 0 187-188 188 188-125 0 0 250 250 0 0-126 187 188z" transform=3D"matri=
+x(1 0 0 -1 0 850)"></path></svg></a><a rel=3D"tooltip" class=3D"modebar-btn=
+" data-title=3D"Box Select" data-attr=3D"dragmode" data-val=3D"select" data=
+-toggle=3D"false" data-gravity=3D"n"><svg viewBox=3D"0 0 1000 1000" class=
+=3D"icon" height=3D"1em" width=3D"1em"><path d=3D"m0 850l0-143 143 0 0 143-=
+143 0z m286 0l0-143 143 0 0 143-143 0z m285 0l0-143 143 0 0 143-143 0z m286=
+ 0l0-143 143 0 0 143-143 0z m-857-286l0-143 143 0 0 143-143 0z m857 0l0-143=
+ 143 0 0 143-143 0z m-857-285l0-143 143 0 0 143-143 0z m857 0l0-143 143 0 0=
+ 143-143 0z m-857-286l0-143 143 0 0 143-143 0z m286 0l0-143 143 0 0 143-143=
+ 0z m285 0l0-143 143 0 0 143-143 0z m286 0l0-143 143 0 0 143-143 0z" transf=
+orm=3D"matrix(1 0 0 -1 0 850)"></path></svg></a><a rel=3D"tooltip" class=3D=
+"modebar-btn" data-title=3D"Lasso Select" data-attr=3D"dragmode" data-val=
+=3D"lasso" data-toggle=3D"false" data-gravity=3D"n"><svg viewBox=3D"0 0 103=
+1 1000" class=3D"icon" height=3D"1em" width=3D"1em"><path d=3D"m1018 538c-3=
+6 207-290 336-568 286-277-48-473-256-436-463 10-57 36-108 76-151-13-66 11-1=
+37 68-183 34-28 75-41 114-42l-55-70 0 0c-2-1-3-2-4-3-10-14-8-34 5-45 14-11 =
+34-8 45 4 1 1 2 3 2 5l0 0 113 140c16 11 31 24 45 40 4 3 6 7 8 11 48-3 100 0=
+ 151 9 278 48 473 255 436 462z m-624-379c-80 14-149 48-197 96 42 42 109 47 =
+156 9 33-26 47-66 41-105z m-187-74c-19 16-33 37-39 60 50-32 109-55 174-68-4=
+2-25-95-24-135 8z m360 75c-34-7-69-9-102-8 8 62-16 128-68 170-73 59-175 54-=
+244-5-9 20-16 40-20 61-28 159 121 317 333 354s407-60 434-217c28-159-121-318=
+-333-355z" transform=3D"matrix(1 0 0 -1 0 850)"></path></svg></a></div><div=
+ class=3D"modebar-group"><a rel=3D"tooltip" class=3D"modebar-btn" data-titl=
+e=3D"Zoom in" data-attr=3D"zoom" data-val=3D"in" data-toggle=3D"false" data=
+-gravity=3D"n"><svg viewBox=3D"0 0 875 1000" class=3D"icon" height=3D"1em" =
+width=3D"1em"><path d=3D"m1 787l0-875 875 0 0 875-875 0z m687-500l-187 0 0-=
+187-125 0 0 187-188 0 0 125 188 0 0 187 125 0 0-187 187 0 0-125z" transform=
+=3D"matrix(1 0 0 -1 0 850)"></path></svg></a><a rel=3D"tooltip" class=3D"mo=
+debar-btn" data-title=3D"Zoom out" data-attr=3D"zoom" data-val=3D"out" data=
+-toggle=3D"false" data-gravity=3D"n"><svg viewBox=3D"0 0 875 1000" class=3D=
+"icon" height=3D"1em" width=3D"1em"><path d=3D"m0 788l0-876 875 0 0 876-875=
+ 0z m688-500l-500 0 0 125 500 0 0-125z" transform=3D"matrix(1 0 0 -1 0 850)=
+"></path></svg></a><a rel=3D"tooltip" class=3D"modebar-btn" data-title=3D"A=
+utoscale" data-attr=3D"zoom" data-val=3D"auto" data-toggle=3D"false" data-g=
+ravity=3D"n"><svg viewBox=3D"0 0 1000 1000" class=3D"icon" height=3D"1em" w=
+idth=3D"1em"><path d=3D"m250 850l-187 0-63 0 0-62 0-188 63 0 0 188 187 0 0 =
+62z m688 0l-188 0 0-62 188 0 0-188 62 0 0 188 0 62-62 0z m-875-938l0 188-63=
+ 0 0-188 0-62 63 0 187 0 0 62-187 0z m875 188l0-188-188 0 0-62 188 0 62 0 0=
+ 62 0 188-62 0z m-125 188l-1 0-93-94-156 156 156 156 92-93 2 0 0 250-250 0 =
+0-2 93-92-156-156-156 156 94 92 0 2-250 0 0-250 0 0 93 93 157-156-157-156-9=
+3 94 0 0 0-250 250 0 0 0-94 93 156 157 156-157-93-93 0 0 250 0 0 250z" tran=
+sform=3D"matrix(1 0 0 -1 0 850)"></path></svg></a><a rel=3D"tooltip" class=
+=3D"modebar-btn" data-title=3D"Reset axes" data-attr=3D"zoom" data-val=3D"r=
+eset" data-toggle=3D"false" data-gravity=3D"n"><svg viewBox=3D"0 0 928.6 10=
+00" class=3D"icon" height=3D"1em" width=3D"1em"><path d=3D"m786 296v-267q0-=
+15-11-26t-25-10h-214v214h-143v-214h-214q-15 0-25 10t-11 26v267q0 1 0 2t0 2l=
+321 264 321-264q1-1 1-4z m124 39l-34-41q-5-5-12-6h-2q-7 0-12 3l-386 322-386=
+-322q-7-4-13-4-7 2-12 7l-35 41q-4 5-3 13t6 12l401 334q18 15 42 15t43-15l136=
+-114v109q0 8 5 13t13 5h107q8 0 13-5t5-13v-227l122-102q5-5 6-12t-4-13z" tran=
+sform=3D"matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class=3D"modeb=
+ar-group"><a href=3D"https://plotly.com/" target=3D"_blank" data-title=3D"P=
+roduced with Plotly.js (v2.27.0)" class=3D"modebar-btn plotlyjsicon modebar=
+-btn--logo"><svg xmlns=3D"http://www.w3.org/2000/svg" viewBox=3D"0 0 132 13=
+2" height=3D"1em" width=3D"1em"><defs> <style>  .cls-0{fill:#000;}  .cls-1{=
+fill:#FFF;}  .cls-2{fill:#F26;}  .cls-3{fill:#D69;}  .cls-4{fill:#BAC;}  .c=
+ls-5{fill:#9EF;} </style></defs> <title>plotly-logomark</title> <g id=3D"sy=
+mbol">  <rect class=3D"cls-0" x=3D"0" y=3D"0" width=3D"132" height=3D"132" =
+rx=3D"18" ry=3D"18"></rect>  <circle class=3D"cls-5" cx=3D"102" cy=3D"30" r=
+=3D"6"></circle>  <circle class=3D"cls-4" cx=3D"78" cy=3D"30" r=3D"6"></cir=
+cle>  <circle class=3D"cls-4" cx=3D"78" cy=3D"54" r=3D"6"></circle>  <circl=
+e class=3D"cls-3" cx=3D"54" cy=3D"30" r=3D"6"></circle>  <circle class=3D"c=
+ls-2" cx=3D"30" cy=3D"30" r=3D"6"></circle>  <circle class=3D"cls-2" cx=3D"=
+30" cy=3D"54" r=3D"6"></circle>  <path class=3D"cls-1" d=3D"M30,72a6,6,0,0,=
+0-6,6v24a6,6,0,0,0,12,0V78A6,6,0,0,0,30,72Z"></path>  <path class=3D"cls-1"=
+ d=3D"M78,72a6,6,0,0,0-6,6v24a6,6,0,0,0,12,0V78A6,6,0,0,0,78,72Z"></path>  =
+<path class=3D"cls-1" d=3D"M54,48a6,6,0,0,0-6,6v48a6,6,0,0,0,12,0V54A6,6,0,=
+0,0,54,48Z"></path>  <path class=3D"cls-1" d=3D"M102,48a6,6,0,0,0-6,6v48a6,=
+6,0,0,0,12,0V54A6,6,0,0,0,102,48Z"></path> </g></svg></a></div></div></div>=
+<svg class=3D"main-svg" xmlns=3D"http://www.w3.org/2000/svg" xmlns:xlink=3D=
+"http://www.w3.org/1999/xlink" width=3D"1350" height=3D"450"><g class=3D"ho=
+verlayer"></g></svg></div></div></div></div><div style=3D""></div></div></d=
+iv><div style=3D"padding: 20px; border-top: 1px solid rgb(238, 238, 238); m=
+argin-top: 30px;"><p style=3D"color: rgb(153, 153, 153); font-size: 12px; m=
+argin: 0px; text-align: center;">=F0=9F=93=8A Dati da Google Analytics 4 =
+=E2=80=A2 <span id=3D"last-update">Ultimo aggiornamento: 15/01/2026 15:10</=
+span> =E2=80=A2 Dashboard v1.0</p></div></div></div></div>
+
+        <footer>
+           =20
+           =20
+
+
+
+
+
+
+
+
+           =20
+        </footer>
+   =20
+<svg id=3D"js-plotly-tester" xmlns=3D"http://www.w3.org/2000/svg" xmlns:xli=
+nk=3D"http://www.w3.org/1999/xlink" style=3D"position: absolute; left: -100=
+00px; top: -10000px; width: 9000px; height: 9000px; z-index: 1;"><path clas=
+s=3D"js-reference-point" d=3D"M0,0H1V1H0Z" style=3D"stroke-width: 0; fill: =
+black;"></path></svg><div id=3D"highlighter--hover-tools" style=3D"display:=
+ none;">
+    <div id=3D"highlighter--hover-tools--container">
+        <div class=3D"highlighter--icon highlighter--icon-copy" title=3D"Co=
+py"></div>
+        <div class=3D"highlighter--icon highlighter--icon-change-color" tit=
+le=3D"Change Color"></div>
+        <div class=3D"highlighter--icon highlighter--icon-delete" title=3D"=
+Delete"></div>
+    </div>
+</div></body><grammarly-desktop-integration data-grammarly-shadow-root=3D"t=
+rue"><template shadowmode=3D"open"><div aria-label=3D"grammarly-integration=
+" role=3D"group" tabindex=3D"-1" class=3D"grammarly-desktop-integration" da=
+ta-content=3D"{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,=
+&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-int=
+egration></html>
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-36d9e802-a57f-490b-baa9-c29397e2d3a1@mhtml.blink
+
+@charset "utf-8";
+
+@keyframes resizeanim {=20
+  0% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+.resize-triggers { animation: 1ms ease 0s 1 normal none running resizeanim;=
+ visibility: hidden; opacity: 0; }
+
+.resize-triggers, .resize-triggers > div, .contract-trigger::before { conte=
+nt: " "; display: block; position: absolute; top: 0px; left: 0px; height: 1=
+00%; width: 100%; overflow: hidden; z-index: -1; }
+
+.resize-triggers > div { background: rgb(238, 238, 238); overflow: auto; }
+
+.contract-trigger::before { width: 200%; height: 200%; }
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-8c4202d2-5373-4499-8eca-71841a07874c@mhtml.blink
+
+@charset "utf-8";
+
+#modebar-9a6bbd .modebar-btn.active .icon path { fill: rgba(68, 68, 68, 0.7=
+); }
+
+#modebar-9a6bbd .modebar-btn:hover .icon path { fill: rgba(68, 68, 68, 0.7)=
+; }
+
+#modebar-9a6bbd .modebar-btn .icon path { fill: rgba(68, 68, 68, 0.3); }
+
+.js-plotly-plot .plotly:hover #modebar-9a6bbd .modebar-group { background-c=
+olor: rgba(255, 255, 255, 0.5); }
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-6bee46a7-e36c-4a6a-a4bf-a8f65aaf5015@mhtml.blink
+
+@charset "utf-8";
+
+#modebar-7d98f2 .modebar-btn.active .icon path { fill: rgba(68, 68, 68, 0.7=
+); }
+
+#modebar-7d98f2 .modebar-btn:hover .icon path { fill: rgba(68, 68, 68, 0.7)=
+; }
+
+#modebar-7d98f2 .modebar-btn .icon path { fill: rgba(68, 68, 68, 0.3); }
+
+.js-plotly-plot .plotly:hover #modebar-7d98f2 .modebar-group { background-c=
+olor: rgba(255, 255, 255, 0.5); }
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-3a8b957a-3ca5-4c4c-97d2-d19ccd369db0@mhtml.blink
+
+@charset "utf-8";
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-logo { display: block; width: 21px; =
+height: 21px; background-image: url("data:image/svg+xml;charset=3Dutf-8,%3C=
+?xml version=3D\"1.0\" encoding=3D\"utf-8\"?%3E %3Csvg version=3D\"1.1\" id=
+=3D\"Layer_1\" xmlns=3D\"http://www.w3.org/2000/svg\" xmlns:xlink=3D\"http:=
+//www.w3.org/1999/xlink\" x=3D\"0px\" y=3D\"0px\" viewBox=3D\"0 0 21 21\" s=
+tyle=3D\"enable-background:new 0 0 21 21;\" xml:space=3D\"preserve\"%3E%3Cg=
+ transform=3D\"translate(0,0.01)\"%3E%3Cpath d=3D\"m 10.5,1.24 c -5.11,0 -9=
+.25,4.15 -9.25,9.25 0,5.1 4.15,9.25 9.25,9.25 5.1,0 9.25,-4.15 9.25,-9.25 0=
+,-5.11 -4.14,-9.25 -9.25,-9.25 z m 4.39,11.53 c -1.93,1.93 -4.78,2.31 -6.7,=
+2.31 -0.7,0 -1.41,-0.05 -2.1,-0.16 0,0 -1.02,-5.64 2.14,-8.81 0.83,-0.83 1.=
+95,-1.28 3.13,-1.28 1.27,0 2.49,0.51 3.39,1.42 1.84,1.84 1.89,4.75 0.14,6.5=
+2 z\" style=3D\"opacity:0.9;fill:%23ffffff;enable-background:new\" class=3D=
+\"st0\"/%3E%3Cpath d=3D\"M 10.5,-0.01 C 4.7,-0.01 0,4.7 0,10.49 c 0,5.79 4.=
+7,10.5 10.5,10.5 5.8,0 10.5,-4.7 10.5,-10.5 C 20.99,4.7 16.3,-0.01 10.5,-0.=
+01 Z m 0,19.75 c -5.11,0 -9.25,-4.15 -9.25,-9.25 0,-5.1 4.14,-9.26 9.25,-9.=
+26 5.11,0 9.25,4.15 9.25,9.25 0,5.13 -4.14,9.26 -9.25,9.26 z\" style=3D\"op=
+acity:0.35;enable-background:new\" class=3D\"st1\"/%3E%3Cpath d=3D\"M 14.74=
+,6.25 C 12.9,4.41 9.98,4.35 8.23,6.1 5.07,9.27 6.09,14.91 6.09,14.91 c 0,0 =
+5.64,1.02 8.81,-2.14 C 16.64,11 16.59,8.09 14.74,6.25 Z m -2.27,4.09 -0.91,=
+1.87 -0.9,-1.87 -1.86,-0.91 1.86,-0.9 0.9,-1.87 0.91,1.87 1.86,0.9 z\" styl=
+e=3D\"opacity:0.35;enable-background:new\" class=3D\"st1\"/%3E%3Cpolygon po=
+ints=3D\"11.56,12.21 10.66,10.34 8.8,9.43 10.66,8.53 11.56,6.66 12.47,8.53 =
+14.33,9.43 12.47,10.34 \" style=3D\"opacity:0.9;fill:%23ffffff;enable-backg=
+round:new\" class=3D\"st0\"/%3E%3C/g%3E%3C/svg%3E"); }
+
+.js-plotly-plot .plotly .mapboxgl-attrib-empty { display: none; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib .mapbox-improve-map { font-we=
+ight: bold; margin-left: 2px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib a:hover { color: inherit; tex=
+t-decoration: underline; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib a { color: rgba(0, 0, 0, 0.75=
+); text-decoration: none; font-size: 12px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib { color: rgba(0, 0, 0, 0.75);=
+ text-decoration: none; font-size: 12px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl { margin=
+: 0px 10px 10px 0px; float: right; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-left .mapboxgl-ctrl { margin:=
+ 0px 0px 10px 10px; float: left; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-left > .mapboxgl-ctrl-attrib.=
+mapboxgl-compact::after { bottom: 0px; left: 0px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-right > .mapboxgl-ctrl-attrib=
+.mapboxgl-compact::after { bottom: 0px; right: 0px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact { min-height=
+: 20px; padding: 0px; margin: 10px; position: relative; background-color: r=
+gb(255, 255, 255); border-radius: 3px 12px 12px 3px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact::after { con=
+tent: ""; cursor: pointer; position: absolute; background-image: url("data:=
+image/svg+xml;charset=3Dutf-8,%3Csvg viewBox=3D\"0 0 20 20\" xmlns=3D\"http=
+://www.w3.org/2000/svg\"%3E %3Cpath fill=3D\"%23333333\" fill-rule=3D\"even=
+odd\" d=3D\"M4,10a6,6 0 1,0 12,0a6,6 0 1,0 -12,0 M9,7a1,1 0 1,0 2,0a1,1 0 1=
+,0 -2,0 M9,10a1,1 0 1,1 2,0l0,3a1,1 0 1,1 -2,0\"/%3E %3C/svg%3E"); backgrou=
+nd-color: rgba(255, 255, 255, 0.5); width: 24px; height: 24px; box-sizing: =
+border-box; border-radius: 12px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact:hover { padd=
+ing: 2px 24px 2px 4px; visibility: visible; margin-top: 6px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact:hover .mapbo=
+xgl-ctrl-attrib-inner { display: block; margin-top: 2px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact .mapboxgl-ct=
+rl-attrib-inner { display: none; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl { clear: both; pointer-events: auto;=
+ transform: translate(0px, 0px); }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-right { position: absolute; p=
+ointer-events: none; z-index: 2; right: 0px; bottom: 0px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-left { position: absolute; po=
+inter-events: none; z-index: 2; bottom: 0px; left: 0px; }
+
+.js-plotly-plot .plotly .mapboxgl-canary { background-color: salmon; }
+
+.js-plotly-plot .plotly .mapboxgl-missing-css { display: none; }
+
+.js-plotly-plot .plotly .mapboxgl-map { overflow: hidden; position: relativ=
+e; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-logo { display: block; width: 21px; =
+height: 21px; background-image: url("data:image/svg+xml;charset=3Dutf-8,%3C=
+?xml version=3D\"1.0\" encoding=3D\"utf-8\"?%3E %3Csvg version=3D\"1.1\" id=
+=3D\"Layer_1\" xmlns=3D\"http://www.w3.org/2000/svg\" xmlns:xlink=3D\"http:=
+//www.w3.org/1999/xlink\" x=3D\"0px\" y=3D\"0px\" viewBox=3D\"0 0 21 21\" s=
+tyle=3D\"enable-background:new 0 0 21 21;\" xml:space=3D\"preserve\"%3E%3Cg=
+ transform=3D\"translate(0,0.01)\"%3E%3Cpath d=3D\"m 10.5,1.24 c -5.11,0 -9=
+.25,4.15 -9.25,9.25 0,5.1 4.15,9.25 9.25,9.25 5.1,0 9.25,-4.15 9.25,-9.25 0=
+,-5.11 -4.14,-9.25 -9.25,-9.25 z m 4.39,11.53 c -1.93,1.93 -4.78,2.31 -6.7,=
+2.31 -0.7,0 -1.41,-0.05 -2.1,-0.16 0,0 -1.02,-5.64 2.14,-8.81 0.83,-0.83 1.=
+95,-1.28 3.13,-1.28 1.27,0 2.49,0.51 3.39,1.42 1.84,1.84 1.89,4.75 0.14,6.5=
+2 z\" style=3D\"opacity:0.9;fill:%23ffffff;enable-background:new\" class=3D=
+\"st0\"/%3E%3Cpath d=3D\"M 10.5,-0.01 C 4.7,-0.01 0,4.7 0,10.49 c 0,5.79 4.=
+7,10.5 10.5,10.5 5.8,0 10.5,-4.7 10.5,-10.5 C 20.99,4.7 16.3,-0.01 10.5,-0.=
+01 Z m 0,19.75 c -5.11,0 -9.25,-4.15 -9.25,-9.25 0,-5.1 4.14,-9.26 9.25,-9.=
+26 5.11,0 9.25,4.15 9.25,9.25 0,5.13 -4.14,9.26 -9.25,9.26 z\" style=3D\"op=
+acity:0.35;enable-background:new\" class=3D\"st1\"/%3E%3Cpath d=3D\"M 14.74=
+,6.25 C 12.9,4.41 9.98,4.35 8.23,6.1 5.07,9.27 6.09,14.91 6.09,14.91 c 0,0 =
+5.64,1.02 8.81,-2.14 C 16.64,11 16.59,8.09 14.74,6.25 Z m -2.27,4.09 -0.91,=
+1.87 -0.9,-1.87 -1.86,-0.91 1.86,-0.9 0.9,-1.87 0.91,1.87 1.86,0.9 z\" styl=
+e=3D\"opacity:0.35;enable-background:new\" class=3D\"st1\"/%3E%3Cpolygon po=
+ints=3D\"11.56,12.21 10.66,10.34 8.8,9.43 10.66,8.53 11.56,6.66 12.47,8.53 =
+14.33,9.43 12.47,10.34 \" style=3D\"opacity:0.9;fill:%23ffffff;enable-backg=
+round:new\" class=3D\"st0\"/%3E%3C/g%3E%3C/svg%3E"); }
+
+.js-plotly-plot .plotly .mapboxgl-attrib-empty { display: none; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib .mapbox-improve-map { font-we=
+ight: bold; margin-left: 2px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib a:hover { color: inherit; tex=
+t-decoration: underline; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib a { color: rgba(0, 0, 0, 0.75=
+); text-decoration: none; font-size: 12px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib { color: rgba(0, 0, 0, 0.75);=
+ text-decoration: none; font-size: 12px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl { margin=
+: 0px 10px 10px 0px; float: right; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-left .mapboxgl-ctrl { margin:=
+ 0px 0px 10px 10px; float: left; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-left > .mapboxgl-ctrl-attrib.=
+mapboxgl-compact::after { bottom: 0px; left: 0px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-right > .mapboxgl-ctrl-attrib=
+.mapboxgl-compact::after { bottom: 0px; right: 0px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact { min-height=
+: 20px; padding: 0px; margin: 10px; position: relative; background-color: r=
+gb(255, 255, 255); border-radius: 3px 12px 12px 3px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact::after { con=
+tent: ""; cursor: pointer; position: absolute; background-image: url("data:=
+image/svg+xml;charset=3Dutf-8,%3Csvg viewBox=3D\"0 0 20 20\" xmlns=3D\"http=
+://www.w3.org/2000/svg\"%3E %3Cpath fill=3D\"%23333333\" fill-rule=3D\"even=
+odd\" d=3D\"M4,10a6,6 0 1,0 12,0a6,6 0 1,0 -12,0 M9,7a1,1 0 1,0 2,0a1,1 0 1=
+,0 -2,0 M9,10a1,1 0 1,1 2,0l0,3a1,1 0 1,1 -2,0\"/%3E %3C/svg%3E"); backgrou=
+nd-color: rgba(255, 255, 255, 0.5); width: 24px; height: 24px; box-sizing: =
+border-box; border-radius: 12px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact:hover { padd=
+ing: 2px 24px 2px 4px; visibility: visible; margin-top: 6px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact:hover .mapbo=
+xgl-ctrl-attrib-inner { display: block; margin-top: 2px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact .mapboxgl-ct=
+rl-attrib-inner { display: none; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl { clear: both; pointer-events: auto;=
+ transform: translate(0px, 0px); }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-right { position: absolute; p=
+ointer-events: none; z-index: 2; right: 0px; bottom: 0px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-left { position: absolute; po=
+inter-events: none; z-index: 2; bottom: 0px; left: 0px; }
+
+.js-plotly-plot .plotly .mapboxgl-canary { background-color: salmon; }
+
+.js-plotly-plot .plotly .mapboxgl-missing-css { display: none; }
+
+.js-plotly-plot .plotly .mapboxgl-map { overflow: hidden; position: relativ=
+e; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-logo { display: block; width: 21px; =
+height: 21px; background-image: url("data:image/svg+xml;charset=3Dutf-8,%3C=
+?xml version=3D\"1.0\" encoding=3D\"utf-8\"?%3E %3Csvg version=3D\"1.1\" id=
+=3D\"Layer_1\" xmlns=3D\"http://www.w3.org/2000/svg\" xmlns:xlink=3D\"http:=
+//www.w3.org/1999/xlink\" x=3D\"0px\" y=3D\"0px\" viewBox=3D\"0 0 21 21\" s=
+tyle=3D\"enable-background:new 0 0 21 21;\" xml:space=3D\"preserve\"%3E%3Cg=
+ transform=3D\"translate(0,0.01)\"%3E%3Cpath d=3D\"m 10.5,1.24 c -5.11,0 -9=
+.25,4.15 -9.25,9.25 0,5.1 4.15,9.25 9.25,9.25 5.1,0 9.25,-4.15 9.25,-9.25 0=
+,-5.11 -4.14,-9.25 -9.25,-9.25 z m 4.39,11.53 c -1.93,1.93 -4.78,2.31 -6.7,=
+2.31 -0.7,0 -1.41,-0.05 -2.1,-0.16 0,0 -1.02,-5.64 2.14,-8.81 0.83,-0.83 1.=
+95,-1.28 3.13,-1.28 1.27,0 2.49,0.51 3.39,1.42 1.84,1.84 1.89,4.75 0.14,6.5=
+2 z\" style=3D\"opacity:0.9;fill:%23ffffff;enable-background:new\" class=3D=
+\"st0\"/%3E%3Cpath d=3D\"M 10.5,-0.01 C 4.7,-0.01 0,4.7 0,10.49 c 0,5.79 4.=
+7,10.5 10.5,10.5 5.8,0 10.5,-4.7 10.5,-10.5 C 20.99,4.7 16.3,-0.01 10.5,-0.=
+01 Z m 0,19.75 c -5.11,0 -9.25,-4.15 -9.25,-9.25 0,-5.1 4.14,-9.26 9.25,-9.=
+26 5.11,0 9.25,4.15 9.25,9.25 0,5.13 -4.14,9.26 -9.25,9.26 z\" style=3D\"op=
+acity:0.35;enable-background:new\" class=3D\"st1\"/%3E%3Cpath d=3D\"M 14.74=
+,6.25 C 12.9,4.41 9.98,4.35 8.23,6.1 5.07,9.27 6.09,14.91 6.09,14.91 c 0,0 =
+5.64,1.02 8.81,-2.14 C 16.64,11 16.59,8.09 14.74,6.25 Z m -2.27,4.09 -0.91,=
+1.87 -0.9,-1.87 -1.86,-0.91 1.86,-0.9 0.9,-1.87 0.91,1.87 1.86,0.9 z\" styl=
+e=3D\"opacity:0.35;enable-background:new\" class=3D\"st1\"/%3E%3Cpolygon po=
+ints=3D\"11.56,12.21 10.66,10.34 8.8,9.43 10.66,8.53 11.56,6.66 12.47,8.53 =
+14.33,9.43 12.47,10.34 \" style=3D\"opacity:0.9;fill:%23ffffff;enable-backg=
+round:new\" class=3D\"st0\"/%3E%3C/g%3E%3C/svg%3E"); }
+
+.js-plotly-plot .plotly .mapboxgl-attrib-empty { display: none; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib .mapbox-improve-map { font-we=
+ight: bold; margin-left: 2px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib a:hover { color: inherit; tex=
+t-decoration: underline; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib a { color: rgba(0, 0, 0, 0.75=
+); text-decoration: none; font-size: 12px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib { color: rgba(0, 0, 0, 0.75);=
+ text-decoration: none; font-size: 12px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl { margin=
+: 0px 10px 10px 0px; float: right; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-left .mapboxgl-ctrl { margin:=
+ 0px 0px 10px 10px; float: left; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-left > .mapboxgl-ctrl-attrib.=
+mapboxgl-compact::after { bottom: 0px; left: 0px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-right > .mapboxgl-ctrl-attrib=
+.mapboxgl-compact::after { bottom: 0px; right: 0px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact { min-height=
+: 20px; padding: 0px; margin: 10px; position: relative; background-color: r=
+gb(255, 255, 255); border-radius: 3px 12px 12px 3px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact::after { con=
+tent: ""; cursor: pointer; position: absolute; background-image: url("data:=
+image/svg+xml;charset=3Dutf-8,%3Csvg viewBox=3D\"0 0 20 20\" xmlns=3D\"http=
+://www.w3.org/2000/svg\"%3E %3Cpath fill=3D\"%23333333\" fill-rule=3D\"even=
+odd\" d=3D\"M4,10a6,6 0 1,0 12,0a6,6 0 1,0 -12,0 M9,7a1,1 0 1,0 2,0a1,1 0 1=
+,0 -2,0 M9,10a1,1 0 1,1 2,0l0,3a1,1 0 1,1 -2,0\"/%3E %3C/svg%3E"); backgrou=
+nd-color: rgba(255, 255, 255, 0.5); width: 24px; height: 24px; box-sizing: =
+border-box; border-radius: 12px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact:hover { padd=
+ing: 2px 24px 2px 4px; visibility: visible; margin-top: 6px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact:hover .mapbo=
+xgl-ctrl-attrib-inner { display: block; margin-top: 2px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-attrib.mapboxgl-compact .mapboxgl-ct=
+rl-attrib-inner { display: none; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl { clear: both; pointer-events: auto;=
+ transform: translate(0px, 0px); }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-right { position: absolute; p=
+ointer-events: none; z-index: 2; right: 0px; bottom: 0px; }
+
+.js-plotly-plot .plotly .mapboxgl-ctrl-bottom-left { position: absolute; po=
+inter-events: none; z-index: 2; bottom: 0px; left: 0px; }
+
+.js-plotly-plot .plotly .mapboxgl-canary { background-color: salmon; }
+
+.js-plotly-plot .plotly .mapboxgl-missing-css { display: none; }
+
+.js-plotly-plot .plotly .mapboxgl-map { overflow: hidden; position: relativ=
+e; }
+
+.plotly-notifier .notifier-close:hover { color: rgb(68, 68, 68); text-decor=
+ation: none; cursor: pointer; }
+
+.plotly-notifier .notifier-close { color: rgb(255, 255, 255); opacity: 0.8;=
+ float: right; padding: 0px 5px; background: none; border: none; font-size:=
+ 20px; font-weight: bold; line-height: 20px; }
+
+.plotly-notifier .notifier-note { min-width: 180px; max-width: 250px; borde=
+r: 1px solid rgb(255, 255, 255); z-index: 3000; margin: 0px; background-col=
+or: rgba(140, 151, 175, 0.9); color: rgb(255, 255, 255); padding: 10px; ove=
+rflow-wrap: break-word; hyphens: auto; }
+
+.plotly-notifier p { margin: 0px; }
+
+.plotly-notifier { font-family: "Open Sans", verdana, arial, sans-serif; po=
+sition: fixed; top: 50px; right: 20px; z-index: 10000; font-size: 10pt; max=
+-width: 180px; }
+
+.js-plotly-plot .plotly .vertical [data-title]::before { border-width: 6px;=
+ border-style: solid; border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(=
+0, 0, 0, 0) rgb(105, 115, 138); border-image: initial; margin-top: 8px; mar=
+gin-right: -30px; }
+
+.js-plotly-plot .plotly .vertical [data-title]::before, .js-plotly-plot .pl=
+otly .vertical [data-title]::after { top: 0%; right: 200%; }
+
+.js-plotly-plot .plotly [data-title]::after { content: attr(data-title); ba=
+ckground: rgb(105, 115, 138); color: rgb(255, 255, 255); padding: 8px 10px;=
+ font-size: 12px; line-height: 12px; white-space: nowrap; margin-right: -18=
+px; border-radius: 2px; }
+
+.js-plotly-plot .plotly [data-title]::before { content: ""; position: absol=
+ute; background: rgba(0, 0, 0, 0); border-width: 6px; border-style: solid; =
+border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgb(105, 115, 138); border-=
+image: initial; z-index: 1002; margin-top: -12px; margin-right: -6px; }
+
+.js-plotly-plot .plotly [data-title]:hover::before, .js-plotly-plot .plotly=
+ [data-title]:hover::after { display: block; opacity: 1; }
+
+.js-plotly-plot .plotly [data-title]::before, .js-plotly-plot .plotly [data=
+-title]::after { position: absolute; transform: translate3d(0px, 0px, 0px);=
+ display: none; opacity: 0; z-index: 1001; pointer-events: none; top: 110%;=
+ right: 50%; }
+
+.js-plotly-plot .plotly .modebar.vertical .modebar-group .modebar-btn { dis=
+play: block; text-align: center; }
+
+.js-plotly-plot .plotly .modebar.vertical .modebar-group { display: block; =
+float: none; padding-left: 0px; padding-bottom: 8px; }
+
+.js-plotly-plot .plotly .modebar.vertical svg { top: -1px; }
+
+.js-plotly-plot .plotly .modebar.vertical { display: flex; flex-flow: colum=
+n wrap; align-content: flex-end; max-height: 100%; }
+
+.js-plotly-plot .plotly .modebar-btn svg { position: relative; top: 2px; }
+
+.js-plotly-plot .plotly .modebar-btn { position: relative; font-size: 16px;=
+ padding: 3px 4px; height: 22px; cursor: pointer; line-height: normal; box-=
+sizing: border-box; }
+
+.js-plotly-plot .plotly .modebar-group { float: left; display: inline-block=
+; box-sizing: border-box; padding-left: 8px; position: relative; vertical-a=
+lign: middle; white-space: nowrap; }
+
+.js-plotly-plot .plotly:hover .modebar--hover .modebar-group { opacity: 1; =
+}
+
+.js-plotly-plot .plotly .modebar--hover > :not(.watermark) { opacity: 0; tr=
+ansition: opacity 0.3s; }
+
+.js-plotly-plot .plotly .ease-bg { transition: background-color 0.3s; }
+
+.js-plotly-plot .plotly .modebar { position: absolute; top: 2px; right: 2px=
+; }
+
+.js-plotly-plot .plotly .cursor-grab { cursor: grab; }
+
+.js-plotly-plot .plotly .cursor-ne-resize { cursor: ne-resize; }
+
+.js-plotly-plot .plotly .cursor-n-resize { cursor: n-resize; }
+
+.js-plotly-plot .plotly .cursor-nw-resize { cursor: nw-resize; }
+
+.js-plotly-plot .plotly .cursor-e-resize { cursor: e-resize; }
+
+.js-plotly-plot .plotly .cursor-w-resize { cursor: w-resize; }
+
+.js-plotly-plot .plotly .cursor-se-resize { cursor: se-resize; }
+
+.js-plotly-plot .plotly .cursor-s-resize { cursor: s-resize; }
+
+.js-plotly-plot .plotly .cursor-sw-resize { cursor: sw-resize; }
+
+.js-plotly-plot .plotly .cursor-ew-resize { cursor: ew-resize; }
+
+.js-plotly-plot .plotly .cursor-ns-resize { cursor: ns-resize; }
+
+.js-plotly-plot .plotly .cursor-row-resize { cursor: row-resize; }
+
+.js-plotly-plot .plotly .cursor-col-resize { cursor: col-resize; }
+
+.js-plotly-plot .plotly .cursor-move { cursor: move; }
+
+.js-plotly-plot .plotly .cursor-crosshair { cursor: crosshair; }
+
+.js-plotly-plot .plotly .cursor-pointer { cursor: pointer; }
+
+.js-plotly-plot .plotly .cursor-default { cursor: default; }
+
+.js-plotly-plot .plotly .main-svg .draglayer { pointer-events: all; }
+
+.js-plotly-plot .plotly .main-svg { position: absolute; top: 0px; left: 0px=
+; pointer-events: none; }
+
+.js-plotly-plot .plotly svg a:hover { fill: rgb(60, 109, 197); }
+
+.js-plotly-plot .plotly svg a { fill: rgb(68, 122, 219); }
+
+.js-plotly-plot .plotly svg { overflow: hidden; }
+
+.js-plotly-plot .plotly .user-select-none { user-select: none; }
+
+.js-plotly-plot .plotly .crisp { shape-rendering: crispedges; }
+
+.js-plotly-plot .plotly a:hover { text-decoration: none; }
+
+.js-plotly-plot .plotly a { text-decoration: none; }
+
+.js-plotly-plot .plotly input:focus, .js-plotly-plot .plotly button:focus {=
+ outline: none; }
+
+.js-plotly-plot .plotly input, .js-plotly-plot .plotly button { font-family=
+: "Open Sans", verdana, arial, sans-serif; }
+
+.js-plotly-plot .plotly, .js-plotly-plot .plotly div { direction: ltr; font=
+-family: "Open Sans", verdana, arial, sans-serif; margin: 0px; padding: 0px=
+; }
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-67a8bb36-535d-41d9-89c4-f6762fba9d18@mhtml.blink
+
+@charset "utf-8";
+
+._dash-undo-redo { position: fixed; bottom: 30px; left: 30px; font-size: 20=
+px; text-align: center; z-index: 9999; background-color: rgba(255, 255, 255=
+, 0.9); }
+
+._dash-undo-redo > div { position: relative; }
+
+._dash-undo-redo-link { color: rgb(0, 116, 217); cursor: pointer; margin-le=
+ft: 10px; margin-right: 10px; display: inline-block; opacity: 0.2; }
+
+._dash-undo-redo-link:hover { opacity: 1; }
+
+._dash-undo-redo-link ._dash-icon-undo { font-size: 20px; transform: rotate=
+(270deg); }
+
+._dash-undo-redo-link ._dash-icon-redo { font-size: 20px; transform: rotate=
+(90deg); }
+
+._dash-undo-redo-link ._dash-undo-redo-label { font-size: 15px; }
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-5c8ed866-6ce7-429c-8848-7b87df3829ba@mhtml.blink
+
+@charset "utf-8";
+
+.dash-dropdown .Select-menu-outer { z-index: 1000; }
+
+.dash-dropdown .Select-menu, .Select-menu-outer { max-height: none; }
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-55589f24-23e7-4d0a-9823-0a642563072c@mhtml.blink
+
+@charset "utf-8";
+
+.ReactVirtualized__Collection { }
+
+.ReactVirtualized__Collection__innerScrollContainer { }
+
+.ReactVirtualized__Grid { }
+
+.ReactVirtualized__Grid__innerScrollContainer { }
+
+.ReactVirtualized__Table { }
+
+.ReactVirtualized__Table__Grid { }
+
+.ReactVirtualized__Table__headerRow { font-weight: 700; text-transform: upp=
+ercase; display: flex; flex-direction: row; align-items: center; }
+
+.ReactVirtualized__Table__row { display: flex; flex-direction: row; align-i=
+tems: center; }
+
+.ReactVirtualized__Table__headerTruncatedText { display: inline-block; max-=
+width: 100%; white-space: nowrap; text-overflow: ellipsis; overflow: hidden=
+; }
+
+.ReactVirtualized__Table__headerColumn, .ReactVirtualized__Table__rowColumn=
+ { margin-right: 10px; min-width: 0px; }
+
+.ReactVirtualized__Table__rowColumn { text-overflow: ellipsis; white-space:=
+ nowrap; }
+
+.ReactVirtualized__Table__headerColumn:first-of-type, .ReactVirtualized__Ta=
+ble__rowColumn:first-of-type { margin-left: 10px; }
+
+.ReactVirtualized__Table__sortableHeaderColumn { cursor: pointer; }
+
+.ReactVirtualized__Table__sortableHeaderIconContainer { display: flex; alig=
+n-items: center; }
+
+.ReactVirtualized__Table__sortableHeaderIcon { flex: 0 0 24px; height: 1em;=
+ width: 1em; fill: currentcolor; }
+
+.ReactVirtualized__List { }
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-c48dded6-3c7c-4c65-ba12-e1f329c22f30@mhtml.blink
+
+@charset "utf-8";
+
+.VirtualSelectGrid { z-index: 1; }
+
+.VirtualizedSelectOption { display: flex; -webkit-box-align: center; align-=
+items: center; padding: 0px 0.5rem; cursor: pointer; }
+
+.VirtualizedSelectFocusedOption { background-color: rgba(0, 126, 255, 0.1);=
+ }
+
+.VirtualizedSelectDisabledOption { opacity: 0.5; }
+
+.VirtualizedSelectSelectedOption { font-weight: bold; }
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-ce73ab9d-5c99-4e94-ae16-18f832d62e8b@mhtml.blink
+
+@charset "utf-8";
+
+.DateInput_input { box-sizing: border-box; }
+
+.DayPickerNavigation__verticalDefault { text-align: center; height: initial=
+; padding: 10px 0px; }
+
+.DayPickerNavigation_svg__vertical { height: 20px; }
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-e8302501-50f4-4641-9503-ac507a944196@mhtml.blink
+
+@charset "utf-8";
+
+.PresetDateRangePicker_panel { padding: 0px 22px 11px; }
+
+.PresetDateRangePicker_button { position: relative; height: 100%; text-alig=
+n: center; background: 0px 0px; border: 2px solid rgb(0, 166, 153); color: =
+rgb(0, 166, 153); padding: 4px 12px; margin-right: 8px; font-style: inherit=
+; font-variant: inherit; font-stretch: inherit; font-size: inherit; font-fa=
+mily: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; fon=
+t-kerning: inherit; font-feature-settings: inherit; font-variation-settings=
+: inherit; font-language-override: inherit; font-weight: 700; line-height: =
+normal; overflow: visible; box-sizing: border-box; cursor: pointer; }
+
+.PresetDateRangePicker_button:active { outline: 0px; }
+
+.PresetDateRangePicker_button__selected { color: rgb(255, 255, 255); backgr=
+ound: rgb(0, 166, 153); }
+
+.SingleDatePickerInput { display: inline-block; background-color: rgb(255, =
+255, 255); }
+
+.SingleDatePickerInput__withBorder { border-radius: 2px; border: 1px solid =
+rgb(219, 219, 219); }
+
+.SingleDatePickerInput__rtl { direction: rtl; }
+
+.SingleDatePickerInput__disabled { background-color: rgb(242, 242, 242); }
+
+.SingleDatePickerInput__block { display: block; }
+
+.SingleDatePickerInput__showClearDate { padding-right: 30px; }
+
+.SingleDatePickerInput_clearDate { background: 0px 0px; border: 0px; color:=
+ inherit; font-style: inherit; font-variant: inherit; font-weight: inherit;=
+ font-stretch: inherit; font-size: inherit; font-family: inherit; font-opti=
+cal-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font=
+-feature-settings: inherit; font-variation-settings: inherit; font-language=
+-override: inherit; line-height: normal; overflow: visible; cursor: pointer=
+; padding: 10px; margin: 0px 10px 0px 5px; position: absolute; right: 0px; =
+top: 50%; transform: translateY(-50%); }
+
+.SingleDatePickerInput_clearDate__default:focus, .SingleDatePickerInput_cle=
+arDate__default:hover { background: rgb(219, 219, 219); border-radius: 50%;=
+ }
+
+.SingleDatePickerInput_clearDate__small { padding: 6px; }
+
+.SingleDatePickerInput_clearDate__hide { visibility: hidden; }
+
+.SingleDatePickerInput_clearDate_svg { fill: rgb(130, 136, 138); height: 12=
+px; width: 15px; vertical-align: middle; }
+
+.SingleDatePickerInput_clearDate_svg__small { height: 9px; }
+
+.SingleDatePickerInput_calendarIcon { background: 0px 0px; border: 0px; col=
+or: inherit; font-style: inherit; font-variant: inherit; font-weight: inher=
+it; font-stretch: inherit; font-size: inherit; font-family: inherit; font-o=
+ptical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; f=
+ont-feature-settings: inherit; font-variation-settings: inherit; font-langu=
+age-override: inherit; line-height: normal; overflow: visible; cursor: poin=
+ter; display: inline-block; vertical-align: middle; padding: 10px; margin: =
+0px 5px 0px 10px; }
+
+.SingleDatePickerInput_calendarIcon_svg { fill: rgb(130, 136, 138); height:=
+ 15px; width: 14px; vertical-align: middle; }
+
+.SingleDatePicker { position: relative; display: inline-block; }
+
+.SingleDatePicker__block { display: block; }
+
+.SingleDatePicker_picker { z-index: 1; background-color: rgb(255, 255, 255)=
+; position: absolute; }
+
+.SingleDatePicker_picker__rtl { direction: rtl; }
+
+.SingleDatePicker_picker__directionLeft { left: 0px; }
+
+.SingleDatePicker_picker__directionRight { right: 0px; }
+
+.SingleDatePicker_picker__portal { background-color: rgba(0, 0, 0, 0.3); po=
+sition: fixed; top: 0px; left: 0px; height: 100%; width: 100%; }
+
+.SingleDatePicker_picker__fullScreenPortal { background-color: rgb(255, 255=
+, 255); }
+
+.SingleDatePicker_closeButton { background: 0px 0px; border: 0px; color: in=
+herit; font-style: inherit; font-variant: inherit; font-weight: inherit; fo=
+nt-stretch: inherit; font-size: inherit; font-family: inherit; font-optical=
+-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-fe=
+ature-settings: inherit; font-variation-settings: inherit; font-language-ov=
+erride: inherit; line-height: normal; overflow: visible; cursor: pointer; p=
+osition: absolute; top: 0px; right: 0px; padding: 15px; z-index: 2; }
+
+.SingleDatePicker_closeButton:focus, .SingleDatePicker_closeButton:hover { =
+text-decoration: none; }
+
+.SingleDatePicker_closeButton_svg { height: 15px; width: 15px; fill: rgb(20=
+2, 204, 205); }
+
+.DayPickerKeyboardShortcuts_buttonReset { background: 0px 0px; border: 0px;=
+ border-radius: 0px; color: inherit; font-style: inherit; font-variant: inh=
+erit; font-weight: inherit; font-stretch: inherit; font-family: inherit; fo=
+nt-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inheri=
+t; font-feature-settings: inherit; font-variation-settings: inherit; font-l=
+anguage-override: inherit; line-height: normal; overflow: visible; padding:=
+ 0px; cursor: pointer; font-size: 14px; }
+
+.DayPickerKeyboardShortcuts_buttonReset:active { outline: 0px; }
+
+.DayPickerKeyboardShortcuts_show { width: 33px; height: 26px; position: abs=
+olute; z-index: 2; }
+
+.DayPickerKeyboardShortcuts_show::before { content: ""; display: block; pos=
+ition: absolute; }
+
+.DayPickerKeyboardShortcuts_show__bottomRight { bottom: 0px; right: 0px; }
+
+.DayPickerKeyboardShortcuts_show__bottomRight::before { border-top: 26px so=
+lid transparent; border-right: 33px solid rgb(0, 166, 153); bottom: 0px; ri=
+ght: 0px; }
+
+.DayPickerKeyboardShortcuts_show__bottomRight:hover::before { border-right:=
+ 33px solid rgb(0, 132, 137); }
+
+.DayPickerKeyboardShortcuts_show__topRight { top: 0px; right: 0px; }
+
+.DayPickerKeyboardShortcuts_show__topRight::before { border-bottom: 26px so=
+lid transparent; border-right: 33px solid rgb(0, 166, 153); top: 0px; right=
+: 0px; }
+
+.DayPickerKeyboardShortcuts_show__topRight:hover::before { border-right: 33=
+px solid rgb(0, 132, 137); }
+
+.DayPickerKeyboardShortcuts_show__topLeft { top: 0px; left: 0px; }
+
+.DayPickerKeyboardShortcuts_show__topLeft::before { border-bottom: 26px sol=
+id transparent; border-left: 33px solid rgb(0, 166, 153); top: 0px; left: 0=
+px; }
+
+.DayPickerKeyboardShortcuts_show__topLeft:hover::before { border-left: 33px=
+ solid rgb(0, 132, 137); }
+
+.DayPickerKeyboardShortcuts_showSpan { color: rgb(255, 255, 255); position:=
+ absolute; }
+
+.DayPickerKeyboardShortcuts_showSpan__bottomRight { bottom: 0px; right: 5px=
+; }
+
+.DayPickerKeyboardShortcuts_showSpan__topRight { top: 1px; right: 5px; }
+
+.DayPickerKeyboardShortcuts_showSpan__topLeft { top: 1px; left: 5px; }
+
+.DayPickerKeyboardShortcuts_panel { overflow: auto; background: rgb(255, 25=
+5, 255); border: 1px solid rgb(219, 219, 219); border-radius: 2px; position=
+: absolute; inset: 0px; z-index: 2; padding: 22px; margin: 33px; text-align=
+: left; }
+
+.DayPickerKeyboardShortcuts_title { font-size: 16px; font-weight: 700; marg=
+in: 0px; }
+
+.DayPickerKeyboardShortcuts_list { list-style: none; padding: 0px; font-siz=
+e: 14px; }
+
+.DayPickerKeyboardShortcuts_close { position: absolute; right: 22px; top: 2=
+2px; z-index: 2; }
+
+.DayPickerKeyboardShortcuts_close:active { outline: 0px; }
+
+.DayPickerKeyboardShortcuts_closeSvg { height: 15px; width: 15px; fill: rgb=
+(202, 204, 205); }
+
+.DayPickerKeyboardShortcuts_closeSvg:focus, .DayPickerKeyboardShortcuts_clo=
+seSvg:hover { fill: rgb(130, 136, 138); }
+
+.CalendarDay { box-sizing: border-box; cursor: pointer; font-size: 14px; te=
+xt-align: center; }
+
+.CalendarDay:active { outline: 0px; }
+
+.CalendarDay__defaultCursor { cursor: default; }
+
+.CalendarDay__default { border: 1px solid rgb(228, 231, 231); color: rgb(72=
+, 72, 72); background: rgb(255, 255, 255); }
+
+.CalendarDay__default:hover { background: rgb(228, 231, 231); border: 1px s=
+olid rgb(228, 231, 231); color: inherit; }
+
+.CalendarDay__hovered_offset { background: rgb(244, 245, 245); border: 1px =
+double rgb(228, 231, 231); color: inherit; }
+
+.CalendarDay__outside { border: 0px; background: rgb(255, 255, 255); color:=
+ rgb(72, 72, 72); }
+
+.CalendarDay__outside:hover { border: 0px; }
+
+.CalendarDay__blocked_minimum_nights { background: rgb(255, 255, 255); bord=
+er: 1px solid rgb(236, 238, 238); color: rgb(202, 204, 205); }
+
+.CalendarDay__blocked_minimum_nights:active, .CalendarDay__blocked_minimum_=
+nights:hover { background: rgb(255, 255, 255); color: rgb(202, 204, 205); }
+
+.CalendarDay__highlighted_calendar { background: rgb(255, 232, 188); color:=
+ rgb(72, 72, 72); }
+
+.CalendarDay__highlighted_calendar:active, .CalendarDay__highlighted_calend=
+ar:hover { background: rgb(255, 206, 113); color: rgb(72, 72, 72); }
+
+.CalendarDay__selected_span { background: rgb(102, 226, 218); border: 1px d=
+ouble rgb(51, 218, 205); color: rgb(255, 255, 255); }
+
+.CalendarDay__selected_span:active, .CalendarDay__selected_span:hover { bac=
+kground: rgb(51, 218, 205); border: 1px double rgb(51, 218, 205); color: rg=
+b(255, 255, 255); }
+
+.CalendarDay__selected, .CalendarDay__selected:active, .CalendarDay__select=
+ed:hover { background: rgb(0, 166, 153); border: 1px double rgb(0, 166, 153=
+); color: rgb(255, 255, 255); }
+
+.CalendarDay__hovered_span, .CalendarDay__hovered_span:hover { background: =
+rgb(178, 241, 236); border: 1px double rgb(128, 232, 224); color: rgb(0, 12=
+2, 135); }
+
+.CalendarDay__hovered_span:active { background: rgb(128, 232, 224); border:=
+ 1px double rgb(128, 232, 224); color: rgb(0, 122, 135); }
+
+.CalendarDay__blocked_calendar, .CalendarDay__blocked_calendar:active, .Cal=
+endarDay__blocked_calendar:hover { background: rgb(202, 204, 205); border: =
+1px solid rgb(202, 204, 205); color: rgb(130, 136, 138); }
+
+.CalendarDay__blocked_out_of_range, .CalendarDay__blocked_out_of_range:acti=
+ve, .CalendarDay__blocked_out_of_range:hover { background: rgb(255, 255, 25=
+5); border: 1px solid rgb(228, 231, 231); color: rgb(202, 204, 205); }
+
+.CalendarDay__hovered_start_first_possible_end { background: rgb(236, 238, =
+238); border: 1px double rgb(236, 238, 238); }
+
+.CalendarDay__hovered_start_blocked_min_nights { background: rgb(236, 238, =
+238); border: 1px double rgb(228, 231, 231); }
+
+.CalendarMonth { background: rgb(255, 255, 255); text-align: center; vertic=
+al-align: top; user-select: none; }
+
+.CalendarMonth_table { border-collapse: collapse; border-spacing: 0px; }
+
+.CalendarMonth_verticalSpacing { border-collapse: separate; }
+
+.CalendarMonth_caption { color: rgb(72, 72, 72); font-size: 18px; text-alig=
+n: center; padding-top: 22px; padding-bottom: 37px; caption-side: initial; =
+}
+
+.CalendarMonth_caption__verticalScrollable { padding-top: 12px; padding-bot=
+tom: 7px; }
+
+.CalendarMonthGrid { background: rgb(255, 255, 255); text-align: left; z-in=
+dex: 0; }
+
+.CalendarMonthGrid__animating { z-index: 1; }
+
+.CalendarMonthGrid__horizontal { position: absolute; left: 9px; }
+
+.CalendarMonthGrid__vertical, .CalendarMonthGrid__vertical_scrollable { mar=
+gin: 0px auto; }
+
+.CalendarMonthGrid_month__horizontal { display: inline-block; vertical-alig=
+n: top; min-height: 100%; }
+
+.CalendarMonthGrid_month__hideForAnimation { position: absolute; z-index: -=
+1; opacity: 0; pointer-events: none; }
+
+.CalendarMonthGrid_month__hidden { visibility: hidden; }
+
+.DayPickerNavigation { position: relative; z-index: 2; }
+
+.DayPickerNavigation__horizontal { height: 0px; }
+
+.DayPickerNavigation__verticalScrollable_prevNav { z-index: 1; }
+
+.DayPickerNavigation__verticalDefault { position: absolute; width: 100%; he=
+ight: 52px; bottom: 0px; left: 0px; }
+
+.DayPickerNavigation__verticalScrollableDefault { position: relative; }
+
+.DayPickerNavigation__bottom { height: auto; }
+
+.DayPickerNavigation__bottomDefault { -webkit-box-pack: justify; display: f=
+lex; justify-content: space-between; }
+
+.DayPickerNavigation_button { cursor: pointer; user-select: none; border: 0=
+px; padding: 0px; margin: 0px; }
+
+.DayPickerNavigation_button__default { border: 1px solid rgb(228, 231, 231)=
+; background-color: rgb(255, 255, 255); color: rgb(117, 117, 117); }
+
+.DayPickerNavigation_button__default:focus, .DayPickerNavigation_button__de=
+fault:hover { border: 1px solid rgb(196, 196, 196); }
+
+.DayPickerNavigation_button__default:active { background: rgb(242, 242, 242=
+); }
+
+.DayPickerNavigation_button__disabled { cursor: default; border: 1px solid =
+rgb(242, 242, 242); }
+
+.DayPickerNavigation_button__disabled:focus, .DayPickerNavigation_button__d=
+isabled:hover { border: 1px solid rgb(242, 242, 242); }
+
+.DayPickerNavigation_button__disabled:active { background: 0px 0px; }
+
+.DayPickerNavigation_button__horizontalDefault { position: absolute; top: 1=
+8px; line-height: 0.78; border-radius: 3px; padding: 6px 9px; }
+
+.DayPickerNavigation_bottomButton__horizontalDefault { position: static; ma=
+rgin: -10px 22px 30px; }
+
+.DayPickerNavigation_leftButton__horizontalDefault { left: 22px; }
+
+.DayPickerNavigation_rightButton__horizontalDefault { right: 22px; }
+
+.DayPickerNavigation_button__verticalDefault { padding: 5px; background: rg=
+b(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 2px; position:=
+ relative; display: inline-block; text-align: center; height: 100%; width: =
+50%; }
+
+.DayPickerNavigation_nextButton__verticalDefault { border-left: 0px; }
+
+.DayPickerNavigation_nextButton__verticalScrollableDefault, .DayPickerNavig=
+ation_prevButton__verticalScrollableDefault { width: 100%; }
+
+.DayPickerNavigation_svg__horizontal { height: 19px; width: 19px; fill: rgb=
+(130, 136, 138); display: block; }
+
+.DayPickerNavigation_svg__vertical { height: 42px; width: 42px; fill: rgb(7=
+2, 72, 72); }
+
+.DayPickerNavigation_svg__disabled { fill: rgb(242, 242, 242); }
+
+.DayPicker { background: rgb(255, 255, 255); position: relative; text-align=
+: left; }
+
+.DayPicker__horizontal { background: rgb(255, 255, 255); }
+
+.DayPicker__verticalScrollable { height: 100%; }
+
+.DayPicker__hidden { visibility: hidden; }
+
+.DayPicker__withBorder { box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 6px, rgba(=
+0, 0, 0, 0.07) 0px 0px 0px 1px; border-radius: 3px; }
+
+.DayPicker_portal__horizontal { box-shadow: none; position: absolute; left:=
+ 50%; top: 50%; }
+
+.DayPicker_portal__vertical { position: initial; }
+
+.DayPicker_focusRegion { outline: 0px; }
+
+.DayPicker_calendarInfo__horizontal, .DayPicker_wrapper__horizontal { displ=
+ay: inline-block; vertical-align: top; }
+
+.DayPicker_weekHeaders { position: relative; }
+
+.DayPicker_weekHeaders__horizontal { margin-left: 9px; }
+
+.DayPicker_weekHeader { color: rgb(117, 117, 117); position: absolute; top:=
+ 62px; z-index: 2; text-align: left; }
+
+.DayPicker_weekHeader__vertical { left: 50%; }
+
+.DayPicker_weekHeader__verticalScrollable { top: 0px; display: table-row; b=
+order-bottom: 1px solid rgb(219, 219, 219); background: rgb(255, 255, 255);=
+ margin-left: 0px; left: 0px; width: 100%; text-align: center; }
+
+.DayPicker_weekHeader_ul { list-style: none; margin: 1px 0px; padding-left:=
+ 0px; padding-right: 0px; font-size: 14px; }
+
+.DayPicker_weekHeader_li { display: inline-block; text-align: center; }
+
+.DayPicker_transitionContainer { position: relative; overflow: hidden; bord=
+er-radius: 3px; }
+
+.DayPicker_transitionContainer__horizontal { transition: height 0.2s ease-i=
+n-out; }
+
+.DayPicker_transitionContainer__vertical { width: 100%; }
+
+.DayPicker_transitionContainer__verticalScrollable { padding-top: 20px; hei=
+ght: 100%; position: absolute; inset: 0px; overflow-y: scroll; }
+
+.DateInput { margin: 0px; padding: 0px; background: rgb(255, 255, 255); pos=
+ition: relative; display: inline-block; width: 130px; vertical-align: middl=
+e; }
+
+.DateInput__small { width: 97px; }
+
+.DateInput__block { width: 100%; }
+
+.DateInput__disabled { background: rgb(242, 242, 242); color: rgb(219, 219,=
+ 219); }
+
+.DateInput_input { font-weight: 200; font-size: 19px; line-height: 24px; co=
+lor: rgb(72, 72, 72); background-color: rgb(255, 255, 255); width: 100%; pa=
+dding: 11px 11px 9px; border-image: initial; border-width: 0px 0px 2px; bor=
+der-top-style: initial; border-top-color: initial; border-right-style: init=
+ial; border-right-color: initial; border-bottom-style: solid; border-bottom=
+-color: transparent; border-left-style: initial; border-left-color: initial=
+; border-radius: 0px; }
+
+.DateInput_input__small { font-size: 15px; line-height: 18px; letter-spacin=
+g: 0.2px; padding: 7px 7px 5px; }
+
+.DateInput_input__regular { }
+
+.DateInput_input__readOnly { user-select: none; }
+
+.DateInput_input__focused { outline: 0px; background: rgb(255, 255, 255); b=
+order-image: initial; border-width: 0px 0px 2px; border-top-style: initial;=
+ border-top-color: initial; border-right-style: initial; border-right-color=
+: initial; border-bottom-style: solid; border-bottom-color: rgb(0, 132, 137=
+); border-left-style: initial; border-left-color: initial; }
+
+.DateInput_input__disabled { background: rgb(242, 242, 242); font-style: it=
+alic; }
+
+.DateInput_screenReaderMessage { border: 0px; clip: rect(0px, 0px, 0px, 0px=
+); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: abs=
+olute; width: 1px; }
+
+.DateInput_fang { position: absolute; width: 20px; height: 10px; left: 22px=
+; z-index: 2; }
+
+.DateInput_fangShape { fill: rgb(255, 255, 255); }
+
+.DateInput_fangStroke { stroke: rgb(219, 219, 219); fill: transparent; }
+
+.DateRangePickerInput { background-color: rgb(255, 255, 255); display: inli=
+ne-block; }
+
+.DateRangePickerInput__disabled { background: rgb(242, 242, 242); }
+
+.DateRangePickerInput__withBorder { border-radius: 2px; border: 1px solid r=
+gb(219, 219, 219); }
+
+.DateRangePickerInput__rtl { direction: rtl; }
+
+.DateRangePickerInput__block { display: block; }
+
+.DateRangePickerInput__showClearDates { padding-right: 30px; }
+
+.DateRangePickerInput_arrow { display: inline-block; vertical-align: middle=
+; color: rgb(72, 72, 72); }
+
+.DateRangePickerInput_arrow_svg { vertical-align: middle; fill: rgb(72, 72,=
+ 72); height: 24px; width: 24px; }
+
+.DateRangePickerInput_clearDates { background: 0px 0px; border: 0px; color:=
+ inherit; font-style: inherit; font-variant: inherit; font-weight: inherit;=
+ font-stretch: inherit; font-size: inherit; font-family: inherit; font-opti=
+cal-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font=
+-feature-settings: inherit; font-variation-settings: inherit; font-language=
+-override: inherit; line-height: normal; overflow: visible; cursor: pointer=
+; padding: 10px; margin: 0px 10px 0px 5px; position: absolute; right: 0px; =
+top: 50%; transform: translateY(-50%); }
+
+.DateRangePickerInput_clearDates__small { padding: 6px; }
+
+.DateRangePickerInput_clearDates_default:focus, .DateRangePickerInput_clear=
+Dates_default:hover { background: rgb(219, 219, 219); border-radius: 50%; }
+
+.DateRangePickerInput_clearDates__hide { visibility: hidden; }
+
+.DateRangePickerInput_clearDates_svg { fill: rgb(130, 136, 138); height: 12=
+px; width: 15px; vertical-align: middle; }
+
+.DateRangePickerInput_clearDates_svg__small { height: 9px; }
+
+.DateRangePickerInput_calendarIcon { background: 0px 0px; border: 0px; colo=
+r: inherit; font-style: inherit; font-variant: inherit; font-weight: inheri=
+t; font-stretch: inherit; font-size: inherit; font-family: inherit; font-op=
+tical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; fo=
+nt-feature-settings: inherit; font-variation-settings: inherit; font-langua=
+ge-override: inherit; line-height: normal; overflow: visible; cursor: point=
+er; display: inline-block; vertical-align: middle; padding: 10px; margin: 0=
+px 5px 0px 10px; }
+
+.DateRangePickerInput_calendarIcon_svg { fill: rgb(130, 136, 138); height: =
+15px; width: 14px; vertical-align: middle; }
+
+.DateRangePicker { position: relative; display: inline-block; }
+
+.DateRangePicker__block { display: block; }
+
+.DateRangePicker_picker { z-index: 1; background-color: rgb(255, 255, 255);=
+ position: absolute; }
+
+.DateRangePicker_picker__rtl { direction: rtl; }
+
+.DateRangePicker_picker__directionLeft { left: 0px; }
+
+.DateRangePicker_picker__directionRight { right: 0px; }
+
+.DateRangePicker_picker__portal { background-color: rgba(0, 0, 0, 0.3); pos=
+ition: fixed; top: 0px; left: 0px; height: 100%; width: 100%; }
+
+.DateRangePicker_picker__fullScreenPortal { background-color: rgb(255, 255,=
+ 255); }
+
+.DateRangePicker_closeButton { background: 0px 0px; border: 0px; color: inh=
+erit; font-style: inherit; font-variant: inherit; font-weight: inherit; fon=
+t-stretch: inherit; font-size: inherit; font-family: inherit; font-optical-=
+sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-fea=
+ture-settings: inherit; font-variation-settings: inherit; font-language-ove=
+rride: inherit; line-height: normal; overflow: visible; cursor: pointer; po=
+sition: absolute; top: 0px; right: 0px; padding: 15px; z-index: 2; }
+
+.DateRangePicker_closeButton:focus, .DateRangePicker_closeButton:hover { te=
+xt-decoration: none; }
+
+.DateRangePicker_closeButton_svg { height: 15px; width: 15px; fill: rgb(202=
+, 204, 205); }
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-026bf7af-8cf5-4780-b3d8-b85a7a28d3e1@mhtml.blink
+
+@charset "utf-8";
+
+.Select, .Select-control { position: relative; }
+
+.Select-control, .Select-input > input { width: 100%; cursor: default; outl=
+ine: 0px; }
+
+.Select-arrow-zone, .Select-clear-zone, .Select-loading-zone { text-align: =
+center; cursor: pointer; }
+
+.Select, .Select div, .Select input, .Select span { box-sizing: border-box;=
+ }
+
+.Select.is-disabled > .Select-control { background-color: rgb(249, 249, 249=
+); }
+
+.Select.is-disabled > .Select-control:hover { box-shadow: none; }
+
+.Select.is-disabled .Select-arrow-zone { cursor: default; pointer-events: n=
+one; opacity: 0.35; }
+
+.Select-control { background-color: rgb(255, 255, 255); border-radius: 4px;=
+ border: 1px solid rgb(204, 204, 204); color: rgb(51, 51, 51); display: tab=
+le; border-spacing: 0px; border-collapse: separate; height: 36px; overflow:=
+ hidden; }
+
+.is-searchable.is-focused:not(.is-open) > .Select-control, .is-searchable.i=
+s-open > .Select-control { cursor: text; }
+
+.Select-control:hover { box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 0px; }
+
+.Select-control .Select-input:focus { outline: 0px; }
+
+.is-open > .Select-control { border-bottom-right-radius: 0px; border-bottom=
+-left-radius: 0px; background: rgb(255, 255, 255); border-color: rgb(179, 1=
+79, 179) rgb(204, 204, 204) rgb(217, 217, 217); }
+
+.is-open > .Select-control .Select-arrow { top: -2px; border-color: transpa=
+rent transparent rgb(153, 153, 153); border-width: 0px 5px 5px; }
+
+.is-focused:not(.is-open) > .Select-control { border-color: rgb(0, 126, 255=
+); box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px inset, rgba(0, 126, 255, 0.=
+1) 0px 0px 0px 3px; }
+
+.Select--single > .Select-control .Select-value, .Select-placeholder { inse=
+t: 0px; color: rgb(170, 170, 170); line-height: 34px; padding-left: 10px; p=
+adding-right: 10px; position: absolute; max-width: 100%; overflow: hidden; =
+text-overflow: ellipsis; white-space: nowrap; }
+
+.has-value.Select--single > .Select-control .Select-value .Select-value-lab=
+el, .has-value.is-pseudo-focused.Select--single > .Select-control .Select-v=
+alue .Select-value-label { color: rgb(51, 51, 51); }
+
+.has-value.Select--single > .Select-control .Select-value a.Select-value-la=
+bel, .has-value.is-pseudo-focused.Select--single > .Select-control .Select-=
+value a.Select-value-label { cursor: pointer; text-decoration: none; }
+
+.has-value.Select--single > .Select-control .Select-value a.Select-value-la=
+bel:focus, .has-value.Select--single > .Select-control .Select-value a.Sele=
+ct-value-label:hover, .has-value.is-pseudo-focused.Select--single > .Select=
+-control .Select-value a.Select-value-label:focus, .has-value.is-pseudo-foc=
+used.Select--single > .Select-control .Select-value a.Select-value-label:ho=
+ver { color: rgb(0, 126, 255); outline: 0px; text-decoration: underline; }
+
+.Select-input { height: 34px; padding-left: 10px; padding-right: 10px; vert=
+ical-align: middle; }
+
+.Select-input > input { background: none; border: 0px; box-shadow: none; di=
+splay: inline-block; font-family: inherit; font-size: inherit; margin: 0px;=
+ line-height: 14px; padding: 8px 0px 12px; appearance: none; }
+
+.Select-loading, .Select-loading-zone { width: 16px; position: relative; ve=
+rtical-align: middle; }
+
+.is-focused .Select-input > input { cursor: text; }
+
+.has-value.is-pseudo-focused .Select-input { opacity: 0; }
+
+.Select-control:not(.is-searchable) > .Select-input { outline: 0px; }
+
+.Select-loading-zone { display: table-cell; }
+
+.Select-loading { animation: 0.4s linear 0s infinite normal none running Se=
+lect-animation-spin; height: 16px; box-sizing: border-box; border-radius: 5=
+0%; border-width: 2px; border-style: solid; border-color: rgb(204, 204, 204=
+) rgb(51, 51, 51) rgb(204, 204, 204) rgb(204, 204, 204); border-image: init=
+ial; display: inline-block; }
+
+.Select-clear-zone { animation: 0.2s ease 0s 1 normal none running Select-a=
+nimation-fadeIn; color: rgb(153, 153, 153); display: table-cell; position: =
+relative; vertical-align: middle; width: 17px; }
+
+.Select-clear-zone:hover { color: rgb(208, 2, 27); }
+
+.Select-clear { display: inline-block; font-size: 18px; line-height: 1; }
+
+.Select--multi .Select-clear-zone { width: 17px; }
+
+.Select-arrow-zone { display: table-cell; position: relative; vertical-alig=
+n: middle; width: 25px; padding-right: 5px; }
+
+.Select--multi .Select-multi-value-wrapper, .Select-arrow { display: inline=
+-block; }
+
+.Select-arrow { border-color: rgb(153, 153, 153) transparent transparent; b=
+order-style: solid; border-width: 5px 5px 2.5px; height: 0px; width: 0px; p=
+osition: relative; }
+
+.Select-arrow-zone:hover > .Select-arrow, .is-open .Select-arrow { border-t=
+op-color: rgb(102, 102, 102); }
+
+.Select .Select-aria-only { display: inline-block; height: 1px; width: 1px;=
+ margin: -1px; clip: rect(0px, 0px, 0px, 0px); overflow: hidden; float: lef=
+t; }
+
+.Select-noresults, .Select-option { box-sizing: border-box; display: block;=
+ padding: 8px 10px; }
+
+@-webkit-keyframes Select-animation-fadeIn {=20
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes Select-animation-fadeIn {=20
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.Select-menu-outer { border-bottom-right-radius: 4px; border-bottom-left-ra=
+dius: 4px; background-color: rgb(255, 255, 255); border-width: 1px; border-=
+style: solid; border-color: rgb(230, 230, 230) rgb(204, 204, 204) rgb(204, =
+204, 204); border-image: initial; box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 0=
+px; box-sizing: border-box; margin-top: -1px; max-height: 200px; position: =
+absolute; top: 100%; width: 100%; z-index: 1; }
+
+.Select-menu { max-height: 198px; overflow-y: auto; }
+
+.Select-option { background-color: rgb(255, 255, 255); color: rgb(102, 102,=
+ 102); cursor: pointer; }
+
+.Select-option:last-child { border-bottom-right-radius: 4px; border-bottom-=
+left-radius: 4px; }
+
+.Select-option.is-selected { background-color: rgba(0, 126, 255, 0.04); col=
+or: rgb(51, 51, 51); }
+
+.Select-option.is-focused { background-color: rgba(0, 126, 255, 0.08); colo=
+r: rgb(51, 51, 51); }
+
+.Select-option.is-disabled { color: rgb(204, 204, 204); cursor: default; }
+
+.Select-noresults { color: rgb(153, 153, 153); cursor: default; }
+
+.Select--multi .Select-input { vertical-align: middle; margin-left: 10px; p=
+adding: 0px; }
+
+.Select--multi.has-value .Select-input { margin-left: 5px; }
+
+.Select--multi .Select-value { background-color: rgba(0, 126, 255, 0.08); b=
+order-radius: 2px; border: 1px solid rgba(0, 126, 255, 0.24); color: rgb(0,=
+ 126, 255); display: inline-block; font-size: 0.9em; line-height: 1.4; marg=
+in-left: 5px; margin-top: 5px; vertical-align: top; }
+
+.Select--multi .Select-value-icon, .Select--multi .Select-value-label { dis=
+play: inline-block; vertical-align: middle; }
+
+.Select--multi .Select-value-label { border-bottom-right-radius: 2px; borde=
+r-top-right-radius: 2px; cursor: default; padding: 2px 5px; }
+
+.Select--multi a.Select-value-label { color: rgb(0, 126, 255); cursor: poin=
+ter; text-decoration: none; }
+
+.Select--multi a.Select-value-label:hover { text-decoration: underline; }
+
+.Select--multi .Select-value-icon { cursor: pointer; border-bottom-left-rad=
+ius: 2px; border-top-left-radius: 2px; border-right: 1px solid rgba(0, 126,=
+ 255, 0.24); padding: 1px 5px 3px; }
+
+.Select--multi .Select-value-icon:focus, .Select--multi .Select-value-icon:=
+hover { background-color: rgba(0, 113, 230, 0.08); color: rgb(0, 113, 230);=
+ }
+
+.Select--multi .Select-value-icon:active { background-color: rgba(0, 126, 2=
+55, 0.24); }
+
+.Select--multi.is-disabled .Select-value { background-color: rgb(252, 252, =
+252); border: 1px solid rgb(227, 227, 227); color: rgb(51, 51, 51); }
+
+.Select--multi.is-disabled .Select-value-icon { cursor: not-allowed; border=
+-right: 1px solid rgb(227, 227, 227); }
+
+.Select--multi.is-disabled .Select-value-icon:active, .Select--multi.is-dis=
+abled .Select-value-icon:focus, .Select--multi.is-disabled .Select-value-ic=
+on:hover { background-color: rgb(252, 252, 252); }
+
+@keyframes Select-animation-spin {=20
+  100% { transform: rotate(1turn); }
+}
+
+@-webkit-keyframes Select-animation-spin {=20
+  100% { transform: rotate(1turn); }
+}
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-63eb911d-77b6-4e12-b640-205cb33eedda@mhtml.blink
+
+@charset "utf-8";
+
+.dash-logout-btn { padding: 1rem; background-color: rgb(17, 157, 255); bord=
+er: 1px solid rgb(17, 157, 255); color: rgb(255, 255, 255); outline: none; =
+cursor: pointer; text-align: center; }
+
+.dash-logout-btn:hover, .dash-logout-btn:focus { background-color: rgb(13, =
+118, 191); border: 1px solid rgb(13, 118, 191); }
+
+.dash-logout-frame { display: block; padding: 0px; margin: 0px; }
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-6de0481a-6c9c-4ac6-acee-22f0e2230f1f@mhtml.blink
+
+@charset "utf-8";
+
+input.dash-input:invalid { outline: red solid; }
+
+input.dash-input:valid { outline: black none; }
+------MultipartBoundary--9S8knchLCG8BmiooktiIjMX2sPLYmMCqhYHBcp70uE------

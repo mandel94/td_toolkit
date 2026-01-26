@@ -1,0 +1,16 @@
+[project]
+name = "gemini-client"
+version = "0.1.0"
+description = "A simple client package for Google Gemini using google-genai."
+authors = [
+    { name = "Manuel De Luzi", email = "manuel.deluzi@example.com" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "google-genai>=0.1.0",
+    "python-dotenv>=1.0.0"
+]
+
+[tool.setuptools]
+packages = ["gemini"]

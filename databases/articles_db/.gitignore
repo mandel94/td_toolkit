@@ -1,0 +1,24 @@
+# Database backups
+backups/*.sql
+backups/*.gz
+
+# Docker volumes data (will be recreated)
+volumes/
+
+# SchemaSpy ERD output
+schemaspy-output/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Environment files (if you create them later)
+.env
+.env.local
+
+# IDE files
+.vscode/
+.idea/

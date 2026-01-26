@@ -1,30 +1,46 @@
 version: '3.8'
 
 services:
-  dashboard:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: editorial_dashboard
-    ports:
-      - "8050:8050"
-    environment:
-      - DEBUG=false
-      - HOST=0.0.0.0
-      - PORT=8050
-      - GA4_PROPERTY_ID=394327334
-      - GA4_CREDENTIALS_PATH=/app/ga4_api/client_secret_722854453271-t3dg269vqsvjjhbmpkh2a5etk0mmf6ve.apps.googleusercontent.com.json
-    env_file:
-      - .env
-    volumes:
-      # Mount data directory if you need access to local data files
-      - ./data:/app/data:ro
-      # Mount credentials (read-write for token.pickle)
-      - ../../ga4_api:/app/ga4_api:rw
+  postgres:
+    image: postgres:15-alpine
+    container_name: articles_postgres
     restart: unless-stopped
+    environment:
+      POSTGRES_DB: articles_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgresql_server/init:/docker-entrypoint-initdb.d
     networks:
-      - dashboard_network
+      - articles_network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: articles_pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@taxidrivers.local
+      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    networks:
+      - articles_network
+
+volumes:
+  postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local
 
 networks:
-  dashboard_network:
+  articles_network:
     driver: bridge

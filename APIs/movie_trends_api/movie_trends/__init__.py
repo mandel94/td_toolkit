@@ -1,0 +1,3 @@
+"""Movie Trends Data Product API."""
+
+__version__ = "1.0.0"

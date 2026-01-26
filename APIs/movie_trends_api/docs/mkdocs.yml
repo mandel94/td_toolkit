@@ -1,0 +1,112 @@
+site_name: Movie Trends API Documentation
+site_description: Visual architecture documentation for the Movie Trends Data Product API
+site_author: Taxi Drivers Team
+site_url: http://localhost:8001
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: pink
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: pink
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.path
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+    - content.tooltips
+  icon:
+    repo: fontawesome/brands/github
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.keys
+
+plugins:
+  - search
+  - mermaid2
+
+nav:
+  - Home: index.md
+  - Architecture:
+      - Overview: architecture/overview.md
+      - System Design: architecture/system-design.md
+      - Data Flow: architecture/data-flow.md
+      - API Layer: architecture/api-layer.md
+  - Components:
+      - Ingestion Service: components/ingestion.md
+      - Trend Scoring Engine: components/trend-scoring.md
+      - Transformation Layer: components/transformation.md
+      - API Endpoints: components/api-endpoints.md
+      - Database Schema: components/database.md
+  - How It Works:
+      - Data Pipeline: how-it-works/pipeline.md
+      - Trend Calculation: how-it-works/trend-calculation.md
+      - Request Flow: how-it-works/request-flow.md
+  - Deployment:
+      - Docker Setup: deployment/docker.md
+      - Configuration: deployment/configuration.md
+      - Monitoring: deployment/monitoring.md
+  - API Reference:
+      - Endpoints: api/endpoints.md
+      - Schemas: api/schemas.md
+      - Examples: api/examples.md
+
+extra:
+  social:
+    - icon: fontawesome/solid/film
+      link: https://www.themoviedb.org/
+      name: TMDb
+    - icon: fontawesome/solid/database
+      link: http://localhost:5432
+      name: PostgreSQL
+  version:
+    provider: mike
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
