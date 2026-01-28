@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # Redis for event streaming
+  redis:
+    image: redis:7-alpine
+    container_name: text_mining_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - text_mining_network
+
+  # PostgreSQL (reuse existing if available)
+  postgres:
+    image: postgres:15-alpine
+    container_name: text_mining_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: articles_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - text_mining_network
+
+  # Adminer for database management
+  adminer:
+    image: adminer:latest
+    container_name: text_mining_adminer
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+    networks:
+      - text_mining_network
+
+volumes:
+  redis_data:
+    driver: local
+  postgres_data:
+    driver: local
+
+networks:
+  text_mining_network:
+    driver: bridge
