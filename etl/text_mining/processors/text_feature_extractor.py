@@ -74,6 +74,39 @@ class TextFeatureExtractor:
         # Create DataFrame
         df = pd.DataFrame(features_list)
         
+        # Compute editorial_score using content_scoring module if we have required metrics
+        if not df.empty and all(col in df.columns for col in ['pageviews', 'engagement_rate', 'avg_session_duration']):
+            logger.info("Computing editorial scores using content_scoring module...")
+            try:
+                from etl.content_scoring.calculator import ContentScoreCalculator
+                from etl.content_scoring.config import ContentScoringConfig
+                
+                # Map our column names to content_scoring expected names
+                scoring_df = df.rename(columns={
+                    'pageviews': 'screenPageViews',
+                    'engagement_rate': 'engagementRate',
+                    'avg_session_duration': 'averageSessionDuration'
+                })
+                
+                scoring_config = ContentScoringConfig(
+                    metrics_mapping={
+                        'views': 'screenPageViews',
+                        'engagement_rate': 'engagementRate',
+                        'session_duration': 'averageSessionDuration'
+                    },
+                    strategy_name='balanced'
+                )
+                score_calculator = ContentScoreCalculator(config=scoring_config)
+                scoring_df = score_calculator.calculate(scoring_df)
+                
+                # Copy editorial_score back to original dataframe
+                df['editorial_score'] = scoring_df['editorial_score']
+                logger.info(f"Editorial scores computed. Avg: {df['editorial_score'].mean():.6f}")
+            except Exception as e:
+                logger.warning(f"Could not compute editorial scores: {e}. Using GA4 scores if available.")
+                # Keep the editorial_score from GA4 metadata if available
+                pass
+        
         # Add processing metadata
         df['processing_version'] = self.processing_version
         df['processing_date'] = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')

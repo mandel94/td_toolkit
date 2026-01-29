@@ -95,7 +95,9 @@ class PostgresStorage:
             engaged_sessions INTEGER,
             avg_session_duration NUMERIC(10, 2),
             engagement_rate NUMERIC(5, 4),
-            editorial_score NUMERIC(5, 4),
+            editorial_score NUMERIC(10, 6),
+            date_range_start DATE,
+            date_range_end DATE,
             processing_version VARCHAR(50),
             processing_date TIMESTAMP,
             sample_id VARCHAR(255),
@@ -179,7 +181,8 @@ class PostgresStorage:
         INSERT INTO text_mining.articles_features 
             (article_id, pagepath, word_count, char_count, paragraph_count,
              pageviews, engaged_sessions, avg_session_duration, engagement_rate,
-             editorial_score, processing_version, processing_date, sample_id)
+             editorial_score, date_range_start, date_range_end,
+             processing_version, processing_date, sample_id)
         VALUES %s
         """
         
@@ -197,6 +200,8 @@ class PostgresStorage:
                 row.get('avg_session_duration'),
                 row.get('engagement_rate'),
                 row.get('editorial_score'),
+                row.get('date_range_start'),
+                row.get('date_range_end'),
                 row.get('processing_version'),
                 row.get('processing_date'),
                 row.get('sample_id')
@@ -215,7 +220,7 @@ class PostgresStorage:
     def store_sample_metadata(self, sample_id: str, generated_at: datetime, articles_count: int):
         """Store sample metadata"""
         insert_sql = """
-        INSERT INTO text_mining.sample_metadata 
+        INSERT INTO text_mining.samples 
             (sample_id, generated_at, articles_count, processing_status)
         VALUES (%s, %s, %s, %s)
         ON CONFLICT (sample_id) DO UPDATE SET

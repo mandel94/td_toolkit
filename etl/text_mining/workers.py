@@ -248,7 +248,9 @@ class FeatureWorker:
                 'engaged_sessions': article['engaged_sessions'],
                 'avg_session_duration': article['avg_session_duration'],
                 'engagement_rate': article['engagement_rate'],
-                'editorial_score': article.get('editorial_score')
+                'editorial_score': article.get('editorial_score'),
+                'date_range_start': article.get('date_range_start'),
+                'date_range_end': article.get('date_range_end')
             }
         
         # Extract features
