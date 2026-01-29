@@ -13,6 +13,11 @@ services:
     command: redis-server --appendonly yes
     networks:
       - text_mining_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
 
   # PostgreSQL (reuse existing if available)
   postgres:
@@ -30,6 +35,11 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - text_mining_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
 
   # Adminer for database management
   adminer:
@@ -42,6 +52,32 @@ services:
       - postgres
     networks:
       - text_mining_network
+
+  # Text Mining Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: text_mining_app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=articles_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres123
+    volumes:
+      - ../../:/app
+      - ./data:/app/etl/text_mining/data
+    networks:
+      - text_mining_network
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    command: tail -f /dev/null  # Keep container running
 
 volumes:
   redis_data:

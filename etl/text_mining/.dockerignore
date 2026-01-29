@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data files - THE ELEPHANT
+data/
+data/scraped/
+data/scraped/*
+*.csv
+*.parquet
+*.feather
+output/
+output/*
+
+# Logs
+*.log
+logs/
+logs/*
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Git
+.git/
+.gitignore
+
+# Node modules
+node_modules/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Large files
+*.zip
+*.tar.gz
+*.db
+*.sqlite
+
+# Cache
+.cache/
+.pytest_cache/
+
+# Context AI
+Context AI/

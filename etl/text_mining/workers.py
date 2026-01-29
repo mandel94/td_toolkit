@@ -60,7 +60,7 @@ class GA4PublisherWorker:
             return None
         
         # Publish to Redis stream
-        event_data = ga4_event.model_dump()
+        event_data = ga4_event.model_dump(mode='json')
         message_id = self.queue.publish_event(
             config.REDIS_STREAM_GA4,
             event_data
@@ -157,9 +157,9 @@ class ScraperWorker:
         self.storage.store_raw_articles(scraped_data, ga4_event.sample_id)
         
         # Publish scraped event to next stage
-        scraped_event_data = scraped_event.model_dump()
+        scraped_event_data = scraped_event.model_dump(mode='json')
         # Include GA4 metadata for feature extraction
-        scraped_event_data['ga4_articles'] = [art.model_dump() for art in ga4_event.articles]
+        scraped_event_data['ga4_articles'] = [art.model_dump(mode='json') for art in ga4_event.articles]
         
         self.queue.publish_event(
             config.REDIS_STREAM_SCRAPED,

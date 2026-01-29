@@ -110,7 +110,7 @@ class PostgresStorage:
             ON text_mining.articles_features(processing_version);
         
         -- Sample metadata
-        CREATE TABLE IF NOT EXISTS text_mining.sample_metadata (
+        CREATE TABLE IF NOT EXISTS text_mining.samples (
             sample_id VARCHAR(255) PRIMARY KEY,
             generated_at TIMESTAMP,
             articles_count INTEGER,

@@ -45,5 +45,6 @@ class TextMiningConfig(BaseSettings):
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
+        extra = "ignore"  # Ignore extra fields from .env
 
 config = TextMiningConfig()
