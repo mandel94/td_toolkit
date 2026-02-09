@@ -16,7 +16,7 @@ from etl.content_scoring import (
 )
 from map_ga4_categories import map_ga4_categories
 from td_data_toolkit.article_analytics.metadata import get_article_metadata
-from config import OUTPUT_DIR, WEEKLY_OUTPUT_DIR
+from report_config import OUTPUT_DIR, WEEKLY_OUTPUT_DIR
 
 # Project root directory (2 levels up from this file)
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))

@@ -14,12 +14,16 @@ class ArticleMetadata(BaseModel):
     avg_session_duration: float
     engagement_rate: float
     editorial_score: Optional[float] = None
+    date_range_start: Optional[str] = None
+    date_range_end: Optional[str] = None
 
 class GA4SampleReadyEvent(BaseModel):
     """Event published when GA4 sample is ready"""
     sample_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     generated_at: datetime = Field(default_factory=datetime.utcnow)
     articles: List[ArticleMetadata]
+    date_range_start: Optional[str] = None
+    date_range_end: Optional[str] = None
     
     class Config:
         json_encoders = {

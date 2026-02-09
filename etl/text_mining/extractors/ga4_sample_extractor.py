@@ -14,6 +14,8 @@ import logging
 from ga4_api.ga4_api import Ga4Client
 from etl.text_mining.config import config
 from etl.text_mining.events import GA4SampleReadyEvent, ArticleMetadata
+from etl.content_scoring.calculator import ContentScoreCalculator
+from etl.content_scoring.config import ContentScoringConfig
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -32,6 +34,17 @@ class GA4SampleExtractor:
     def __init__(self):
         self.ga4_client = Ga4Client(credentials_file=config.GA4_CREDENTIALS_PATH)
         self.property_id = config.GA4_PROPERTY_ID
+        
+        # Initialize content scoring calculator
+        scoring_config = ContentScoringConfig(
+            metrics_mapping={
+                'views': 'screenPageViews',
+                'engagement_rate': 'engagementRate',
+                'session_duration': 'averageSessionDuration'
+            },
+            strategy_name='balanced'
+        )
+        self.score_calculator = ContentScoreCalculator(config=scoring_config)
     
     def extract_sample(
         self,
@@ -87,9 +100,10 @@ class GA4SampleExtractor:
         df['averageSessionDuration'] = pd.to_numeric(df['averageSessionDuration'], errors='coerce').fillna(0.0)
         df['engagementRate'] = pd.to_numeric(df['engagementRate'], errors='coerce').fillna(0.0)
         
-        # Calculate editorial_score (simple weighted average for now)
-        # This can be replaced with more sophisticated scoring
-        df['editorial_score'] = self._calculate_editorial_score(df)
+        # Calculate editorial_score using content_scoring module
+        logger.info("Calculating editorial scores using content_scoring module...")
+        df = self.score_calculator.calculate(df)
+        logger.info(f"Editorial scores calculated. Avg score: {df['editorial_score'].mean():.3f}")
         
         # Random sampling
         if len(df) > sample_size:
@@ -108,45 +122,20 @@ class GA4SampleExtractor:
                 engaged_sessions=int(row['engagedSessions']),
                 avg_session_duration=float(row['averageSessionDuration']),
                 engagement_rate=float(row['engagementRate']),
-                editorial_score=float(row['editorial_score'])
+                editorial_score=float(row['editorial_score']),
+                date_range_start=start_date,
+                date_range_end=end_date
             )
             articles.append(article)
         
-        event = GA4SampleReadyEvent(articles=articles)
+        event = GA4SampleReadyEvent(
+            articles=articles,
+            date_range_start=start_date,
+            date_range_end=end_date
+        )
         logger.info(f"Created GA4SampleReadyEvent with sample_id={event.sample_id}")
         
         return event
-    
-    def _calculate_editorial_score(self, df: pd.DataFrame) -> pd.Series:
-        """
-        Calculate editorial score from GA4 metrics
-        
-        Simple weighted average for MVP:
-        - page_views: 40%
-        - engaged_sessions (normalized): 30%
-        - avg_session_duration (normalized): 30%
-        """
-        # Normalize metrics to 0-1 range
-
-        page_views_norm = (df['screenPageViews'] - df['screenPageViews'].min()) / (
-            df['screenPageViews'].max() - df['screenPageViews'].min() + 1e-10
-        )
-        engaged_norm = (df['engagedSessions'] - df['engagedSessions'].min()) / (
-            df['engagedSessions'].max() - df['engagedSessions'].min() + 1e-10
-        )
-        duration_norm = (df['averageSessionDuration'] - df['averageSessionDuration'].min()) / (
-            df['averageSessionDuration'].max() - df['averageSessionDuration'].min() + 1e-10
-        )
-        
-        # Weighted score
-        score = (
-            0.4 * page_views_norm +
-            0.3 * engaged_norm +
-            0.3 * duration_norm
-        )
-        
-        return score.fillna(0.0)
-
 
 if __name__ == "__main__":
     # Test extraction

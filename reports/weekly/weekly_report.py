@@ -18,7 +18,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from map_ga4_categories import map_ga4_categories
 from scrape_content.ArticleScraper import ArticleScraper
 
-from config import (
+from report_config import (
     WEEKLY_OUTPUT_DIR,
     WEEKLY_REPORT_OUTPUT_FILENAME,
     WEEKLY_REPORT_METRICS,
