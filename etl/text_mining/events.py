@@ -14,6 +14,7 @@ class ArticleMetadata(BaseModel):
     avg_session_duration: float
     engagement_rate: float
     editorial_score: Optional[float] = None
+    publish_date: Optional[str] = None  # Article publication date (extracted during scraping)
     date_range_start: Optional[str] = None
     date_range_end: Optional[str] = None
 
@@ -34,6 +35,7 @@ class ArticleScrapedContent(BaseModel):
     """Scraped article content"""
     pagepath: str
     html_content: str
+    publish_date: Optional[str] = None  # Extracted from time[itemprop="datePublished"]
     scraped_at: datetime = Field(default_factory=datetime.utcnow)
 
 class ArticleHTMLScrapedEvent(BaseModel):

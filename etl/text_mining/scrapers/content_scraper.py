@@ -161,9 +161,20 @@ class ContentScraper:
                 html_content = str(content_element)
                 logger.debug(f"Successfully extracted content: {len(html_content)} chars")
                 
+                # Extract publish date from time[itemprop="datePublished"]
+                publish_date = None
+                date_element = soup.select_one('time[itemprop="datePublished"]')
+                if date_element:
+                    # Try to get datetime attribute first, then content
+                    publish_date = date_element.get('datetime') or date_element.get('content') or date_element.get_text(strip=True)
+                    logger.debug(f"Extracted publish_date: {publish_date}")
+                else:
+                    logger.debug(f"No publish_date found for {pagepath}")
+                
                 return ArticleScrapedContent(
                     pagepath=pagepath,
-                    html_content=html_content
+                    html_content=html_content,
+                    publish_date=publish_date
                 )
             else:
                 self.error_stats["selector_not_found"] += 1

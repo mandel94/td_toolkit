@@ -13,7 +13,8 @@ class TextMiningConfig(BaseSettings):
     GA4_CREDENTIALS_PATH: str = Field(default="../ga4_api/client_secret_722854453271-t3dg269vqsvjjhbmpkh2a5etk0mmf6ve.apps.googleusercontent.com.json")
     
     # Sampling Configuration
-    SAMPLE_SIZE: int = Field(default=10, description="Number of articles to sample")
+    SAMPLE_SIZE: int = Field(default=300, description="Number of articles to sample")
+    DEFAULT_DAYS_BACK: int = Field(default=30, description="Default number of days to look back")
     DATE_START: str = Field(default="2025-01-01")
     DATE_END: str = Field(default="today")
     

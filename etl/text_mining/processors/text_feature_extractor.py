@@ -164,6 +164,7 @@ class TextFeatureExtractor:
             'char_count': char_count,
             'paragraph_count': paragraph_count,
             'clean_text_preview': text[:500] if text else None,
+            'publish_date': article.get('publish_date'),  # Include publish_date from scraping
             'scraped_at': article.get('scraped_at')
         }
         
