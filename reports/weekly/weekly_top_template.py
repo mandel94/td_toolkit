@@ -1,5 +1,29 @@
 import pandas as pd
 
+MOJIBAKE_MARKERS = ("Ã", "â€™", "â€œ", "â€", "Â")
+
+
+def _normalize_text(value):
+    if pd.isna(value):
+        return ""
+    text = str(value).strip()
+    if not text:
+        return ""
+    if not any(marker in text for marker in MOJIBAKE_MARKERS):
+        return text
+    try:
+        return text.encode("latin-1").decode("utf-8").strip()
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return text
+
+
+def _italicize_title(title):
+    normalized = _normalize_text(title)
+    if not normalized:
+        return "(titolo mancante)"
+    safe_title = normalized.replace("*", r"\*")
+    return f"*{safe_title}*"
+
 def weekly_top_template_from_excel(excel_path, n=3, metric="Views"):
     """
     Legge un file Excel e restituisce una stringa formattata con i top articoli per categoria secondo il template richiesto.
@@ -37,8 +61,8 @@ def weekly_top_template_from_excel(excel_path, n=3, metric="Views"):
         output.append(f" {emoji} {idx}. {section} ")
         for _, row in top.iterrows():
             title = row.get("title") or row.get("Titolo") or row.get("Articolo") or "(titolo mancante)"
-            author = row.get("author") or row.get("Autore") or "Anonimo"
-            output.append(f" • {title} ({author})")
+            author = _normalize_text(row.get("author") or row.get("Autore") or "Anonimo") or "Anonimo"
+            output.append(f" • {_italicize_title(title)} ({author})")
     return "\n".join(output) + "\n"
 
 
@@ -81,6 +105,6 @@ def weekly_top_template_from_df(excel_path, n=3, metric="Views"):
         output.append(f" {emoji} {idx}. {section} ")
         for _, row in top.iterrows():
             title = row.get("title") or row.get("Titolo") or row.get("Articolo") or "(titolo mancante)"
-            author = row.get("author") or row.get("Autore") or "Anonimo"
-            output.append(f" • {title} ({author})")
+            author = _normalize_text(row.get("author") or row.get("Autore") or "Anonimo") or "Anonimo"
+            output.append(f" • {_italicize_title(title)} ({author})")
     return "\n".join(output) + "\n"

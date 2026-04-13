@@ -15,8 +15,8 @@ def create_layout() -> html.Div:
     Returns:
         Dash HTML layout component
     """
-    # Default date range: last 90 days
-    end_date = datetime.now().date()
+    # Default date range: last 90 days ending yesterday
+    end_date = datetime.now().date() - timedelta(days=1)
     start_date = end_date - timedelta(days=90)
     
     return html.Div([

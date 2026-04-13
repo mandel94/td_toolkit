@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  dashboard:
+    environment:
+      - DEBUG=true
+      - WATCHDOG_USE_POLLING=true
+    volumes:
+      - ./:/app
+      - ./data:/app/data:ro
+      - ../../ga4_api:/app/ga4_api:rw

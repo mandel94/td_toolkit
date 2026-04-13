@@ -1,14 +1,13 @@
 """Weekly data transformation module for dimensional model."""
 import sys
 import os
-from typing import List, Set, Dict
+from typing import List, Set
 from datetime import date, timedelta
 from loguru import logger
 
 # Add project root to Python path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "..")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "..")))  
 
-from map_ga4_categories import map_ga4_categories
 from etl.articles_db_pipeline.models.article import (
     RawWeeklyData, DimWeekData, DimArticleData, DimAuthorData,
     DimCategoryData, FactWeeklyMetricsData, ProcessedWeeklyBatch
@@ -46,8 +45,8 @@ class ArticleTransformer:
         
         for record in raw_weekly_data:
             try:
-                # Map category
-                category = self._map_category(record.page_path)
+                # Use scraped category as-is
+                category = record.category
                 
                 # Extract author (default to "Unknown" for now)
                 author = "Unknown"
@@ -125,22 +124,3 @@ class ArticleTransformer:
             year_week=year_week
         )
     
-    def _map_category(self, page_path: str) -> str:
-        """Map page path to article category."""
-        try:
-            # Use existing category mapping function
-            category = map_ga4_categories(page_path)
-            
-            # Handle "Si farà" special case
-            if "si-fara" in page_path.lower():
-                category = "Si farà"
-            
-            # Merge "Recensioni / In Sala" with "Recensioni"
-            if category in ["Recensioni / In Sala", "Recensioni"]:
-                category = "Recensioni"
-            
-            return category if category else "Uncategorized"
-            
-        except Exception as e:
-            logger.warning(f"Failed to map category for {page_path}: {str(e)}")
-            return "Uncategorized"

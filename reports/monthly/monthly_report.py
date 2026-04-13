@@ -40,6 +40,61 @@ months_data_range = {
     "December": ("2025-12-01", "2025-12-31"),
 }
 
+MOJIBAKE_MARKERS = ("Ã", "â€™", "â€œ", "â€", "Â")
+
+
+def _fix_mojibake_text(value):
+    if not isinstance(value, str) or not value:
+        return value
+    text = value.strip()
+    if not any(marker in text for marker in MOJIBAKE_MARKERS):
+        return text
+
+    candidates = [text]
+    for source_encoding in ("latin-1", "cp1252"):
+        try:
+            repaired = text.encode(source_encoding).decode("utf-8")
+            if repaired:
+                candidates.append(repaired.strip())
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            continue
+
+    def _mojibake_score(s):
+        return sum(s.count(marker) for marker in MOJIBAKE_MARKERS)
+
+    best = min(candidates, key=_mojibake_score)
+    return best
+
+
+def _normalize_text_columns(df: pd.DataFrame, columns=None) -> pd.DataFrame:
+    if df is None or df.empty:
+        return df
+
+    cols = columns
+    if cols is None:
+        cols = df.select_dtypes(include=["object"]).columns.tolist()
+
+    for col in cols:
+        if col in df.columns:
+            df[col] = df[col].apply(_fix_mojibake_text)
+    return df
+
+
+def _decode_response_text(response):
+    if not response.encoding or response.encoding.lower() in {"iso-8859-1", "latin-1"}:
+        candidate = response.apparent_encoding or "utf-8"
+    else:
+        candidate = response.encoding
+
+    for encoding in (candidate, "utf-8", "cp1252", "latin-1"):
+        if not encoding:
+            continue
+        try:
+            return response.content.decode(encoding)
+        except UnicodeDecodeError:
+            continue
+    return response.content.decode("utf-8", errors="replace")
+
 # Define a function that returns True if the pagepath countains "si-fara" substring
 
 
@@ -90,25 +145,36 @@ def get_ga4_data(source="local", **kwargs):
         raise ValueError(f"Unknown GA4 data source: {source}")
 
 
-def get_article_metadata(url, delay=4):
+def get_article_metadata(
+    url,
+    request_delay=10,
+    retry_delay=10,
+    max_retries=5,
+    timeout_seconds=30,
+):
     """
     Scrape the article page and return a tuple: (publication_date, author_name, article_title).
     Publication date is a datetime object or None.
     Author is a string or None.
     Title is a string or None.
     Retries on timeout until successful.
-    delay: seconds to wait after unsuccessful requests (default 4)
+    request_delay: seconds to wait before each request
+    retry_delay: base seconds to wait after timeout; multiplied by retry attempt
+    max_retries: maximum timeout retries before giving up
+    timeout_seconds: HTTP timeout for each request
     """
     import time
     import requests
     from requests.exceptions import Timeout
 
-    while True:
+    attempt = 0
+    while attempt <= max_retries:
+        attempt += 1
         try:
-            time.sleep(4)
-            response = requests.get(url, timeout=30)
+            time.sleep(request_delay)
+            response = requests.get(url, timeout=timeout_seconds)
             response.raise_for_status()
-            soup = BeautifulSoup(response.text, "html.parser")
+            soup = BeautifulSoup(_decode_response_text(response), "html.parser")
             # Publication date
             time_tag = soup.find("time", attrs={"datetime": True})
             pub_date = None
@@ -124,43 +190,144 @@ def get_article_metadata(url, delay=4):
                     pub_date = None
             # Author
             author_tag = soup.find("a", rel="author")
-            author = author_tag.text.strip() if author_tag else None
+            author = _fix_mojibake_text(author_tag.text) if author_tag else None
             # Title
             title_tag = soup.find(
                 "h1", class_="mvp-post-title left entry-title", itemprop="headline"
             )
-            title = title_tag.text.strip() if title_tag else None
+            title = _fix_mojibake_text(title_tag.text) if title_tag else None
             return pub_date, author, title
         except Timeout:
-            print(f"Timeout occurred for {url}, retrying...")
-            time.sleep(delay)
-            continue
+            if attempt > max_retries:
+                print(f"Timeout occurred for {url}, max retries reached.")
+                return None, None, None
+            backoff = retry_delay * attempt
+            print(
+                f"Timeout occurred for {url}, retrying in {backoff}s "
+                f"({attempt}/{max_retries})..."
+            )
+            time.sleep(backoff)
         except Exception as e:
             print(f"Error scraping {url}: {e}")
-            time.sleep(delay)
+            time.sleep(retry_delay)
             return None, None, None
+    return None, None, None
 
 
 def scrape_article_metadata(
-    paths, domain, metadata_collector=get_article_metadata, max_workers=8
+    paths,
+    domain,
+    metadata_collector=get_article_metadata,
+    max_workers=8,
+    request_delay=10,
+    retry_delay=10,
+    max_retries=5,
+    progress_log_every=20,
 ):
     """
     Given a list of page paths, scrape publication date, author, and title for each article in parallel.
     Returns three lists: publication dates, authors, titles.
     """
 
+    import time
+
     def scrape_one(path):
         url = domain + path if path.startswith("/") else domain + "/" + path
-        pub_date, author, title = metadata_collector(url)
-        print("OK")
+        pub_date, author, title = metadata_collector(
+            url,
+            request_delay=request_delay,
+            retry_delay=retry_delay,
+            max_retries=max_retries,
+        )
         return pub_date, author, title
 
+    total = len(paths)
+    if total == 0:
+        return [], [], []
+
+    ordered_results = [None] * total
+    completed = 0
+    success_count = 0
+    start_ts = time.time()
+
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-        results = list(executor.map(scrape_one, paths))
-    if results:
-        pub_dates, authors, titles = zip(*results)
-    else:
-        pub_dates, authors, titles = [], [], []
+        future_to_idx = {
+            executor.submit(scrape_one, path): idx for idx, path in enumerate(paths)
+        }
+
+        for future in concurrent.futures.as_completed(future_to_idx):
+            idx = future_to_idx[future]
+            completed += 1
+            path = paths[idx]
+            try:
+                result = future.result()
+            except Exception as e:
+                print(f"Error in worker for path index {idx}: {e}")
+                result = (None, None, None)
+
+            ordered_results[idx] = result
+            if any(result):
+                success_count += 1
+
+            pub_date, author, title = result
+            pub_date_str = pub_date.isoformat() if isinstance(pub_date, datetime) else "None"
+            title_str = str(title).replace("\n", " ").strip() if title else "None"
+            if len(title_str) > 80:
+                title_str = title_str[:80] + "..."
+            author_str = str(author) if author else "None"
+            print(
+                f"[{completed}/{total}] Scraped {path} | "
+                f"title={title_str} | author={author_str} | pub_date={pub_date_str}"
+            )
+
+            if (
+                completed == 1
+                or completed % progress_log_every == 0
+                or completed == total
+            ):
+                elapsed = time.time() - start_ts
+                rate = completed / elapsed if elapsed > 0 else 0
+                remaining = total - completed
+                eta = remaining / rate if rate > 0 else 0
+                pct = (completed / total) * 100
+                print(
+                    f"Scraping progress: {completed}/{total} ({pct:.1f}%) | "
+                    f"success={success_count} fail={completed - success_count} | "
+                    f"elapsed={elapsed:.0f}s eta={eta:.0f}s"
+                )
+
+    failed_indices = [idx for idx, result in enumerate(ordered_results) if not any(result)]
+    if failed_indices:
+        print(
+            f"Final retry pass started for {len(failed_indices)} failed URLs..."
+        )
+        for retry_pos, idx in enumerate(failed_indices, 1):
+            path = paths[idx]
+            try:
+                result = scrape_one(path)
+            except Exception as e:
+                print(f"Final retry error for {path}: {e}")
+                result = (None, None, None)
+
+            ordered_results[idx] = result
+            pub_date, author, title = result
+            pub_date_str = pub_date.isoformat() if isinstance(pub_date, datetime) else "None"
+            title_str = str(title).replace("\n", " ").strip() if title else "None"
+            if len(title_str) > 80:
+                title_str = title_str[:80] + "..."
+            author_str = str(author) if author else "None"
+            print(
+                f"[Retry {retry_pos}/{len(failed_indices)}] Scraped {path} | "
+                f"title={title_str} | author={author_str} | pub_date={pub_date_str}"
+            )
+
+        unresolved = sum(1 for idx in failed_indices if not any(ordered_results[idx]))
+        print(
+            f"Final retry pass completed: recovered={len(failed_indices) - unresolved} "
+            f"still_failed={unresolved}"
+        )
+
+    pub_dates, authors, titles = zip(*ordered_results)
     return list(pub_dates), list(authors), list(titles)
 
 def remove_invalid_chars(sheet_name):
@@ -178,6 +345,10 @@ def run_monthly_report(
     data_args=None,
     domain="https://taxidrivers.it",
     max_workers=8,
+    request_delay=10,
+    retry_delay=10,
+    max_retries=5,
+    chunk_pause_seconds=30,
     excel_output_path=None,
     map_categories_func=map_ga4_categories,
     si_fara_func=contains_si_fara,
@@ -188,6 +359,10 @@ def run_monthly_report(
         data_args: dict of arguments for get_ga4_data
         domain: site domain for scraping
         max_workers: parallel scraping workers
+        request_delay: delay before each request in seconds
+        retry_delay: base delay after timeout in seconds
+        max_retries: retries on timeout before giving up
+        chunk_pause_seconds: pause between chunks in seconds
         csv_output_path: where to save the CSV (optional)
         excel_output_path: where to save the Excel (optional)
         map_categories_func: function to map categories
@@ -241,23 +416,30 @@ def run_monthly_report(
         chunk_paths = paths[i : i + chunk_size]
         print(f"Scraping chunk {i // chunk_size + 1} with {len(chunk_paths)} articles...")
         pub_dates, authors, titles = scrape_article_metadata(
-            chunk_paths, domain, max_workers=max_workers
+            chunk_paths,
+            domain,
+            max_workers=max_workers,
+            request_delay=request_delay,
+            retry_delay=retry_delay,
+            max_retries=max_retries,
+            progress_log_every=20,
         )
         all_pub_dates.extend(pub_dates)
         all_authors.extend(authors)
         all_titles.extend(titles)
         if i + chunk_size < len(paths):
             print(f"Chunk {i // chunk_size + 1} done.")
-            print("Waiting 10 minutes before next chunk...")
+            print(f"Waiting {chunk_pause_seconds} seconds before next chunk...")
             import time
 
-            time.sleep(2)
+            time.sleep(chunk_pause_seconds)
     # Convert publication dates to JSON serializable format
     df["Publication Date"] = [
         d.isoformat() if isinstance(d, datetime) else None for d in all_pub_dates
     ]
     df["Author"] = all_authors
     df["Title"] = all_titles
+    df = _normalize_text_columns(df)
     # Save all results as a json
     try:
         if excel_output_path:
@@ -288,6 +470,10 @@ if __name__ == "__main__":
         },
         domain="https://taxidrivers.it",
         max_workers=8,
+        request_delay=10,
+        retry_delay=10,
+        max_retries=5,
+        chunk_pause_seconds=30,
         excel_output_path=os.path.join(
             MONTHLY_OUTPUT_DIR, f"top_articles_{MONTHLY_PARAMETERS_MONTH}.xlsx"
         ),

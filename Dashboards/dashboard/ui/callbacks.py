@@ -63,7 +63,7 @@ def register_callbacks(
         if start_date is None or end_date is None:
             from datetime import timedelta
 
-            end = datetime.now()
+            end = datetime.now() - timedelta(days=1)
             start = end - timedelta(days=90)
         else:
             start = datetime.fromisoformat(start_date)
@@ -184,7 +184,7 @@ def register_callbacks(
         """
         from datetime import timedelta
 
-        end_date = datetime.now().date()
+        end_date = datetime.now().date() - timedelta(days=1)
         start_date = end_date - timedelta(days=90)
         return start_date, end_date
 

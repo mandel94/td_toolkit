@@ -37,6 +37,62 @@ from reports.weekly.weekly_top_template import (
 )
 
 
+MOJIBAKE_MARKERS = ("Ã", "â€™", "â€œ", "â€", "Â")
+
+
+def _fix_mojibake_text(value):
+    if not isinstance(value, str) or not value:
+        return value
+    text = value.strip()
+    if not any(marker in text for marker in MOJIBAKE_MARKERS):
+        return text
+
+    candidates = [text]
+    for source_encoding in ("latin-1", "cp1252"):
+        try:
+            repaired = text.encode(source_encoding).decode("utf-8")
+            if repaired:
+                candidates.append(repaired.strip())
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            continue
+
+    def _mojibake_score(s):
+        return sum(s.count(marker) for marker in MOJIBAKE_MARKERS)
+
+    best = min(candidates, key=_mojibake_score)
+    return best
+
+
+def _normalize_text_columns(df: pd.DataFrame, columns=None) -> pd.DataFrame:
+    if df is None or df.empty:
+        return df
+
+    cols = columns
+    if cols is None:
+        cols = df.select_dtypes(include=["object"]).columns.tolist()
+
+    for col in cols:
+        if col in df.columns:
+            df[col] = df[col].apply(_fix_mojibake_text)
+    return df
+
+
+def _decode_response_text(response):
+    if not response.encoding or response.encoding.lower() in {"iso-8859-1", "latin-1"}:
+        candidate = response.apparent_encoding or "utf-8"
+    else:
+        candidate = response.encoding
+
+    for encoding in (candidate, "utf-8", "cp1252", "latin-1"):
+        if not encoding:
+            continue
+        try:
+            return response.content.decode(encoding)
+        except UnicodeDecodeError:
+            continue
+    return response.content.decode("utf-8", errors="replace")
+
+
 # Define a function that returns True if the pagepath countains "si-fara" substring
 
 
@@ -100,7 +156,7 @@ def get_article_metadata(url, delay=4):
             time.sleep(4)
             response = requests.get(url, timeout=30)
             response.raise_for_status()
-            soup = BeautifulSoup(response.text, "html.parser")
+            soup = BeautifulSoup(_decode_response_text(response), "html.parser")
             # Publication date
             time_tag = soup.find("time", attrs={"datetime": True})
             pub_date = None
@@ -116,12 +172,12 @@ def get_article_metadata(url, delay=4):
                     pub_date = None
             # Author
             author_tag = soup.find("a", rel="author")
-            author = author_tag.text.strip() if author_tag else None
+            author = _fix_mojibake_text(author_tag.text) if author_tag else None
             # Title
             title_tag = soup.find(
                 "h1", class_="mvp-post-title left entry-title", itemprop="headline"
             )
-            title = title_tag.text.strip() if title_tag else None
+            title = _fix_mojibake_text(title_tag.text) if title_tag else None
             return pub_date, author, title
         except Timeout:
             print(f"Timeout occurred for {url}, retrying...")
@@ -134,7 +190,14 @@ def get_article_metadata(url, delay=4):
 
 
 def scrape_article_metadata(
-    paths, domain, metadata_collector=None, max_workers=8
+    paths,
+    domain,
+    metadata_collector=None,
+    max_workers=8,
+    request_delay=6,
+    retry_delay=10,
+    max_retries=5,
+    progress_log_every=20,
 ):
     """
     Given a list of page paths, scrape publication date, author, and title for each article in parallel.
@@ -155,18 +218,117 @@ def scrape_article_metadata(
                     pub_date = None
             return pub_date, result.get("author"), result.get("title")
 
+    def _is_timeout_error(error):
+        if isinstance(error, (Timeout, TimeoutError)):
+            return True
+        return "timeout" in str(error).lower() or "timed out" in str(error).lower()
+
     def scrape_one(path):
+        time.sleep(request_delay)
         url = domain + path if path.startswith("/") else domain + "/" + path
-        pub_date, author, title = metadata_collector(url)
-        print("OK")
-        return pub_date, author, title
+        attempt = 0
+        while attempt <= max_retries:
+            attempt += 1
+            try:
+                pub_date, author, title = metadata_collector(url)
+                return pub_date, author, title
+            except Exception as error:
+                if not _is_timeout_error(error) or attempt > max_retries:
+                    raise
+                backoff = retry_delay * attempt
+                print(
+                    f"Timeout during scraping {url}, retrying in {backoff}s "
+                    f"({attempt}/{max_retries})..."
+                )
+                time.sleep(backoff)
+        return None, None, None
+
+    total = len(paths)
+    if total == 0:
+        return [], [], []
+
+    ordered_results = [None] * total
+    completed = 0
+    success_count = 0
+    start_ts = time.time()
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-        results = list(executor.map(scrape_one, paths))
-    if results:
-        pub_dates, authors, titles = zip(*results)
-    else:
-        pub_dates, authors, titles = [], [], []
+        future_to_idx = {
+            executor.submit(scrape_one, path): idx for idx, path in enumerate(paths)
+        }
+        for future in concurrent.futures.as_completed(future_to_idx):
+            idx = future_to_idx[future]
+            completed += 1
+            path = paths[idx]
+            try:
+                result = future.result()
+            except Exception as e:
+                print(f"Error in worker for path index {idx}: {e}")
+                result = (None, None, None)
+
+            ordered_results[idx] = result
+            if any(result):
+                success_count += 1
+
+            pub_date, author, title = result
+            pub_date_str = pub_date.isoformat() if isinstance(pub_date, datetime) else "None"
+            title_str = str(title).replace("\n", " ").strip() if title else "None"
+            if len(title_str) > 80:
+                title_str = title_str[:80] + "..."
+            author_str = str(author) if author else "None"
+            print(
+                f"[{completed}/{total}] Scraped {path} | "
+                f"title={title_str} | author={author_str} | pub_date={pub_date_str}"
+            )
+
+            if (
+                completed == 1
+                or completed % progress_log_every == 0
+                or completed == total
+            ):
+                elapsed = time.time() - start_ts
+                rate = completed / elapsed if elapsed > 0 else 0
+                remaining = total - completed
+                eta = remaining / rate if rate > 0 else 0
+                pct = (completed / total) * 100
+                print(
+                    f"Scraping progress: {completed}/{total} ({pct:.1f}%) | "
+                    f"success={success_count} fail={completed - success_count} | "
+                    f"elapsed={elapsed:.0f}s eta={eta:.0f}s"
+                )
+
+    failed_indices = [idx for idx, result in enumerate(ordered_results) if not any(result)]
+    if failed_indices:
+        print(
+            f"Final retry pass started for {len(failed_indices)} failed URLs..."
+        )
+        for retry_pos, idx in enumerate(failed_indices, 1):
+            path = paths[idx]
+            try:
+                result = scrape_one(path)
+            except Exception as e:
+                print(f"Final retry error for {path}: {e}")
+                result = (None, None, None)
+
+            ordered_results[idx] = result
+            pub_date, author, title = result
+            pub_date_str = pub_date.isoformat() if isinstance(pub_date, datetime) else "None"
+            title_str = str(title).replace("\n", " ").strip() if title else "None"
+            if len(title_str) > 80:
+                title_str = title_str[:80] + "..."
+            author_str = str(author) if author else "None"
+            print(
+                f"[Retry {retry_pos}/{len(failed_indices)}] Scraped {path} | "
+                f"title={title_str} | author={author_str} | pub_date={pub_date_str}"
+            )
+
+        unresolved = sum(1 for idx in failed_indices if not any(ordered_results[idx]))
+        print(
+            f"Final retry pass completed: recovered={len(failed_indices) - unresolved} "
+            f"still_failed={unresolved}"
+        )
+
+    pub_dates, authors, titles = zip(*ordered_results)
     return list(pub_dates), list(authors), list(titles)
 
 
@@ -189,6 +351,7 @@ def run_weekly_report(
     domain="https://taxidrivers.it",
     n=10,
     max_workers=8,
+    request_delay=6,
     csv_output_path=None,
     excel_output_path=None,
     map_categories_func=map_ga4_categories,
@@ -206,6 +369,7 @@ def run_weekly_report(
         domain: site domain for scraping
         n: top N articles per category
         max_workers: parallel scraping workers
+        request_delay: delay before each metadata request in seconds
         filter_by_date: whether to filter by date
         csv_output_path: where to save the CSV (optional)
         excel_output_path: where to save the Excel (optional)
@@ -251,7 +415,11 @@ def run_weekly_report(
     print("Scraping article metadata...")
     paths = df["pagePath"].tolist()
     pub_dates, authors, titles = scrape_article_metadata(
-        paths, domain, max_workers=max_workers
+        paths,
+        domain,
+        max_workers=max_workers,
+        request_delay=request_delay,
+        progress_log_every=20,
     )
     print("Metadata scraping complete.")
     # Convert publication dates to JSON serializable format
@@ -261,6 +429,7 @@ def run_weekly_report(
     #
     df["Author"] = authors
     df["Title"] = titles
+    df = _normalize_text_columns(df)
 
     # Calculate Editorial Score using balanced strategy
     print("Calculating Editorial Score (balanced strategy)...")
@@ -312,6 +481,7 @@ def run_weekly_report(
         ]
         extra_cols = [c for c in df.columns if c not in ordered_cols]
         df = df[[c for c in ordered_cols if c in df.columns] + extra_cols]
+        df = _normalize_text_columns(df)
         print("Editorial Score calculated and columns organized.")
     except Exception as e:
         print(f"Error calculating Editorial Score: {e}")
@@ -389,6 +559,7 @@ if __name__ == "__main__":
         domain="https://taxidrivers.it",
         n=10,
         max_workers=8,
+        request_delay=6,
         csv_output_path=os.path.join(WEEKLY_OUTPUT_DIR, WEEKLY_REPORT_OUTPUT_FILENAME),
         excel_output_path=os.path.join(
             WEEKLY_OUTPUT_DIR,

@@ -8,6 +8,7 @@ from decimal import Decimal
 class RawWeeklyData(BaseModel):
     """Raw weekly article data from GA4 API."""
     page_path: str = Field(..., alias='pagePath')
+    category: str = Field(default='Uncategorized')  # Scraped category
     year: int
     week: int
     screen_page_views: int = Field(..., alias='screenPageViews')
