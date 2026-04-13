@@ -17,6 +17,7 @@ from etl.content_scoring import (
 from map_ga4_categories import map_ga4_categories
 from td_data_toolkit.article_analytics.metadata import get_article_metadata
 from report_config import OUTPUT_DIR, WEEKLY_OUTPUT_DIR
+import time
 
 # Project root directory (2 levels up from this file)
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -28,6 +29,67 @@ METRICS = ['screenPageViews', 'engagementRate', 'averageSessionDuration']  # bou
 DEFAULT_DAYS = 7
 N_TOP = 100
 DOMAIN = "https://taxidrivers.it"
+MOJIBAKE_MARKERS = ("Ã", "â€™", "â€œ", "â€", "Â")
+
+
+def _fix_mojibake_text(value):
+    if not isinstance(value, str) or not value:
+        return value
+    text = value.strip()
+    if not any(marker in text for marker in MOJIBAKE_MARKERS):
+        return text
+
+    candidates = [text]
+    for source_encoding in ("latin-1", "cp1252"):
+        try:
+            repaired = text.encode(source_encoding).decode("utf-8")
+            if repaired:
+                candidates.append(repaired.strip())
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            continue
+
+    def _mojibake_score(s):
+        return sum(s.count(marker) for marker in MOJIBAKE_MARKERS)
+
+    best = min(candidates, key=_mojibake_score)
+    return best
+
+
+def _normalize_text_columns(df: pd.DataFrame, columns=None) -> pd.DataFrame:
+    if df is None or df.empty:
+        return df
+
+    cols = columns
+    if cols is None:
+        cols = df.select_dtypes(include=["object"]).columns.tolist()
+
+    for col in cols:
+        if col in df.columns:
+            df[col] = df[col].apply(_fix_mojibake_text)
+    return df
+
+
+def _is_timeout_error(error) -> bool:
+    message = str(error).lower()
+    return "timeout" in message or "timed out" in message
+
+
+def get_article_metadata_with_retry(url, max_retries=5, retry_delay=10):
+    attempt = 0
+    while attempt <= max_retries:
+        attempt += 1
+        try:
+            return get_article_metadata(url)
+        except Exception as error:
+            if not _is_timeout_error(error) or attempt > max_retries:
+                raise
+            backoff = retry_delay * attempt
+            print(
+                f"Timeout for {url}, retrying in {backoff}s "
+                f"({attempt}/{max_retries})..."
+            )
+            time.sleep(backoff)
+    return None, None, None
 
 def parse_arguments():
     """Parse command line arguments for the sandra report."""
@@ -78,6 +140,61 @@ CATEGORIES = {
     "Interviste": {"interviews"}
 }
 
+BUCKET_LABELS = ["Basso", "Medio-basso", "Nella media", "Medio-alto", "Alto"]
+
+
+def assign_performance_buckets(
+    df: pd.DataFrame,
+    metrics: list[str],
+    labels: list[str] = None,
+    suffix: str = "_fascia"
+) -> pd.DataFrame:
+    """
+    Assign each article to one of 5 performance buckets for each metric,
+    based on quintiles (0-20%, 20-40%, 40-60%, 60-80%, 80-100%).
+
+    Bucket labels (low → high):
+        Basso | Medio-basso | Nella media | Medio-alto | Alto
+    """
+    used_labels = labels if labels is not None else BUCKET_LABELS
+    for metric in metrics:
+        if metric not in df.columns:
+            continue
+        col = pd.to_numeric(df[metric], errors="coerce")
+        bucket_col = metric + suffix
+        try:
+            df[bucket_col] = pd.qcut(
+                col,
+                q=5,
+                labels=used_labels,
+                duplicates="drop"
+            ).astype(str)
+        except ValueError:
+            # Fallback: manual percentile cut when qcut can't form 5 unique bins
+            p = [col.quantile(q) for q in (0.0, 0.20, 0.40, 0.60, 0.80, 1.0)]
+            # Ensure strictly increasing breakpoints
+            breakpoints = sorted(set(p))
+            if len(breakpoints) < 2:
+                df[bucket_col] = used_labels[2]  # all values → "Nella media"
+            else:
+                n_bins = len(breakpoints) - 1
+                adjusted_labels = used_labels[:n_bins] if n_bins <= len(used_labels) else used_labels
+                df[bucket_col] = pd.cut(
+                    col,
+                    bins=breakpoints,
+                    labels=adjusted_labels,
+                    include_lowest=True
+                ).astype(str)
+
+        # Print median and bucket distribution for transparency
+        median_val = col.median()
+        print(f"  {metric}: mediana={median_val:.2f}")
+        dist = df[bucket_col].value_counts().reindex(used_labels, fill_value=0)
+        for label, count in dist.items():
+            print(f"    {label}: {count}")
+    return df
+
+
 def main():
     # Parse command line arguments
     args = parse_arguments()
@@ -124,11 +241,24 @@ def main():
     titles = []
     authors = []
     pub_dates = []
+    failed_items = []
     for idx, path in enumerate(top_df["pagePath"], 1):
         url = DOMAIN + path if path.startswith("/") else DOMAIN + "/" + path
         print(f"[{idx}/{N_TOP}] Recupero metadati per: {url}")
         try:
-            pub_date, author, title = get_article_metadata(url)
+            pub_date, author, title = get_article_metadata_with_retry(url)
+            pub_date_str = pub_date.strftime('%Y-%m-%d') if pub_date else "None"
+            title_str = str(title).replace("\n", " ").strip() if title else "None"
+            if len(title_str) > 80:
+                title_str = title_str[:80] + "..."
+            print(
+                f"[{idx}/{N_TOP}] Scraped output | "
+                f"title={title_str} | "
+                f"author={author if author else 'None'} | "
+                f"pub_date={pub_date_str}"
+            )
+            if not any((pub_date, author, title)):
+                failed_items.append((idx - 1, url))
             titles.append(title if title else "Titolo non trovato")
             authors.append(author if author else "Autore non trovato")
             pub_dates.append(pub_date.strftime('%Y-%m-%d') if pub_date else "Data non trovata")
@@ -137,10 +267,44 @@ def main():
             titles.append("Errore recupero titolo")
             authors.append("Errore recupero autore")
             pub_dates.append("Errore recupero data")
+            failed_items.append((idx - 1, url))
+
+    if failed_items:
+        print(f"Final retry pass started for {len(failed_items)} failed URLs...")
+        still_failed = 0
+        for retry_pos, (item_idx, url) in enumerate(failed_items, 1):
+            try:
+                pub_date, author, title = get_article_metadata_with_retry(url)
+                title_str = str(title).replace("\n", " ").strip() if title else "None"
+                if len(title_str) > 80:
+                    title_str = title_str[:80] + "..."
+                pub_date_str = pub_date.strftime('%Y-%m-%d') if pub_date else "None"
+                print(
+                    f"[Retry {retry_pos}/{len(failed_items)}] Scraped output | "
+                    f"title={title_str} | "
+                    f"author={author if author else 'None'} | "
+                    f"pub_date={pub_date_str}"
+                )
+                if any((pub_date, author, title)):
+                    titles[item_idx] = title if title else "Titolo non trovato"
+                    authors[item_idx] = author if author else "Autore non trovato"
+                    pub_dates[item_idx] = pub_date.strftime('%Y-%m-%d') if pub_date else "Data non trovata"
+                else:
+                    still_failed += 1
+            except Exception as e:
+                print(f"Final retry error for {url}: {str(e)[:80]}")
+                still_failed += 1
+
+        print(
+            f"Final retry pass completed: recovered={len(failed_items) - still_failed} "
+            f"still_failed={still_failed}"
+        )
+
     top_df["title"] = titles
     top_df["author"] = authors
     top_df["category"] = top_df["pagePath"].apply(map_ga4_categories)
     top_df["publication_date"] = pub_dates
+    top_df = _normalize_text_columns(top_df)
     
     # Ensure numeric columns are properly typed before scoring
     print("\nConversione colonne numeriche...")
@@ -199,6 +363,14 @@ def main():
         print(f"⚠ Errore nel calcolo Editorial Score: {e}")
         print("Continuazione senza score...")
     
+    # Assign performance buckets for key metrics
+    print("\n📊 Assegnazione fasce di performance...")
+    top_df = assign_performance_buckets(
+        top_df,
+        metrics=['screenPageViews', 'engagementRate', 'averageSessionDuration']
+    )
+    print("✓ Fasce assegnate per: screenPageViews, engagementRate, averageSessionDuration")
+
     # Reorder columns as requested
     ordered_cols = [
         'editorial_rank',
@@ -215,7 +387,10 @@ def main():
         'feature_reach_rank',
         'feature_engagement_rank',
         'feature_depth_rank',
-        'anomaly_flag'
+        'anomaly_flag',
+        'screenPageViews_fascia',
+        'engagementRate_fascia',
+        'averageSessionDuration_fascia'
     ]
     # Add any extra columns at the end
     extra_cols = [col for col in top_df.columns if col not in ordered_cols]
