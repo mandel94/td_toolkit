@@ -35,6 +35,7 @@ def register_callbacks(
             Output("trend-chart", "figure"),
             Output("monthly-views-chart", "figure"),
             Output("seasonality-chart", "figure"),
+            Output("retention-chart", "figure"),
             Output("last-update", "children"),
         ],
         [Input("update-button", "n_clicks")],
@@ -91,6 +92,7 @@ def register_callbacks(
                     go.Figure(),
                     go.Figure(),
                     go.Figure(),
+                    go.Figure(),
                     f"Ultimo aggiornamento: {datetime.now().strftime('%d/%m/%Y %H:%M')}",
                 )
 
@@ -140,6 +142,18 @@ def register_callbacks(
 
             # Create seasonality chart
             seasonality_chart = create_seasonality_chart(seasonality_info)
+            
+            # Create retention chart (new vs returning users)
+            retention_df = analytics_service.repository.get_user_retention_data(start, end)
+            retention_chart = ChartFactory.create_dual_axis_line_chart(
+                retention_df,
+                x_column="date",
+                y1_column="newUsers",
+                y2_column="returningUsers",
+                y1_label="Nuovi Utenti",
+                y2_label="Utenti di Ritorno",
+                title="Fidelizzazione: Nuovi vs Utenti di Ritorno"
+            )
 
             # Update timestamp
             update_time = (
@@ -152,6 +166,7 @@ def register_callbacks(
                 trend_chart,
                 monthly_views_chart,
                 seasonality_chart,
+                retention_chart,
                 update_time,
             )
 
@@ -164,6 +179,7 @@ def register_callbacks(
                         title="Errore", content=error_msg, box_type="danger"
                     )
                 ],
+                go.Figure(),
                 go.Figure(),
                 go.Figure(),
                 go.Figure(),

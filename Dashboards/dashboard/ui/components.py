@@ -340,3 +340,101 @@ class ChartFactory:
         )
         
         return fig
+    
+    @staticmethod
+    def create_dual_axis_line_chart(
+        df: pd.DataFrame,
+        x_column: str = "date",
+        y1_column: str = "newUsers",
+        y2_column: str = "returningUsers",
+        y1_label: str = "Nuovi Utenti",
+        y2_label: str = "Utenti di Ritorno",
+        title: str = "Fidelizzazione Utenti"
+    ) -> go.Figure:
+        """
+        Create a line chart with dual Y-axes
+        
+        Args:
+            df: DataFrame with data
+            x_column: Column for x-axis
+            y1_column: Column for first y-axis (left)
+            y2_column: Column for second y-axis (right)
+            y1_label: Label for first y-axis
+            y2_label: Label for second y-axis
+            title: Chart title
+            
+        Returns:
+            Plotly Figure object with dual axes
+        """
+        fig = go.Figure()
+        
+        # Add first trace (new users) on left Y-axis
+        fig.add_trace(go.Scatter(
+            x=df[x_column],
+            y=df[y1_column],
+            mode='lines',
+            name=y1_label,
+            line=dict(color="#2196F3", width=2),
+            yaxis='y1'
+        ))
+        
+        # Add second trace (returning users) on right Y-axis
+        fig.add_trace(go.Scatter(
+            x=df[x_column],
+            y=df[y2_column],
+            mode='lines',
+            name=y2_label,
+            line=dict(color="#4caf50", width=2),
+            yaxis='y2'
+        ))
+        
+        # Update layout with dual axes
+        fig.update_layout(
+            title=dict(text=title, font=dict(size=20, color="#333")),
+            xaxis=dict(
+                title="Data",
+                showgrid=True,
+                gridwidth=1,
+                gridcolor="#f0f0f0",
+                showline=True,
+                linewidth=1,
+                linecolor="#ddd"
+            ),
+            yaxis=dict(
+                title=y1_label,
+                titlefont=dict(color="#2196F3"),
+                tickfont=dict(color="#2196F3"),
+                showgrid=True,
+                gridwidth=1,
+                gridcolor="#f0f0f0",
+                showline=True,
+                linewidth=1,
+                linecolor="#ddd"
+            ),
+            yaxis2=dict(
+                title=y2_label,
+                titlefont=dict(color="#4caf50"),
+                tickfont=dict(color="#4caf50"),
+                overlaying='y',
+                side='right',
+                showgrid=False,
+                showline=True,
+                linewidth=1,
+                linecolor="#ddd"
+            ),
+            plot_bgcolor="white",
+            paper_bgcolor="white",
+            font=dict(family="Arial, sans-serif", size=12, color="#666"),
+            hovermode='x unified',
+            showlegend=True,
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="right",
+                x=1
+            ),
+            margin=dict(l=60, r=60, t=80, b=60)
+        )
+        
+        return fig

@@ -106,6 +106,36 @@ class AnalyticsRepository:
         )
         
         return current_data, comparison_data
+    
+    def get_user_retention_data(
+        self,
+        start_date: datetime,
+        end_date: datetime
+    ) -> pd.DataFrame:
+        """
+        Get new vs returning users data over time
+        
+        Args:
+            start_date: Start date
+            end_date: End date
+            
+        Returns:
+            DataFrame with date, newUsers, and returningUsers columns
+        """
+        df = self.ga4_client.fetch_page_views_trend(
+            start_date=start_date,
+            end_date=end_date,
+            metrics=["newUsers", "totalUsers"],
+            dimensions=["date"]
+        )
+        
+        # Calculate returning users
+        df['returningUsers'] = df['totalUsers'] - df['newUsers']
+        
+        # Ensure proper sorting
+        df = df.sort_values('date').reset_index(drop=True)
+        
+        return df
 
 
 class CachedAnalyticsRepository(AnalyticsRepository):
@@ -143,6 +173,36 @@ class CachedAnalyticsRepository(AnalyticsRepository):
         
         # Fetch fresh data
         df = super().get_page_views_by_period(start_date, end_date)
+        
+        # Cache it
+        self._cache[cache_key] = (df.copy(), datetime.now())
+        
+        return df
+    
+    def get_user_retention_data(
+        self,
+        start_date: datetime,
+        end_date: datetime
+    ) -> pd.DataFrame:
+        """
+        Get user retention data with caching
+        
+        Args:
+            start_date: Start date
+            end_date: End date
+            
+        Returns:
+            DataFrame with cached or fresh data
+        """
+        cache_key = f"retention_{start_date.date()}_{end_date.date()}"
+        
+        if cache_key in self._cache:
+            cached_data, cached_time = self._cache[cache_key]
+            if datetime.now() - cached_time < self._cache_ttl:
+                return cached_data.copy()
+        
+        # Fetch fresh data
+        df = super().get_user_retention_data(start_date, end_date)
         
         # Cache it
         self._cache[cache_key] = (df.copy(), datetime.now())

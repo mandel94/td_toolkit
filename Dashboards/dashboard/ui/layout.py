@@ -208,6 +208,30 @@ def create_layout() -> html.Div:
                 "marginBottom": "30px"
             }),
             
+            # User Retention (Fidelizzazione)
+            html.Div([
+                html.H3(
+                    "👥 Fidelizzazione",
+                    style={
+                        "color": "#333",
+                        "marginBottom": "20px",
+                        "fontSize": "20px",
+                        "fontWeight": "600"
+                    }
+                ),
+                dcc.Loading(
+                    id="loading-retention",
+                    type="default",
+                    children=dcc.Graph(id="retention-chart")
+                )
+            ], style={
+                "backgroundColor": "#fff",
+                "padding": "25px",
+                "borderRadius": "8px",
+                "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",
+                "marginBottom": "30px"
+            }),
+            
             # Footer
             html.Div([
                 html.P([
