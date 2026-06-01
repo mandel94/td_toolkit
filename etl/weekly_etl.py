@@ -11,6 +11,8 @@ from etl.content_scoring import (
     ContentScoreSegmentation,
     ContentScoreValidator,
     ContentScoringConfig,
+    Ga4EditorialScoreCalculator,
+    Ga4ScoringConfig,
 )
 from scrape_content.ArticleScraper import ArticleScraper
 
@@ -64,6 +66,9 @@ class WeeklyTransformer:
     si_fara_func: Callable[[str], bool]
     min_views: int = 10
     scoring_strategy_name: str = "balanced"
+    # scoring_version='v1' → rank-based ContentScoreCalculator (original)
+    # scoring_version='v2' → GA4-standard Ga4EditorialScoreCalculator (new formula)
+    scoring_version: str = "v1"
 
     def transform(self, df: pd.DataFrame) -> pd.DataFrame:
         df = df.copy()
@@ -109,36 +114,62 @@ class WeeklyTransformer:
 
         # Content scoring
         try:
-            scoring_config = ContentScoringConfig(strategy_name=self.scoring_strategy_name)
-            calculator = ContentScoreCalculator(scoring_config)
-            segmenter = ContentScoreSegmentation(scoring_config)
-            validator = ContentScoreValidator(scoring_config)
+            if self.scoring_version == "v2":
+                # GA4-standard formula (Portata / Qualità di lettura / Completamento / Recirculation)
+                ga4_config = Ga4ScoringConfig()
+                df = Ga4EditorialScoreCalculator(ga4_config).calculate(df)
 
-            df = calculator.calculate(df)
-            df = segmenter.segment(df)
-            is_valid, issues = validator.validate(df)
-            if not is_valid:
-                # Flags are added even if validation finds issues
-                df = validator.flag_anomalies(df)
+                ordered_cols = [
+                    "editorial_rank",
+                    "editorial_score",
+                    "Title",
+                    "pagePath",
+                    "Publication Date",
+                    "Author",
+                    "article_text",
+                    "Categoria",
+                    "screenPageViews",
+                    "engagementRate",
+                    "averageSessionDuration",
+                    "word_count",
+                    "score_portata",
+                    "score_reading_quality",
+                    "score_completion",
+                    "score_recirculation",
+                ]
+            else:
+                # v1 — rank-based ContentScoreCalculator (original behaviour)
+                scoring_config = ContentScoringConfig(strategy_name=self.scoring_strategy_name)
+                calculator = ContentScoreCalculator(scoring_config)
+                segmenter = ContentScoreSegmentation(scoring_config)
+                validator = ContentScoreValidator(scoring_config)
 
-            ordered_cols = [
-                "editorial_rank",
-                "editorial_score",
-                "Title",
-                "pagePath",
-                "Publication Date",
-                "Author",
-                "article_text",
-                "Categoria",
-                "content_segment",
-                "screenPageViews",
-                "engagementRate",
-                "averageSessionDuration",
-                "feature_reach_rank",
-                "feature_engagement_rank",
-                "feature_depth_rank",
-                "anomaly_flag",
-            ]
+                df = calculator.calculate(df)
+                df = segmenter.segment(df)
+                is_valid, issues = validator.validate(df)
+                if not is_valid:
+                    # Flags are added even if validation finds issues
+                    df = validator.flag_anomalies(df)
+
+                ordered_cols = [
+                    "editorial_rank",
+                    "editorial_score",
+                    "Title",
+                    "pagePath",
+                    "Publication Date",
+                    "Author",
+                    "article_text",
+                    "Categoria",
+                    "content_segment",
+                    "screenPageViews",
+                    "engagementRate",
+                    "averageSessionDuration",
+                    "feature_reach_rank",
+                    "feature_engagement_rank",
+                    "feature_depth_rank",
+                    "anomaly_flag",
+                ]
+
             extra_cols = [c for c in df.columns if c not in ordered_cols]
             df = df[[c for c in ordered_cols if c in df.columns] + extra_cols]
         except Exception:

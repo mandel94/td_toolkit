@@ -34,6 +34,8 @@ from .calculator import ContentScoreCalculator
 from .segmentation import ContentScoreSegmentation
 from .config import ContentScoringConfig, DEFAULT_CONFIG
 from .validators import ContentScoreValidator
+from .ga4_score_config import Ga4ScoringConfig, DEFAULT_GA4_CONFIG
+from .ga4_score_calculator import Ga4EditorialScoreCalculator
 from .weighting_strategies import (
     WeightingStrategy,
     WeightingStrategyFactory,
